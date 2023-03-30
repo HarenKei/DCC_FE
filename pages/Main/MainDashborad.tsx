@@ -3,6 +3,7 @@ import MainTask from "./MainTask";
 import MainClass from "./MainClass";
 import styled from "styled-components";
 import MainMeal from "./MainMeal";
+import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
 
 const MainDashborad = () => {
   return (
@@ -19,7 +20,10 @@ const MainDashborad = () => {
         />
 
         <MainMeal/>
+        <TeamSpaceCard emoji={"🚙"} title={"관악구 카풀"} name={"정승민"}/>
       </MainDashboardRightContianer>
+
+      
     </MainDashboardContainer>
   );
 };
