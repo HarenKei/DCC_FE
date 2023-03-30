@@ -1,6 +1,6 @@
+import MainMealCard from "@/src/Common/MainMealCard";
 import React from "react";
 import styled from "styled-components";
-import MainMealCard from "../src/Common/MainMealCard";
 
 const MainMeal = () => {
   return (
