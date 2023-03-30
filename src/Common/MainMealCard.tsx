@@ -27,7 +27,7 @@ const MainMealCardContainer = styled.div`
 
   margin-top: 10px;
 
-  box-shadow: 0px 1px 1px balck;
+  box-shadow: 0px 1px 1px black;
 `;
 
 const MainMealCardBanner = styled.div`
