@@ -1,14 +1,18 @@
 import React from "react";
 import TaskCard from "@/src/Common/TaskCard";
 import styled from "styled-components";
+import Link from "next/link";
 
 const MainTask = () => {
   return (
     <MainTaskBannerContainer>
-      
-
       <TaskCardZone>
-      <MainTaskBannerTitle>My Task 📚</MainTaskBannerTitle>
+
+        <MainTitleAndLinkZone>
+          <MainTaskBannerTitle>My Task 📚</MainTaskBannerTitle>
+          <Link href="/MyTask">more</Link>
+        </MainTitleAndLinkZone>
+
         <TaskCard
           title={"test1234"}
           category={"category"}
@@ -41,7 +45,7 @@ const MainTaskBannerContainer = styled.div`
   width: 45vw;
   height: 40vh;
 
-  background-color: #D0D1D1;
+  background-color: #d0d1d1;
   border-radius: 20px;
 
   box-shadow: 0px 1px 1px black;
@@ -52,6 +56,18 @@ const TaskCardZone = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+`;
+
+const MainTitleAndLinkZone = styled.div`
+  width: 40vw;
+  display: flex;
+  flex-direction: row;  
+  justify-content: space-between;
+  align-items: center;
+
+  a{
+    font-weight: 100;
+  }
 `;
 
 const MainTaskBannerTitle = styled.h1`

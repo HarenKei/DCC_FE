@@ -17,7 +17,6 @@ const MainDashborad = () => {
           classProf={"정호일"}
           classRoom={"J0407"}
         />
-
         <MainMeal/>
       </MainDashboardRightContianer>
     </MainDashboardContainer>
@@ -29,9 +28,9 @@ const MainDashboardContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 90vw;
-  height: 100vh;
+  height: 45vh;
   background-color: pink;
-  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const MainDashboardLeftContainer = styled.div``;
