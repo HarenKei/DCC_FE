@@ -3,7 +3,6 @@ import MainTask from "./MainTask";
 import MainClass from "./MainClass";
 import styled from "styled-components";
 import MainMeal from "./MainMeal";
-import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
 
 const MainDashborad = () => {
   return (
@@ -18,12 +17,8 @@ const MainDashborad = () => {
           classProf={"정호일"}
           classRoom={"J0407"}
         />
-
         <MainMeal/>
-        <TeamSpaceCard emoji={"🚙"} title={"관악구 카풀"} name={"정승민"}/>
       </MainDashboardRightContianer>
-
-      
     </MainDashboardContainer>
   );
 };
@@ -33,9 +28,9 @@ const MainDashboardContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 90vw;
-  height: 100vh;
+  height: 45vh;
   background-color: pink;
-  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const MainDashboardLeftContainer = styled.div``;

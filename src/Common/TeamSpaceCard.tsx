@@ -21,11 +21,12 @@ const TeamSpaceCard = (props : Props) => {
 };
 
 const TeamSpaceCardContainer = styled.div`
-  width: 22vw;
-  height: 35vh;
+  width: 250px;
+  height: 350px;
   background-color: #d0d0d0;
   border-radius: 15px;
   box-shadow: 0px 1px 1px black;
+  margin-bottom: 1vh;
 
   display: flex;
   flex-direction: column;
@@ -47,5 +48,6 @@ const TeamSpaceReaderName = styled.h1`
   font-size: 20pt;
   font-weight: 400;
 `;
+
 
 export default TeamSpaceCard;
