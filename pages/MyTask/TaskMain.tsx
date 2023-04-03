@@ -2,15 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import TaskBar from "./TaskBar";
 import TaskBoard from "./TaskBoard";
+import Header from "@/src/Common/Header";
 
 const TaskMain = () => {
   return (
-    <MainContainer>
-      <TaskBar/>
-      <TaskBoard/>
-    </MainContainer>
+    <HeaderContainer>
+      <Header/>
+      <MainContainer>
+        <TaskBar/>
+        <TaskBoard/>
+      </MainContainer>
+    </HeaderContainer>
   );
 };
+const HeaderContainer = styled.div`
+`;
 
 const MainContainer = styled.div`
   display: flex;
