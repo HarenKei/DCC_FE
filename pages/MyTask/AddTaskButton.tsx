@@ -16,7 +16,7 @@ const Container = styled.div`
     align-items: center;
 
     width: 8vw;
-    height: 5vw;
+    height: 8vh;
 
     background-color: red;
     border-radius: 10px;
