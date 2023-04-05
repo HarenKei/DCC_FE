@@ -5,7 +5,7 @@ import NoticeMajor from "./NoticeMajor";
 
 const NoticePost = () => {
   return (
-    <form action="">
+    <div>
       <NoticeHeadContainer>
         <Noticetitle>
           <h2>학부공지</h2>
@@ -19,7 +19,7 @@ const NoticePost = () => {
       <NoticeMajor/>
       <NoticeBodyContainer/>
 
-    </form>
+    </div>
   );
 };
 
