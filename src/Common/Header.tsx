@@ -3,16 +3,15 @@ import styled from "styled-components";
 
 const Header = () => {
     return(
-          <Container>
+          <HeaderContainer>
             <p>헤더</p>
-          </Container>
+          </HeaderContainer>
     );
 };
 
-const Container = styled.div`
+const HeaderContainer = styled.div`
     width: 100%;
-    height: 8vh;
-
+    height: 6vh;
     background-color: grey;
 `;
 
