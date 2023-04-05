@@ -53,7 +53,6 @@ const MainSchedules = () => {
 const MainSchedulesContainer = styled.div`
   width: 42vw;
   height: 50vh;
-  background-color: skyblue;
 
   display: flex;
   flex-direction: column;

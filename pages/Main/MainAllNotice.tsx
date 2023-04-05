@@ -48,7 +48,6 @@ const MainAllNotice = () => {
 const MainAllNoticeContainer = styled.div`
   width: 45vw;
   height: 50vh;
-  background-color: violet;
 `;
 
 const MainAllNoticeTitleH1 = styled.h1`

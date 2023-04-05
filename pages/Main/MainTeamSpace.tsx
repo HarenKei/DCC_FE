@@ -111,7 +111,6 @@ const MainTeamSpaceContainer = styled.div`
   width: 90vw;
   height: 60vh;
   margin-bottom: 100px;
-  background-color: skyblue;
   display: flex;
   flex-direction: column;
   justify-content: center;

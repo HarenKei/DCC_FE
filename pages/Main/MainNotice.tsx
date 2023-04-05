@@ -20,8 +20,6 @@ const MainNoticeContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  background-color: yellow;
 `;
 
 export default MainNotice;

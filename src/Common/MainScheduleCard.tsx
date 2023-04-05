@@ -23,7 +23,7 @@ const MainScheduleCard = (props : Props) => {
 
 const MainScheduleCardContainer = styled.div`
   width: 40vw;
-  height: 8vh;
+  height: 6vh;
   border-radius: 10px;
   
   display: flex;
