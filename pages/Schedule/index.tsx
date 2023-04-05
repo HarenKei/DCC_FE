@@ -1,1 +1,1 @@
-export { default } from "./ScheduleCalendar";
+export { default } from "./Schedule";

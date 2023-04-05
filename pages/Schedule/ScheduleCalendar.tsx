@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ScheduleCalendar = () => {
+const ScheduleCalender = () => {
     return(
     <Calender>
     </Calender>
@@ -20,4 +20,4 @@ const Calender = styled.div`
     box-shadow: 0px 1px 1px black;
 `;
 
-export default ScheduleCalendar;
+export default ScheduleCalender;

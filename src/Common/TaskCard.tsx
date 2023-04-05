@@ -43,7 +43,7 @@ const TaskCardInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10px;
+  padding-left: 30px;
 `;
 
 const TaskTitleP = styled.p`
@@ -69,7 +69,7 @@ const TaskStatusBanner = styled.div`
   font-weight: 900;
   background-color: yellow;
   border-radius: 10px;
-  margin-right: 10px;
+  margin-right: 30px;
 
   display: flex;
   justify-content: center;
