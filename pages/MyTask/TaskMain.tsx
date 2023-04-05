@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import TaskBar from "./TaskBar";
-import TaskBoard from "./TaskBoard";
+import TaskBar from "./TaskBar/TaskBar";
+import TaskBoard from "./TaskBoard/TaskBoard";
 import Header from "@/src/Common/Header";
 
 const TaskMain = () => {
@@ -21,7 +21,7 @@ const HeaderContainer = styled.div`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 35px;
 `;
 
 export default TaskMain;

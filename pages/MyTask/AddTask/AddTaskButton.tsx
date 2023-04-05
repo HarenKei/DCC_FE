@@ -4,7 +4,7 @@ import styled from "styled-components";
 const AddTaskButton = (props:any) => {
     return(
         <Container>
-            <P>할 일 추가</P>
+            <P>{props.title}</P>
         </Container>
     );
 };
@@ -19,10 +19,12 @@ const Container = styled.div`
     height: 8vh;
 
     background-color: red;
-    border-radius: 10px;
+    border-radius: 20px;
+
+    box-shadow: 0px 1px 1px black;
 `;
 const  P= styled.p`
-    font-size: 20px;
+    font-size: 1.3vw;
 `;
 
 

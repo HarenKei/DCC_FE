@@ -1,15 +1,16 @@
 import React from "react";
 import TaskCard from "@/src/Common/TaskCard";
 import styled from "styled-components";
+import Search from "@/src/Common/Search";
 
-const RightTaskBoard = () => {
+const LeftTaskBoard = () => {
   return (
     <TaskBoardContainer>
       <TaskCardZone>
 
         <MainTitleAndSearchZone>
-          <TaskBoardTitle>진행중</TaskBoardTitle>
-          {/* 검색창 들어갈곳*/}
+          <TaskBoardTitle>할 일</TaskBoardTitle>
+          <Search title = {"내 할 일"}/>
         </MainTitleAndSearchZone>
 
         <TaskCard
@@ -43,7 +44,7 @@ const TaskBoardContainer = styled.div`
   width: 45vw;
   height: 80vh;
 
-  background-color: #d0d1d1;
+  background-color: #d9d9d9;
   border-radius: 20px;
 
   box-shadow: 0px 1px 1px black;
@@ -54,6 +55,8 @@ const TaskCardZone = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  margin-top: 20px;
 `;
 
 const MainTitleAndSearchZone = styled.div`
@@ -74,4 +77,4 @@ const TaskBoardTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
-export default RightTaskBoard;
+export default LeftTaskBoard;
