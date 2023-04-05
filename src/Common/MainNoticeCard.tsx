@@ -28,12 +28,11 @@ const MainNoticeCard = (props : Props) => {
 };
 
 const MainNoticeCardContainer = styled.div`
-  width: 45vw;
-  height: 11vh;
+  width: 43vw;
+  height: 10vh;
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
   background-color: #d9d9d9;
-  margin-bottom: 30px;
 
   display: flex;
   justify-content: flex-start;
