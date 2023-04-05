@@ -11,7 +11,7 @@ interface Props {
 const MainClass = (props: Props) => {
     return(
         <MainClassContainer>
-          <MainClassTitle>현재 강의📖</MainClassTitle>
+          <MainClassTitle>현재 강의 📖</MainClassTitle>
 
           <MainClassContents>
             <MainClassContentTitleP>{props.classTitle}</MainClassContentTitleP>

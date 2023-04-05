@@ -39,6 +39,11 @@ const dummyDataArray = [
     title: "🔐 개인정보처리방침",
     link: "/Privacy",
   },
+  {
+    id: "m8",
+    title: "사나이 클럽 GitHub",
+    link: "https://github.com/RealManClub"
+  }
 ];
 
 const MainMenu = () => {

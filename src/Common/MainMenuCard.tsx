@@ -23,7 +23,7 @@ const MainMenuCardContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
   background-color: #d0d0d0;
-  margin: 10px 5px 5px 0px;
+  margin: 10px 42px 10px 0px;
 
   display: flex;
   justify-content: center;
