@@ -1,1 +1,1 @@
-export { default } from "./MyTask";
+export { default } from "./TaskBar/TaskBar";
