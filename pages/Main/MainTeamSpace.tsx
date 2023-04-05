@@ -1,7 +1,6 @@
 import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
 import React from "react";
 import styled from "styled-components";
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -10,32 +9,32 @@ const dummyDataArray = [
   {
     id: "ws1",
     emoji: "🚙",
-    title: "관악구 카풀",
-    name: "정승민",
+    title: "융합 전공",
+    name: "김미점",
   },
   {
     id: "ws2",
-    emoji: "🎤",
-    title: "코노팟",
+    emoji: "👥",
+    title: "리액트 스터디",
     name: "육영현",
   },
   {
     id: "ws3",
-    emoji: "🍽️",
-    title: "배달시켜요",
-    name: "이정욱",
+    emoji: "👨‍💻",
+    title: "웹 앱 전공 1반",
+    name: "정호일",
   },
   {
     id: "ws4",
     emoji: "👨‍💻",
-    title: "리액트 프로젝트",
-    name: "이재형",
+    title: "웹 앱 전공 2반",
+    name: "정호일",
   },
   {
     id: "ws5",
     emoji: "📖",
-    title: "스프링 스터디",
-    name: "김동건",
+    title: "앱 전공",
+    name: "김지예",
   },
   {
     id: "ws6",
@@ -46,7 +45,6 @@ const dummyDataArray = [
 ];
 
 const settings = {
-
       arrows: false,
       dots: true,
       infinite: true,
@@ -55,13 +53,39 @@ const settings = {
       autoplay: true,
       speed: 3000,
       autoplaySpeed: 3000,
-      cssEase: "linear"
+      cssEase: "linear",
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
 };
 
 const MainTeamSpace = () => {
   return (
     <MainTeamSpaceContainer>
-      <MainTeamSpaceTitle>팀 스페이스</MainTeamSpaceTitle>
+      <MainTeamSpaceTitleH1>팀 스페이스</MainTeamSpaceTitleH1>
       <MainTeamSpaceIntroP>
         스터디, 프로젝트, 카풀... 컴정에 팀이 필요한 순간, 팀 스페이스 🤝
       </MainTeamSpaceIntroP>
@@ -87,14 +111,13 @@ const MainTeamSpaceContainer = styled.div`
   width: 90vw;
   height: 60vh;
   margin-bottom: 100px;
-  background-color: skyblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 `;
 
-const MainTeamSpaceTitle = styled.h1`
+const MainTeamSpaceTitleH1 = styled.h1`
   font-size: 30pt;
   font-weight: 900;
   letter-spacing: -3px;

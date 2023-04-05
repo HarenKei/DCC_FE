@@ -29,7 +29,6 @@ const MainDashboardContainer = styled.div`
   justify-content: space-between;
   width: 90vw;
   height: 45vh;
-  background-color: pink;
   margin-bottom: 50px;
 `;
 
