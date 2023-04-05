@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import ScheduleCalendar from "./ScheduleCalendar";
+import ScheduleCalender from "./ScheduleCalendar";
 import ScheduleInfo from "./ScheduleInfo";
 import MonthControll from "./MonthControll";
 
-const ScheduleMain = () => {
+const Schedule = () => {
     return(
         <>
         <ScheduleTitle>학사 일정</ScheduleTitle>
         <MonthControll/>
         <ScheduleContainer>
-            <ScheduleCalendar/>
+            <ScheduleCalender/>
         </ScheduleContainer>
         <ScheduleInfoContainer>
             <ScheduleInfo/>
@@ -41,4 +41,4 @@ const ScheduleInfoContainer = styled.div`
     margin-top: 100px;  
 `;
 
-export default ScheduleMain;
+export default Schedule;
