@@ -4,7 +4,7 @@ import TaskBar from "./TaskBar/TaskBar";
 import TaskBoard from "./TaskBoard/TaskBoard";
 import Header from "@/src/Common/Header";
 
-const TaskMain = () => {
+const MyTask = () => {
   return (
     <HeaderContainer>
       <Header/>
@@ -24,4 +24,4 @@ const MainContainer = styled.div`
   margin-top: 35px;
 `;
 
-export default TaskMain;
+export default MyTask;
