@@ -5,30 +5,31 @@ const NoticeMajor = () => {
   return (
     <div>
       <ContentMajor>
-        <MajorContent>웹</MajorContent>
-        <MajorContent>앱</MajorContent>
-        <MajorContent>응용</MajorContent>
+        <MajorContent><h3>웹 전공</h3></MajorContent>
+        <MajorContent><h3>앱 전공</h3></MajorContent>
+        <MajorContent><h3>응용 전공</h3></MajorContent>
       </ContentMajor>
     </div>
   );
 };
 const MajorContent = styled.div`
-  background-color: #81c7e8;
+  background-color: #D9D9D9;
   padding: 1rem;
   width: 13rem;
   max-width: 95%;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  box-shadow:  0px 1px 1px black;
 `;
 const ContentMajor = styled.div`
   justify-content: space-around;
   display: flex;
-  border: solid 1px black;
   padding: 1rem;
-  background-color: grey;
   margin: 2rem auto;
-  width: 50rem;
+  width: 60vw;
   max-width: 95%;
+  & > div:hover {
+    background-color: #ADABAB;
+  }
 `;
 export default NoticeMajor;

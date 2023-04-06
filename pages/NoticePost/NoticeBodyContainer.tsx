@@ -10,16 +10,17 @@ const NoticeBodyContainer = () => {
         <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
+        <NoticeCard/>
       </MainBodyContainer>
     </div>
   );
 };
 const MainBodyContainer = styled.div`
-  border: solid 1px black;
+  /* border: solid 1px black; */
   padding: 1rem;
-  background-color: grey;
+  /* background-color: grey; */
   margin: 2rem auto;
-  width: 60rem;
+  width: 90vw;
   height: auto;
   display: flex;
   flex-flow:row wrap;
