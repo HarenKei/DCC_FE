@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -7,9 +8,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
   return (
     <HeaderContainer>
-      <LogoContainer>
-        <Logo width={168} height={52.5} />
-      </LogoContainer>
+      <Link href={"/"}>
+        <LogoContainer>
+          <Logo width={168} height={52.5} />
+        </LogoContainer>
+      </Link>
 
       <HambugerMenuContainer>
         <FontAwesomeIcon icon={faBars} size={"2x"} />

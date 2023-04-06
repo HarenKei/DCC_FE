@@ -119,6 +119,11 @@ const MainTeamSpaceContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  a{
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+  }
 `;
 
 const MainTeamSpaceTitleH1 = styled.h1`

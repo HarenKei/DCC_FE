@@ -67,6 +67,8 @@ const MainTitleAndLinkZone = styled.div`
 
   a{
     font-weight: 100;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
   }
 `;
 
