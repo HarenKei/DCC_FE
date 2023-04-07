@@ -6,13 +6,6 @@ import AddTaskButton from "../AddTask/AddTaskButton";
 // import AddTaskModal from "./AddTaskModal"
 
 const TaskBar = (props:any) => {
-    // // 모달창 노출 여부 state
-    // const [modalOpen, setModalOpen] = useState(false);
-
-    // // 모달창 노출
-    // const showModal = () => {
-    //     setModalOpen(true);
-    // };
     return(
         <TaskHeaderContainer>
             <Container>
