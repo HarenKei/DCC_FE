@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Header from "@/src/Common/Header";
+import Footer from "@/src/Common/Footer";
 
 
 const PrivacyTxt = () => {
@@ -141,15 +143,39 @@ const PrivacyTxt = () => {
 
 const Privacy = () => {
     return(
-        <MainPrivacyContainer style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={PrivacyTxt()}>
+        <PrivacyContainer>
+            <PrivacyHeaderContainer>
+            <Header />
+            </PrivacyHeaderContainer>
+            <MainPrivacyContainer style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={PrivacyTxt()}>
             
-        </MainPrivacyContainer>
+            </MainPrivacyContainer>
+            <PrivacyFooterContainer>
+                <Footer/>
+            </PrivacyFooterContainer>
+        </PrivacyContainer>
     );
 };
+
+const PrivacyContainer = styled.div`
+
+`;
+
+const PrivacyHeaderContainer = styled.div`
+    margin-bottom: 1em;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 1em;
+`;
 
 const MainPrivacyContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 2em;
+    border-bottom: 1px solid #cccccc;
+`;
+
+const PrivacyFooterContainer = styled.div`
+    padding-top: 1em;
 `;
 
 export default Privacy;
