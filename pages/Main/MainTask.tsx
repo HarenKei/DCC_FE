@@ -10,7 +10,7 @@ const MainTask = () => {
 
         <MainTitleAndLinkZone>
           <MainTaskBannerTitle>My Task 📚</MainTaskBannerTitle>
-          <Link href="/MyTask">more</Link>
+          <Link href="/MyTask/TaskMain">more</Link>
         </MainTitleAndLinkZone>
 
         <TaskCard

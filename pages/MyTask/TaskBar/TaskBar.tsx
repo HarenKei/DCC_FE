@@ -1,9 +1,18 @@
 import React from "react";
+import { useState } from 'react';
 import TaskBarCtgry from "./TaskBarCtgry";
 import styled from "styled-components";
 import AddTaskButton from "../AddTask/AddTaskButton";
+// import AddTaskModal from "./AddTaskModal"
 
-const TaskBar = () => {
+const TaskBar = (props:any) => {
+    // // 모달창 노출 여부 state
+    // const [modalOpen, setModalOpen] = useState(false);
+
+    // // 모달창 노출
+    // const showModal = () => {
+    //     setModalOpen(true);
+    // };
     return(
         <TaskHeaderContainer>
             <Container>
@@ -11,9 +20,10 @@ const TaskBar = () => {
                 <TaskBarCtgry title={"중요한 일"}/>
                 <TaskBarCtgry title={"완료된 일"}/>
             </Container>
-            <AddTaskButton title={"할 일 추가"}/>
+            <AddTaskButton > {/*AddTaskButton 클릭시 모달창 노출 */}
+            
+            </AddTaskButton>
         </TaskHeaderContainer>
-        
     );
 };
 
