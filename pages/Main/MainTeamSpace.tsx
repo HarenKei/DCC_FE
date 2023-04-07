@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Link from "next/link";
 
 const dummyDataArray = [
   {
@@ -86,9 +87,12 @@ const MainTeamSpace = () => {
   return (
     <MainTeamSpaceContainer>
       <MainTeamSpaceTitleH1>팀 스페이스</MainTeamSpaceTitleH1>
+      <MainTeamSpaceIntroLink>
       <MainTeamSpaceIntroP>
         스터디, 프로젝트, 카풀... 컴정에 팀이 필요한 순간, 팀 스페이스 🤝
       </MainTeamSpaceIntroP>
+      <Link href="/TeamSpace">전체 팀 스페이스 보기 &gt;&gt;</Link>
+      </MainTeamSpaceIntroLink>
 
       <SliderContainer>
         <Slider {...settings}>
@@ -115,6 +119,11 @@ const MainTeamSpaceContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  a{
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+  }
 `;
 
 const MainTeamSpaceTitleH1 = styled.h1`
@@ -143,6 +152,17 @@ const SliderContainer = styled.div`
     button::before {
       color: white;
     }
+  }
+`;
+
+const MainTeamSpaceIntroLink = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  a{
+    font-weight: 100;
   }
 `;
 

@@ -6,7 +6,7 @@ const MainMeal = () => {
   return (
     <MainMealContainer>
       <MainMealCardContainer>
-        <MainMealTitle>오늘의 학식🍽️</MainMealTitle>
+        <MainMealTitle>오늘의 학식 🍽️</MainMealTitle>
         <MainMealCard
           corner={"corner1"}
           meal={"쇠고기 쌀국수 |  사모사 튀김"}

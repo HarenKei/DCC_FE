@@ -19,10 +19,11 @@ const MainMenuCard = (props: Props) => {
 
 const MainMenuCardContainer = styled.div`
   width: 20vw;
-  height: 20vh;
+  height: 8vh;
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
-  background-color: grey;
+  background-color: #d0d0d0;
+  margin: 10px 42px 10px 0px;
 
   display: flex;
   justify-content: center;
@@ -30,7 +31,7 @@ const MainMenuCardContainer = styled.div`
 `;
 
 const MainMenuCardTitleH1 = styled.h1`
-  font-size: 25pt;
+  font-size: 20pt;
   font-weight: 900;
 `;
 
