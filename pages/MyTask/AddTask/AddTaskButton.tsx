@@ -9,7 +9,7 @@ const AddTaskButton = (props:any) => {
     );
 };
 
-const Container = styled.div`
+const Container = styled.button`
     display: flex;
     flex-direction: column;
     justify-content: center;

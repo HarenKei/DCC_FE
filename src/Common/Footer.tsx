@@ -9,9 +9,11 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterLeftSpace>
+        <Link href={"/"}>
         <LogoContainer>
           <Logo width={168} height={52.5} />
         </LogoContainer>
+        </Link>
 
         <Link href="/Privacy">
           <PrivacyLinkP>개인정보처리방침</PrivacyLinkP>
