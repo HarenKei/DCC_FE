@@ -3,29 +3,28 @@ import styled from "styled-components";
 
 const NoticeBodyContainer = () => {
   return (
-    <form>
+    <div>
       <MainBodyContainer>
-      <BodyContainer>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-      </BodyContainer>
-      <BodyContainer>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-      </BodyContainer>
-      <BodyContainer>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-        <BodyContents><a>공지</a></BodyContents>
-      </BodyContainer>
+        <BodyContainer>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+        </BodyContainer>
+        <BodyContainer>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+        </BodyContainer>
+        <BodyContainer>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+          <BodyContents>공지</BodyContents>
+        </BodyContainer>
       </MainBodyContainer>
-      
-    </form>
+    </div>
   );
 };
 const MainBodyContainer = styled.div`
@@ -35,15 +34,14 @@ const MainBodyContainer = styled.div`
   margin: 2rem auto;
   width: 80rem;
   max-width: 95%;
-
-`
+`;
 const BodyContainer = styled.div`
-  margin-top : 0.7rem;
+  margin-top: 0.7rem;
   display: flex;
   justify-content: space-around;
 `;
 const BodyContents = styled.div`
-  float:left;
+  float: left;
   background-color: #81c7e8;
   padding: 1rem;
   width: 13rem;

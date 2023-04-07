@@ -10,7 +10,7 @@ const MainTask = () => {
 
         <MainTitleAndLinkZone>
           <MainTaskBannerTitle>My Task 📚</MainTaskBannerTitle>
-          <Link href="/MyTask">more</Link>
+          <Link href="/MyTask">내 할 일 관리하기 &gt;&gt;</Link>
         </MainTitleAndLinkZone>
 
         <TaskCard
@@ -67,6 +67,8 @@ const MainTitleAndLinkZone = styled.div`
 
   a{
     font-weight: 100;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
   }
 `;
 
