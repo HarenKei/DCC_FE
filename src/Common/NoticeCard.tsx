@@ -6,7 +6,7 @@ const NoticeCard = () => {
     <div>
         <BodyContents>
           <Title></Title>
-          <Img></Img>
+          <Image></Image>
           <Content> <span></span></Content>
         </BodyContents>
     </div>
@@ -31,7 +31,7 @@ const Title = styled.div`
   line-height: 2rem;
   text-align: center; 
 `;
-const Img = styled.div`
+const Image = styled.div`
   /* border: solid 1px black; */
   height: 8rem;
 `;
