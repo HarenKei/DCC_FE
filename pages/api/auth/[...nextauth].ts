@@ -1,13 +1,19 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
+import Providers from 'next-auth/providers';
+import dotenv from "dotenv";
 // Initialize NextAuth
+dotenv.config();
+const googleConfig={
+    id : process.env.GOOGLE_CLIENT_ID,
+    sc : process.env.GOOGLE_CLIENT_SECRET
+};
 
 export default NextAuth({
     providers: [
         GoogleProvider({
-            clientId: "353509793610-c5v7ue46kae727gfarj698ba6ir1nist.apps.googleusercontent.com",
-            clientSecret: "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"
+            clientId: googleConfig.id!,
+            clientSecret: googleConfig.sc!
         })
     ]
 });
