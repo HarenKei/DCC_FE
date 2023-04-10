@@ -10,7 +10,7 @@ const RightTaskBoard = () => {
 
         <MainTitleAndSearchZone>
           <TaskBoardTitle>진행중</TaskBoardTitle>
-          <Search/>
+          <Search title = {"내 할 일"}/>
         </MainTitleAndSearchZone>
 
         <TaskCard
