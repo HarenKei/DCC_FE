@@ -35,9 +35,9 @@ const MainScheduleCardContainer = styled.div`
 `;
 
 const MainScheduleCardTitleH1 = styled.h1`
-  font-size: 20pt;
-  margin-left: 10px;
-
+  font-size: 18pt;
+  margin-left: 20px;
+  letter-spacing: -2px;
 `;
 
 const MainScheduleCardDateBanner = styled.div`
@@ -48,7 +48,7 @@ const MainScheduleCardDateBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 20px;
   
 `;
 

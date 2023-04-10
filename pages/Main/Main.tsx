@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MainDashborad from "./MainDashborad";
 import MainTeamSpace from "./MainTeamSpace";
 import MainNotice from "./MainNotice";
+import MainMenu from "./MainMenu";
 
 const Main = () => {
   return (
@@ -10,6 +11,7 @@ const Main = () => {
       <MainDashborad/>
       <MainTeamSpace/>
       <MainNotice/>
+      <MainMenu/>
     </MainContainer>
   );
 };
