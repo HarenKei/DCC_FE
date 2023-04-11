@@ -29,7 +29,7 @@ const MainDashboardContainer = styled.div`
   justify-content: space-between;
   width: 90vw;
   height: 45vh;
-  margin-bottom: 50px;
+  margin-bottom: 200px;
 `;
 
 const MainDashboardLeftContainer = styled.div``;

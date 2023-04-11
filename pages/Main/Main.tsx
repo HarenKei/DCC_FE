@@ -4,6 +4,9 @@ import MainDashborad from "./MainDashborad";
 import MainTeamSpace from "./MainTeamSpace";
 import MainNotice from "./MainNotice";
 import MainMenu from "./MainMenu";
+import MainFreeBoard from "./MainFreeBoard";
+import MainSchedules from "./MainSchedules";
+
 
 const Main = () => {
   return (
@@ -11,6 +14,7 @@ const Main = () => {
       <MainDashborad/>
       <MainTeamSpace/>
       <MainNotice/>
+      <MainSchedules/>
       <MainMenu/>
     </MainContainer>
   );

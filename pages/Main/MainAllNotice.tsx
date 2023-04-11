@@ -38,6 +38,7 @@ const MainAllNotice = () => {
             category={items.category}
             title={items.title}
             dept={items.dept}
+            dir={"left"}
           />
         ))}
       </MainAllNoticeCardContainer>
@@ -46,7 +47,7 @@ const MainAllNotice = () => {
 };
 
 const MainAllNoticeContainer = styled.div`
-  width: 45vw;
+  width: 44vw;
   height: 50vh;
 `;
 
