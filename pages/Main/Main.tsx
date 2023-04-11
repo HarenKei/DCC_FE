@@ -4,7 +4,7 @@ import MainDashborad from "./MainDashborad";
 import MainTeamSpace from "./MainTeamSpace";
 import MainNotice from "./MainNotice";
 import MainMenu from "./MainMenu";
-import MainFreeBoard from "./MainFreeBoard";
+import ApiTest from "../Test/ApiTest";
 import MainSchedules from "./MainSchedules";
 
 
@@ -16,6 +16,7 @@ const Main = () => {
       <MainNotice/>
       <MainSchedules/>
       <MainMenu/>
+      <ApiTest/>
     </MainContainer>
   );
 };
