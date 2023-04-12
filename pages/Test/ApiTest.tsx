@@ -3,32 +3,33 @@ import { useState, useEffect } from "react";
 import * as API from "../../src/Common/API";
 import styled from "styled-components";
 
-type PostData = {
+type MealData = {
   email: string;
-  user: string;
+  name: string;
   index: number;
 };
 
-const tmpEventData: PostData = {
-  email: "노무현",
-  user: "노무현",
+const tmpEventData: MealData = {
+  email: "",
+  name: "",
   index: 0,
 };
 
 const ApiTest = () => {
-  const [postData, setPostData] = useState(tmpEventData);
+  const [mealData, setMealData] = useState(tmpEventData);
+  const [testData, setTestData] = useState(tmpEventData);
 
-  useEffect(() => {
-    API.getPostData().then((apiResult: any) => {
-      setPostData(apiResult);
-    });
-  }, []);
 
-  return(
-    <ApiTestContainer>
-      {postData.user}
-    </ApiTestContainer>
-  )
+  useEffect(()=> {
+    API.getPostData().then((apiResult: any) => setTestData(apiResult));
+  });
+
+  console.log("testData: " + testData);
+
+
+
+  return <ApiTestContainer>
+  </ApiTestContainer>;
 };
 
 const ApiTestContainer = styled.div`
