@@ -2,26 +2,27 @@ import React from "react";
 import { useState, useEffect } from "react";
 import * as API from "../../src/Common/API";
 import styled from "styled-components";
+import { apiBaseUrl } from "next-auth/client/_utils";
 
 type MealData = {
-  email: string;
-  name: string;
-  index: number;
+  msg: string;
+  room: string;
+  sender: string;
 };
 
 const tmpEventData: MealData = {
-  email: "",
-  name: "",
-  index: 0,
+  msg: "",
+  room: "",
+  sender: "",
 };
 
 const ApiTest = () => {
-  const [mealData, setMealData] = useState(tmpEventData);
+  const [mealData, setMealData] = useState();
   const [testData, setTestData] = useState(tmpEventData);
 
 
   useEffect(()=> {
-    API.getPostData().then((apiResult: any) => setTestData(apiResult));
+    API.getMealData().then((apiResult: any) => setMealData(apiResult))
   });
 
   console.log("testData: " + testData);
@@ -29,6 +30,9 @@ const ApiTest = () => {
 
 
   return <ApiTestContainer>
+    {testData.msg}
+    {testData.room}
+    {testData.sender}
   </ApiTestContainer>;
 };
 

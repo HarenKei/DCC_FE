@@ -61,13 +61,12 @@ export const getPostData = () => {
 };
 
 export const getMealData = () => {
-    let apiURL : string = `wa-api.defcon.or.kr/`;
+    let apiURL : string = `https://wa-api.defcon.or.kr/getMessage`;
     let mealData = {
         msg: "대림대 학식",
         room: "채팅방 1",
         sender: "harenkei"
     }
     
-    console.log("학식" + apiRequest(apiURL, mealData));
     return apiRequest(apiURL, mealData)
 };
