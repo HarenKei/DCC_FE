@@ -2,41 +2,34 @@ import React from "react";
 import { useState, useEffect } from "react";
 import * as API from "../../src/Common/API";
 import styled from "styled-components";
-import { apiBaseUrl } from "next-auth/client/_utils";
+import axios from "axios";
+import { type } from "os";
 
 type MealData = {
   msg: string;
-  room: string;
-  sender: string;
 };
 
-const tmpEventData: MealData = {
-  msg: "",
-  room: "",
-  sender: "",
-};
+const tmpEventData = "왜 안되노";
 
 const ApiTest = () => {
-  const [mealData, setMealData] = useState();
-  const [testData, setTestData] = useState(tmpEventData);
+  const [test, setTest] = useState(null);
 
-
-  useEffect(()=> {
-    API.getMealData().then((apiResult: any) => setMealData(apiResult))
+  useEffect(() => {
+    API.getMealData().then((apiResult: any) =>{
+      setTest(apiResult);
   });
-
-  console.log("testData: " + testData);
-
-
+  }, []);
 
   return <ApiTestContainer>
-    {testData.msg}
-    {testData.room}
-    {testData.sender}
+    {test}
   </ApiTestContainer>;
 };
 
 const ApiTestContainer = styled.div`
+  width: 90vw;
+  height: 50vh;
+  background-color: black;
+  color: #fff;
   font-size: 18pt;
 `;
 

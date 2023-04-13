@@ -1,34 +1,34 @@
 import axios from "axios";
 
-export interface API_DATA{
-    RESULT_CODE: number,
-    RESULT_MSG: string,
-    RESULT_DATA: object
-}
-
-export interface MEAL_DATA{
-    RESULT: {
+export interface API_MEAL_DATA{
+    DATA: MealData,
+    RESULT:{
         RESULT_CODE: number,
         RESULT_MSG: string
-    },
-    DATA: {
-        msg: string,
-        room: string,
-        sender: string
     }
 }
 
-const API_URL_BASE1 : string = process.env.NEXT_PUBLIC_API_BASE_URL as string;
+export interface MealData{
+    msg: string,
+    room: string,
+    sender: string
+}
+
+// const API_URL_BASE : string = process.env.NEXT_PUBLIC_API_BASE_URL as string;
+// DCC_BE URL
+const API_MEAL_URL_BASE : string = process.env.NEXT_PUBLIC_MEAL_BASE_URL as string;
+//학식 URL
 
 const apiRequest = (apiURL : string, apiReqData : object) => {
     return new Promise((resolve) => {
         sendRequest(apiURL, apiReqData).then((apiResult : any) => {
-            let apiResultCode = apiResult["RESULT_CODE"];
-            let apiResultData = apiResult["RESULT_DATA"];
-            let apiResultMsg = apiResult["RESULT_MSG"];
+            let apiResultCode = apiResult.data.RESULT.RESULT_CODE;
+            let apiResultData = apiResult.data.DATA.msg;
+            let apiResultMsg = apiResult.data.RESULT.RESULT_MSG;
+            //apiResult는 Axios에서 넘기는 것인가?
 
-            if(apiResultCode != 200){
-                console.log(apiResult);
+            if(apiResultCode != 0){
+                console.log(apiResultCode);
                 console.log(apiResultMsg);
             }
 
@@ -39,34 +39,26 @@ const apiRequest = (apiURL : string, apiReqData : object) => {
 
 const sendRequest = (url : string, data : object) => {
     return new Promise((resolve) => {
-        axios.get(url, data)
+        axios.post(url, data)
             .then((response) => {
-                console.log(response.data);
-                resolve(response.data);
+                resolve(response);
             })
             .catch((error) => {
-
                 resolve({
                     RESULT_CODE: 100,
                     RESULT_MSG: error as string
                 });
             });
     });
-}
-
-export const getPostData = () => {
-    let apiURL : string = `${API_URL_BASE1}/getGetData`;
-    console.log("겟데이터데이터" + apiRequest(apiURL, {}));
-    return apiRequest(apiURL, {});
 };
 
 export const getMealData = () => {
     let apiURL : string = `https://wa-api.defcon.or.kr/getMessage`;
-    let mealData = {
-        msg: "대림대 학식",
-        room: "채팅방 1",
-        sender: "harenkei"
-    }
-    
-    return apiRequest(apiURL, mealData)
+    let apiRequestData = {
+        "msg" : "대림대 학식",
+        "room" : "DCC_FE (DUC)",
+        "sender" : "HarenKei"
+    };
+
+    return apiRequest(apiURL, apiRequestData);
 };
