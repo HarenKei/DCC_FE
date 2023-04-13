@@ -8,20 +8,6 @@ type MealData = {
   menu: string
 };
 
-const initMeal : MealData = [
-  {
-    corner: "Corner 1",
-    menu: ""
-  },
-  {
-    corner: "Corner 3",
-    menu: ""
-  },
-  {
-    corner: "대림쿡",
-    menu: ""
-  }
-];
 
 const MainMeal = () => {
   const [mealMenu, setMealMenu] = useState("");
