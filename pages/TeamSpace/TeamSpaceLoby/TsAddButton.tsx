@@ -3,7 +3,8 @@ import styled from "styled-components";
 import TS_AddModal from "./AddTaskModal";
 import { useState } from "react";
 
-function TS_AddButton(props:any) {
+
+const TsAddButton = (props:any) => {
     // 모달창 노출 여부 state
     const [modalOpen, setModalOpen] = useState(false);
     // 모달창 노출
@@ -38,4 +39,4 @@ const  P= styled.p`
 `;
 
 
-export default TS_AddButton;
+export default TsAddButton;

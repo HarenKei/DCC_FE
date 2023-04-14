@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import TS_AddButton from "./TS_AddButton";
+import TS_AddButton from "./TsAddButton";
 
-const TS_Post = () => {
+const TsPost = () => {
   return (
     <div>
       <ContentContainer>
@@ -34,4 +34,4 @@ const ContentContainer = styled.div`
     background-color: #ADABAB;
   }
 `;
-export default TS_Post;
+export default TsPost;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TS_Post from "./TS_Post";
+import TS_Post from "./TsPost";
 import Header from "@/src/Common/Header";
 import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
 

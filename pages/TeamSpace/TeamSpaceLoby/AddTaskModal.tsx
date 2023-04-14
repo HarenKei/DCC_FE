@@ -4,7 +4,7 @@ import styles from './AddTaskModal.module.css';
 import InputArea from "../../MyTask/AddTask/AddTaskTextArea";
 // import PropsType from "./PropsType";
 
-function AddTaskModal({ setModalOpen, id, title, content, writer }: any) {
+const AddTaskModal = ({ setModalOpen, id, title, content, writer }: any) => {
 
   const closeModal = () => {
     setModalOpen(false);
