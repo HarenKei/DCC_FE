@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import NoticeBodyContainer from "./NoticeBodyContainer";
 import NoticeMajor from "./NoticeMajor";
-import Header from "@/src/Common/Header";
 import { BrowserRouter } from "react-router-dom";
 
 const NoticePost = () => {
   return (
     <div>
-      <Header />
       <NoticeHeadContainer>
         <Noticetitle>
           <h2>학부공지</h2>
@@ -20,7 +17,7 @@ const NoticePost = () => {
         </NoticeSearchBar>
       </NoticeHeadContainer>
       <BrowserRouter>
-        <NoticeMajor />
+        <NoticeMajor/>
       </BrowserRouter>
     </div>
   );
