@@ -9,7 +9,6 @@ import TsPostBox from "./TsPostBox";
 const TeamSpace = () => {
     return(
         <div>
-            <Header/>
             <GridContainer>
                     <TsMember>
                         <MemberLogo><p>멤버</p></MemberLogo>
@@ -32,6 +31,12 @@ const TeamSpace = () => {
 
                 <TsPostBoxContainer>
                     <TsPostBox user={"이재형"} content={"집 가고싶다"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
+                    <TsPostBox user={"이재형"} content={"집 가고싶다 \nsdfsadf \nsdfsad"} date={"2023-04-14"}/>
                 </TsPostBoxContainer>
             </GridContainer>
         </div>
@@ -40,7 +45,7 @@ const TeamSpace = () => {
 const GridContainer = styled.div`
     margin: 10px 10px 10px 10px;
     width: 98vw;
-    height: 86vh;
+    height: 90vh;
     display: grid;
     grid-Template-Rows: 1fr 7.5fr;
     grid-Template-Columns: 1fr 8.5fr;
@@ -83,7 +88,7 @@ const TsChannelContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 76vw;
+    width: 75vw;
     height: 10.8vh;
     border-radius: 0px 20px 20px 0px;
 
@@ -93,12 +98,22 @@ const TsChannelContainer = styled.div`
 const TsPostBoxContainer = styled.div`
     margin-top: 2vh;
 
-    width: 86vw;
+    width: 86.5vw;
     height: 74vh;
 
     border-radius: 20px;
 
-    background-color: #C3C3C3;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 74vh;
+
+    &::-webkit-scrollbar {
+    width: 1vw;
+    }
+    &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #c3c3c3;
+    }
 `;
 
 export default TeamSpace;
