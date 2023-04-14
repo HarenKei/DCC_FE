@@ -1,11 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import InputArea from "../AddTask/AddTaskTextArea"
+import styles from './AddTaskModal.module.css';
+import InputArea from "../AddTask/AddTaskTextArea";
+// import PropsType from "./PropsType";
 
-const AddTaskModal = () => {
+function AddTaskModal({ setModalOpen, id, title, content, writer }: any) {
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <form action="">
     <AddTaskModalContainer>
+    <button className={styles.close} onClick={closeModal}>
+      X
+    </button>
 
       <WriteTaskContainer>
         <AddTaskTitle>할 일 추가</AddTaskTitle>
@@ -42,6 +52,13 @@ const AddTaskModalContainer = styled.div`
   border-radius: 10px;
 
   box-shadow: 0 0 20px;
+  
+  z-index: 999;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const WriteTaskContainer = styled.div`
@@ -64,7 +81,7 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
 
     display: flex;
     flex-direction: column;
@@ -83,22 +100,5 @@ const Button = styled.div`
 const  P= styled.p`
     font-size: 20px;
 `;
-
-// const Container = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-
-//     width: 8vw;
-//     height: 8vh;
-
-//     background-color: red;
-//     border-radius: 20px;
-
-//     box-shadow: 0px 1px 1px black;
-// `;
-
-
 
 export default AddTaskModal;
