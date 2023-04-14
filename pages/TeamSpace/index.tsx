@@ -1,1 +1,1 @@
-export { default } from "./TeamSpace";
+export { default } from "./TeamSpaceChannel/TsChannelMain";
