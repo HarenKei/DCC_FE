@@ -9,15 +9,18 @@ const ScheduleCalender = () => {
 };
 
 const Calender = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 100px;
+    padding: 1rem;
+    background-color: white;
+    margin: 1rem auto;
+    width: 1100px;
+    heigth: 290px;
 
-    background-color : #fff;
-    border-radius: 15px;
+    border-radius: 50px;
     box-shadow: 0px 1px 1px black;
+    max-width: 99%;
+    max-heigth: 99%;
+    border: 8px solid #D9D9D9;
+    border-radius: 50px;
 `;
 
 export default ScheduleCalender;
