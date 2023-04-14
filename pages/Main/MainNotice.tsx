@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import MainAllNotice from "./MainAllNotice";
-import MainSchedules from "./MainSchedules";
+import MainFreeBoard from "./MainFreeBoard";
 
 const MainNotice = () => {
     return(
         <MainNoticeContainer>
           <MainAllNotice/>
-          <MainSchedules/>
+          <MainFreeBoard/>
         </MainNoticeContainer>
     );
 };
@@ -21,7 +21,7 @@ const MainNoticeContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 `;
 
 export default MainNotice;

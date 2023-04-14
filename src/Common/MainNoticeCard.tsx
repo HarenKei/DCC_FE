@@ -5,12 +5,17 @@ interface Props {
   category: string;
   title: string;
   dept: string;
+  dir: string;
+}
+
+interface StyleProps {
+  dir: string;
 }
 
 const MainNoticeCard = (props : Props) => {
   return (
-    <MainNoticeCardContainer>
-      <MainNoticeCardContents>
+    <MainNoticeCardContainer dir={props.dir}>
+      <MainNoticeCardContents dir={props.dir}>
         <MainNoticeCardCategory>
           <p>{props.category}</p>
         </MainNoticeCardCategory>
@@ -27,7 +32,7 @@ const MainNoticeCard = (props : Props) => {
   );
 };
 
-const MainNoticeCardContainer = styled.div`
+const MainNoticeCardContainer = styled.div<StyleProps>`
   width: 43vw;
   height: 10vh;
   border-radius: 10px;
@@ -35,14 +40,16 @@ const MainNoticeCardContainer = styled.div`
   background-color: #d9d9d9;
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${(props) => (props.dir === 'left') ? `flex-start` : `flex-end` };
+  
 `;
 
-const MainNoticeCardContents = styled.div`
+const MainNoticeCardContents = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-left: 15px;
+  align-items: ${(props) => (props.dir === 'left') ? `` : `flex-end` };
+  margin: ${(props) => (props.dir === 'left') ? `0px 0px 0px 15px` : `0px 15px 0px 0px` };
 `;
 
 const MainNoticeCardCategory = styled.div`

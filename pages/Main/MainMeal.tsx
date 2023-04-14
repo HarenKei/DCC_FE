@@ -1,8 +1,37 @@
 import MainMealCard from "@/src/Common/MainMealCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as API from "../../src/Common/API";
 import styled from "styled-components";
 
+type MealData = {
+  corner: string,
+  menu: string
+};
+
+const initMeal : MealData = [
+  {
+    corner: "Corner 1",
+    menu: ""
+  },
+  {
+    corner: "Corner 3",
+    menu: ""
+  },
+  {
+    corner: "대림쿡",
+    menu: ""
+  }
+];
+
 const MainMeal = () => {
+  const [mealMenu, setMealMenu] = useState("");
+
+  useEffect(()=>{
+    API.getMealData().then((apiResult : any) => {
+      setMealMenu(apiResult);
+    });
+  }),[];
+
   return (
     <MainMealContainer>
       <MainMealCardContainer>

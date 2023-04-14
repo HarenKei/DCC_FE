@@ -2,8 +2,8 @@ import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
 import React from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 
 const dummyDataArray = [
@@ -46,41 +46,41 @@ const dummyDataArray = [
 ];
 
 const settings = {
-      arrows: false,
-      dots: true,
-      infinite: true,
-      slidesToShow: 5,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 3000,
-      autoplaySpeed: 3000,
-      cssEase: "linear",
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
+  arrows: false,
+  dots: true,
+  infinite: true,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  autoplay: true,
+  speed: 3000,
+  autoplaySpeed: 3000,
+  cssEase: "linear",
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 
 const MainTeamSpace = () => {
@@ -88,10 +88,10 @@ const MainTeamSpace = () => {
     <MainTeamSpaceContainer>
       <MainTeamSpaceTitleH1>팀 스페이스</MainTeamSpaceTitleH1>
       <MainTeamSpaceIntroLink>
-      <MainTeamSpaceIntroP>
-        스터디, 프로젝트, 카풀... 컴정에 팀이 필요한 순간, 팀 스페이스 🤝
-      </MainTeamSpaceIntroP>
-      <Link href="/TeamSpace">전체 팀 스페이스 보기 &gt;&gt;</Link>
+        <MainTeamSpaceIntroP>
+          스터디, 프로젝트, 카풀... 컴정에 팀이 필요한 순간, 팀 스페이스 🤝
+        </MainTeamSpaceIntroP>
+        <Link href="/TeamSpace">전체 팀 스페이스 보기 &gt;&gt;</Link>
       </MainTeamSpaceIntroLink>
 
       <SliderContainer>
@@ -106,7 +106,6 @@ const MainTeamSpace = () => {
           ))}
         </Slider>
       </SliderContainer>
-
     </MainTeamSpaceContainer>
   );
 };
@@ -114,16 +113,11 @@ const MainTeamSpace = () => {
 const MainTeamSpaceContainer = styled.div`
   width: 90vw;
   height: 60vh;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-
-  a{
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-  }
 `;
 
 const MainTeamSpaceTitleH1 = styled.h1`
@@ -161,8 +155,11 @@ const MainTeamSpaceIntroLink = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  a{
+  a {
     font-weight: 100;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+
   }
 `;
 

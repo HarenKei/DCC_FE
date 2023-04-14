@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "@/src/Common/Header";
-import Footer from "@/src/Common/Footer";
 
 
 const PrivacyTxt = () => {
@@ -145,13 +143,11 @@ const Privacy = () => {
     return(
         <PrivacyContainer>
             <PrivacyHeaderContainer>
-            <Header />
             </PrivacyHeaderContainer>
             <MainPrivacyContainer style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={PrivacyTxt()}>
             
             </MainPrivacyContainer>
             <PrivacyFooterContainer>
-                <Footer/>
             </PrivacyFooterContainer>
         </PrivacyContainer>
     );

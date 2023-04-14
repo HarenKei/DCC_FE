@@ -51,17 +51,19 @@ const MainSchedules = () => {
 };
 
 const MainSchedulesContainer = styled.div`
-  width: 42vw;
+  width: 90vw;
   height: 50vh;
 
   display: flex;
   flex-direction: column;
+
+  margin-bottom: 200px;
 `;
 
 const MainSchedulesTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 `;
 
 const MainSchedulesTitleH1 = styled.div`
