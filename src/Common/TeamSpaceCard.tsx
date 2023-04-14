@@ -32,7 +32,6 @@ const TeamSpaceCardContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  
 `;
 
 const TeamSpaceEmoji = styled.h1`
