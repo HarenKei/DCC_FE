@@ -15,13 +15,18 @@ const ApiTest = () => {
   const [test, setTest] = useState(null);
 
   useEffect(() => {
-    API.getMealData().then((apiResult: any) =>{
-      setTest(apiResult);
-  });
+  //   API.getMealData().then((apiResult: any) =>{
+  //     setTest(apiResult);
+  // });
+
+  API.getTestData().then((apiResult : any) => {
+    setTest(apiResult.data);
+  })
   }, []);
 
   return <ApiTestContainer>
-    {test}
+   
+
   </ApiTestContainer>;
 };
 
