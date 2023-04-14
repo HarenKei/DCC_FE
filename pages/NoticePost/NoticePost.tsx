@@ -3,24 +3,25 @@ import styled from "styled-components";
 import NoticeBodyContainer from "./NoticeBodyContainer";
 import NoticeMajor from "./NoticeMajor";
 import Header from "@/src/Common/Header";
+import { BrowserRouter } from "react-router-dom";
 
 const NoticePost = () => {
   return (
     <div>
-      <Header/>
+      <Header />
       <NoticeHeadContainer>
         <Noticetitle>
           <h2>학부공지</h2>
         </Noticetitle>
         <NoticeSearchBar>
           <label></label>
-          <input type="text" placeholder="여기에 검색하세요!"/>
+          <input type="text" placeholder="여기에 검색하세요!" />
           <button type="submit">검색</button>
         </NoticeSearchBar>
       </NoticeHeadContainer>
-      <NoticeMajor/>
-      <NoticeBodyContainer/>
-
+      <BrowserRouter>
+        <NoticeMajor />
+      </BrowserRouter>
     </div>
   );
 };
@@ -32,7 +33,6 @@ const NoticeHeadContainer = styled.div`
   margin: 2rem auto;
   width: 90vw;
   max-width: 95%;
-
 `;
 
 const Noticetitle = styled.div`
@@ -46,20 +46,20 @@ const NoticeSearchBar = styled.div`
   /* border: solid 1px black; */
   margin: 0.5rem auto;
   & > button {
-    margin : 0 0 0 20px;
+    margin: 0 0 0 20px;
     font: inherit;
     cursor: pointer;
     padding: 0.5rem;
-    border: 1px solid #D9D9D9;
-    background-color: #D9D9D9;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
     color: black;
     border-radius: 12px;
     margin-right: 1rem;
   }
   & > button:hover {
-    background-color: #ADABAB;
+    background-color: #adabab;
   }
-  & > input { 
+  & > input {
     font: inherit;
     padding: 0.5rem;
     border-radius: 12px;
@@ -68,7 +68,7 @@ const NoticeSearchBar = styled.div`
     max-width: 100%;
     background-color: #ccc;
   }
-  & > input:focus::placeholder{
+  & > input:focus::placeholder {
     color: transparent;
   }
 `;
