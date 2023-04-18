@@ -1,6 +1,7 @@
 "use client"
 import { useSession, signIn, signOut } from "next-auth/react";
 import { UserCard } from "./userCard";
+import GoogleAuth from 'google-auth-library';
 
 export default function Login() {
     // get session from nextAuth
