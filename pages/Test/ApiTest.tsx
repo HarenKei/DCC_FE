@@ -9,24 +9,26 @@ type MealData = {
   msg: string;
 };
 
-const tmpEventData = "왜 안되노";
+const tmpEventData = {
+  email: "a@a.com",
+  name: "김왕추",
+  index: 1
+};
 
 const ApiTest = () => {
-  const [test, setTest] = useState(null);
+  const [test, setTest] = useState(tmpEventData);
 
-  useEffect(() => {
-  //   API.getMealData().then((apiResult: any) =>{
-  //     setTest(apiResult);
-  // });
-
-  API.getTestData().then((apiResult : any) => {
-    setTest(apiResult.data);
-  })
-  }, []);
+  useEffect(()=>{
+    API.getTestData().then((apiResult : any) => {
+      console.log(apiResult.data);
+      setTest(apiResult.data);
+    });
+  },[]);
 
   return <ApiTestContainer>
-   
-
+  {/* {test.email}
+  {test.name}
+  {test.index} */}
   </ApiTestContainer>;
 };
 

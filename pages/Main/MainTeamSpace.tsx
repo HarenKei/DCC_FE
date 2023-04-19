@@ -43,6 +43,12 @@ const dummyDataArray = [
     title: "슬램덩크",
     name: "김경석",
   },
+  {
+    id: "ws7",
+    emoji: "🤡",
+    title: "지하철 공익",
+    name: "이승명",
+  },
 ];
 
 const settings = {

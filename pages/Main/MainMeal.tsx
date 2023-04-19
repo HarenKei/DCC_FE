@@ -3,50 +3,42 @@ import React, { useEffect, useState } from "react";
 import * as API from "../../src/Common/API";
 import styled from "styled-components";
 
-type MealData = {
-  corner: string,
-  menu: string
-};
-
-const initMeal : MealData = [
-  {
-    corner: "Corner 1",
-    menu: ""
-  },
-  {
-    corner: "Corner 3",
-    menu: ""
-  },
-  {
-    corner: "대림쿡",
-    menu: ""
-  }
-];
+const tmpData = [
+  ["데이터 없음", "데이터 없음", "데이터 없음", "데이터 없음"],
+  ["데이터 없음", "데이터 없음", "데이터 없음", "데이터 없음"],
+  ["데이터 없음", "데이터 없음", "데이터 없음", "데이터 없음"],
+  ["데이터 없음", "데이터 없음", "데이터 없음", "데이터 없음"],
+  ["데이터 없음", "데이터 없음", "데이터 없음", "데이터 없음"],
+]
 
 const MainMeal = () => {
-  const [mealMenu, setMealMenu] = useState("");
+  const [meal, setMeal] = useState(tmpData);
 
   useEffect(()=>{
     API.getMealData().then((apiResult : any) => {
-      setMealMenu(apiResult);
+      setMeal(apiResult.split('*').map(((items : any) => items.split('\n'))));
     });
-  }),[];
+  },[]);
+
 
   return (
     <MainMealContainer>
       <MainMealCardContainer>
-        <MainMealTitle>오늘의 학식 🍽️</MainMealTitle>
+        <MainMealTitle>오늘의 학식 🍽️ </MainMealTitle>
+        <TodayDate>{meal[0][0]}</TodayDate>
         <MainMealCard
-          corner={"corner1"}
-          meal={"쇠고기 쌀국수 |  사모사 튀김"}
+          corner={meal[1][0]}
+          meal={`${meal[1][1]} | ${meal[1][2]} | ${meal[1][3]}`}
         />
+  
         <MainMealCard
-          corner={"corner3"}
-          meal={"파닭마요덮밥*데리S | 사과주스"}
+          corner={meal[2][0]}
+          meal={`${meal[2][1]} | ${meal[2][2]} | ${meal[2][3]}`}
         />
+         
         <MainMealCard
           corner={"대림쿡"}
-          meal={"운영하지 않습니다."} 
+          meal={`${meal[4][1]} | ${meal[4][2]} | ${meal[4][3]}`}
         />
       </MainMealCardContainer>
     </MainMealContainer>
@@ -69,6 +61,11 @@ const MainMealTitle = styled.h1`
   font-size: 20pt;
   font-weight: 900;
 `;
+
+const TodayDate = styled.p`
+  font-size: 12pt;
+  font-weight: 100;
+`
 
 const MainMealCardContainer = styled.div`
   display: flex;
