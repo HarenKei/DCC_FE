@@ -33,7 +33,8 @@ const ScheduleInfoCardContainer = styled.div`
     align-items: flex-start;
     justify-content: space-around;
     box-shadow: 0px 1px 1px black;
-    background-color: #D9D9D9;
+    border: 6px solid #D9D9D9;
+    border-radius: 10px;
     margin-top: 1rem;
 `;
 

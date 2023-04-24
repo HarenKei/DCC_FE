@@ -16,7 +16,7 @@ function MonthControll() {
     <div>
       <ScheduleMonthControll>
       <ScheduleControllBtnCss><button onClick={handlePrevMonth}>◀</button></ScheduleControllBtnCss>
-      <span>2023년{currentMonth}월</span>
+      <MonthControllCss>2023년{currentMonth}월</MonthControllCss>
       <ScheduleControllBtnCss><button onClick={handleNextMonth}>▶</button></ScheduleControllBtnCss>
       </ScheduleMonthControll>
     </div>
@@ -25,11 +25,19 @@ function MonthControll() {
 
 const ScheduleMonthControll = styled.div`
   display: flex;
-  justify-content: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ScheduleControllBtnCss = styled.div`
-   margin-bottom: 5px;
+  margin-left:15px;
+  margin-right:15px;
+`;
+
+const MonthControllCss = styled.div`
+    font-size: 26pt;
+    font-weight: 150px;
+    letter-spacing: -2px;
 `;
 
 export default MonthControll;

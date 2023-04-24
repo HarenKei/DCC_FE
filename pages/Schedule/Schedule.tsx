@@ -9,9 +9,7 @@ const Schedule = () => {
         <>
         <ScheduleHeader>
             <ScheduleTitle>학사 일정</ScheduleTitle>
-            <MonthControllCss>
-                <MonthControll/>
-            </MonthControllCss>
+            <MonthControll/>
         </ScheduleHeader>
         <ScheduleContainer>
             <ScheduleCalender/>
@@ -23,7 +21,8 @@ const Schedule = () => {
 
 const ScheduleHeader = styled.div`
     display: flex;
-    justify-content: row;
+    flex-direction: row;
+    align-items: center;
     margin-top: 50px;
     margin-left: 80px;
 `;
@@ -31,14 +30,6 @@ const ScheduleHeader = styled.div`
 const ScheduleTitle = styled.div`
     font-size: 40pt;
     font-weight: 250px;
-    letter-spacing: -2px;
-
-`;
-
-const MonthControllCss = styled.div`
-    margin-top: 10px;
-    font-size: 26pt;
-    font-weight: 150px;
     letter-spacing: -2px;
 `;
 
