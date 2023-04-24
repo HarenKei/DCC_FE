@@ -46,7 +46,6 @@ const dummyDataArray = [
 const TS_main = () => {
   return (
     <div>
-      <Header/>
       <TS_HeadContainer>
         <TS_title>
           <h2>팀 스페이스</h2>
