@@ -5,21 +5,28 @@ import styled from "styled-components";
 interface Props {
   title: string;
   link: string;
+  width: string;
+  height: string;
+}
+
+interface StyleProps {
+  width: string;
+  height: string;
 }
 
 const MainMenuCard = (props: Props) => {
   return (
     <Link href={props.link}>
-      <MainMenuCardContainer>
+      <MainMenuCardContainer width={props.width} height={props.height}>
         <MainMenuCardTitleH1>{props.title}</MainMenuCardTitleH1>
       </MainMenuCardContainer>
     </Link>
   );
 };
 
-const MainMenuCardContainer = styled.div`
-  width: 20vw;
-  height: 8vh;
+const MainMenuCardContainer = styled.div<StyleProps>`
+  width: ${props => props.width + 'vw'};
+  height: ${props => props.height + 'vh'};
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
   background-color: #d0d0d0;

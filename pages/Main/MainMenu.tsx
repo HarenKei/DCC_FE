@@ -54,7 +54,7 @@ const MainMenu = () => {
 
       <MainMenuElementsContainer>
         {dummyDataArray.map((items) => (
-          <MainMenuCard key={items.id} title={items.title} link={items.link} />
+          <MainMenuCard key={items.id} title={items.title} link={items.link} width={"20"} height={"8"} />
         ))}
       </MainMenuElementsContainer>
     </MainMenuContainer>

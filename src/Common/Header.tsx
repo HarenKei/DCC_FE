@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import GlobalSlideMenu from "./GlobalSlideMenu";
 
 const Header = () => {
-  const [visible, setVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSide = () => {
+    setIsOpen(true);
+  };
+
   return (
     <HeaderContainer>
       <Link href={"/"}>
@@ -16,11 +21,12 @@ const Header = () => {
         </LogoContainer>
       </Link>
 
-      <HambugerMenuContainer onClick={(e)=>setVisible(visible ? false : true)}>
-      {visible ? <FontAwesomeIcon icon={faXmark} size={"2x"} /> : <FontAwesomeIcon icon={faBars} size={"2x"} /> }
-      </HambugerMenuContainer>
+      <HambugerMenuContainer onClick={toggleSide}>
+        
+          <FontAwesomeIcon icon={faBars} size={"2x"} />
 
-      {visible && <GlobalSlideMenu />}
+      </HambugerMenuContainer>
+      <GlobalSlideMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </HeaderContainer>
   );
 };
@@ -33,17 +39,16 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
 `;
 
 const LogoContainer = styled.div`
   margin-left: 80px;
 `;
 
-const HambugerMenuContainer = styled.div`
+const HambugerMenuContainer = styled.button`
   margin-right: 80px;
-  position: relative;
-  z-index: 9999;
+  border: 0;
+  background-color: transparent;
 `;
 
 export default Header;

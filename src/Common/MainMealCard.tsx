@@ -31,16 +31,16 @@ const MainMealCardContainer = styled.div`
 `;
 
 const MainMealCardBanner = styled.div`
-  width: 5vw;
+  width: 7vw;
   height: 3vh;
   border-radius: 8px;
-  background-color: yellow;
-  
+  background-color: #46B6EB;
+  color:#0e0e0e;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: 15pt;
+  font-size: 12pt;
   font-weight: 900;
 
   margin-left: 20px;
