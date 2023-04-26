@@ -16,7 +16,6 @@ const Main = () => {
       <MainNotice/>
       <MainSchedules/>
       <MainMenu/>
-      <ApiTest/>
     </MainContainer>
   );
 };

@@ -13,8 +13,8 @@ const TsAddButton = (props:any) => {
     };
     return(
         <AddButtonContainer onClick={showModal}>
-            {modalOpen && <TS_AddModal setModalOpen={setModalOpen} />} {/*AddTaskButton 클릭시 모달창 노출 */}
-            <P>할 일 추가</P>
+            {modalOpen && <TS_AddModal setModalOpen={setModalOpen} />}
+            <P>팀 추가</P>
         </AddButtonContainer>
     );
     

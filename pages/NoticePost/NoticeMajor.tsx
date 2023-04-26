@@ -7,32 +7,27 @@ import NoticeBodyContainer from "./NoticeBodyContainer";
 const NoticeMajor = () => {
   return (
     <div>
-      {/* <ContentMajor>
-        <MajorContent><h3>웹 전공</h3></MajorContent>
-        <MajorContent><h3>앱 전공</h3></MajorContent>
-        <MajorContent><h3>응용 전공</h3></MajorContent>
-      </ContentMajor> */}
       <ContentMajor>
         <MajorContent>
-          <Link to="/">
+          <Link to="/NoticePost">
             <h3>웹 전공</h3>
           </Link>
         </MajorContent>
         <MajorContent>
-          <Link to="/AppContainer">
+          <Link to="/NoticePost/AppContainer">
             <h3>앱 전공</h3>
           </Link>
         </MajorContent>
         <MajorContent>
-          <Link to="/ApplicationContainer">
+          <Link to="/NoticePost/ApplicationContainer">
             <h3>응용 전공</h3>
           </Link>
         </MajorContent>
       </ContentMajor>
       <Routes>
-        <Route path="/" element={<NoticeBodyContainer/>} />
-        <Route path="/AppContainer" element={<AppContainer />} />
-        <Route path="/ApplicationContainer" element={<ApplicationContainer />}/>
+        <Route path="/NoticePost" element={<NoticeBodyContainer/>} />
+        <Route path="/NoticePost/AppContainer" element={<AppContainer />} />
+        <Route path="/NoticePost/ApplicationContainer" element={<ApplicationContainer />}/>
       </Routes>
     </div>
   );

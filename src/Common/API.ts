@@ -1,4 +1,5 @@
 import axios from "axios";
+import { send } from "process";
 
 export interface API_MEAL_DATA{
     DATA: MealData,
@@ -18,6 +19,15 @@ export interface MealData{
 // DCC_BE URL
 const API_MEAL_URL_BASE : string = process.env.NEXT_PUBLIC_MEAL_BASE_URL as string;
 //학식 URL
+
+const apiTestRequest = (apiUrl : string, apiReqData : object) => {
+    return new Promise((resolve) => {
+        sendRequest(apiUrl, apiReqData).then((apiResult : any) => {
+            resolve(apiResult);
+        })
+    })
+}
+
 
 const apiRequest = (apiURL : string, apiReqData : object) => {
     return new Promise((resolve) => {
@@ -62,3 +72,9 @@ export const getMealData = () => {
 
     return apiRequest(apiURL, apiRequestData);
 };
+
+export const getTestData = () => {
+    let apiUrl : string = `https://haren-dev.defcon.or.kr/getPostData`;
+
+    return apiTestRequest(apiUrl, {});
+}
