@@ -24,7 +24,7 @@ const ScheduleInfoCard = (props : Props) => {
 };
 
 const ScheduleInfoCardContainer = styled.div`
-    width: 330px;
+    width: 300px;
     heigth: 90px;
     border-radius: 10px;
 
@@ -36,6 +36,7 @@ const ScheduleInfoCardContainer = styled.div`
     border: 6px solid #D9D9D9;
     border-radius: 10px;
     margin-top: 1rem;
+    margin-left: 1rem;
 `;
 
 const ScheduleInfoCardDateTitle = styled.div`
