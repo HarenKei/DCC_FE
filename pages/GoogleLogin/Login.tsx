@@ -16,7 +16,7 @@ export default function Login() {
                 <p>status: {status}</p>
                 <img src={data.user.image} alt="" style={{borderRadius: '50px'}} />
                 <p>{data?.user?.name}</p>
-                <button onClick={() => signOut()} type="button" className="btn btn-primary">Sign Out of Google</button>
+                
                 {/* Pass session info to server component */}
                 <UserCard user={data?.user}/>
             </>
