@@ -28,16 +28,17 @@
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-google-login": "^5.2.2",
     "react-horizontal-scrolling-menu": "^4.0.1",
     "react-router-dom": "^6.10.0",
     "react-slick": "^0.29.0",
+    "react-table": "^7.8.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9",
     "typescript": "5.0.2"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.10",
+    "@types/react-table": "^7.7.14",
     "@types/styled-components": "^5.1.26"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
