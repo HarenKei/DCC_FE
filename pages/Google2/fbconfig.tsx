@@ -5,13 +5,13 @@ import { getStorage } from 'firebase/storage'
 
 //파이어베이스 연결 부분
 const firebaseConfig = {
-    apiKey: "AIzaSyAoEV-1EWZxk2pD9EzwEg0QZ6uOpenfH4o",
-    authDomain: "test-4407e.firebaseapp.com",
-    projectId: "test-4407e",
-    storageBucket: "test-4407e.appspot.com",
-    messagingSenderId: "565993418841",
-    appId: "1:565993418841:web:c8e82bc815216841408148",
-    measurementId: "G-PGGWK39CGG"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENTID
 };
 
 const app = initializeApp(firebaseConfig);
