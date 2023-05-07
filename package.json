@@ -23,7 +23,11 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
-    "next": "13.2.4",
+    "firebase": "^9.21.0",
+    "firebase-admin": "^11.7.0",
+    "firestore": "^1.1.6",
+    "google-auth-library": "^8.7.0",
+    "next": "^13.3.4",
     "next-auth": "^4.21.1",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
@@ -39,11 +43,20 @@
   "devDependencies": {
     "@types/react-slick": "^0.23.10",
     "@types/react-table": "^7.7.14",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "dotenv-webpack": "^8.0.1"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "next.config.js",
   "author": "",
   "license": "ISC",
-  "proxy": "https://haren-dev.defcon.or.kr"
+  "proxy": "https://haren-dev.defcon.or.kr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Charizard6/DCC_FE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Charizard6/DCC_FE/issues"
+  },
+  "homepage": "https://github.com/Charizard6/DCC_FE#readme"
 }
