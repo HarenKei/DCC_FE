@@ -2,6 +2,7 @@ import { auth, googleProvider, signInWithGoogleInConfig } from './fbconfig';
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import MovieList from './MovieList';
+
 export default function Google2() {
   console.log(auth?.currentUser?.email);
   console.log(typeof(auth?.currentUser?.photoURL));
