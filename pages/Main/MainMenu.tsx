@@ -41,8 +41,8 @@ const dummyDataArray = [
   },
   {
     id: "m8",
-    title: "사나이 클럽 GitHub",
-    link: "https://github.com/RealManClub"
+    title: "⏰ 내 시간표",
+    link: "/TimeTable"
   }
 ];
 
