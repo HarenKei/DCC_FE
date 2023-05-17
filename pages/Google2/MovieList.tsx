@@ -71,9 +71,14 @@ export default function MovieList(){
     }
 
     useEffect(() => {
+<<<<<<< HEAD
+        getMovieList();       
+    }, []);
+=======
         getMovieList();
         console.log('getMovieList');       
     },[]);
+>>>>>>> b9bb3e99d454f5bc2a1cc73008941db2190540fa
 
     const onSubmitMovie =async () => {
         try {
