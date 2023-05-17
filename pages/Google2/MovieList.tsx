@@ -5,17 +5,6 @@ import { ref, uploadBytes } from 'firebase/storage';
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function MovieList(){
-    let userid = "";
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User logged in already or has just logged in.
-          console.log(user.uid);
-          userid = user.uid;
-        } else {
-          // User not logged in or has just logged out.
-        }
-      })
-
     const [movieList, setMovieList] = useState([]);
 
     //new movie state
