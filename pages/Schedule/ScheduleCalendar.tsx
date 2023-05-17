@@ -1,68 +1,71 @@
 import React from "react";
 import styled from "styled-components";
+import MonthControll from "./MonthControll";
 
-const ScheduleCalender = () => {
-    return(
-    <Calender>
+const ScheduleCalendar = () => {
+    const year = 2023; 
+    const month = 4; 
+  
+    const getStartDayOfWeek = (year, month) => {
+      const date = new Date(year, month, 1);
+      return date.getDay();
+    };
+  
+    const generateCalendar = (year, month) => {
+      const startDayOfWeek = getStartDayOfWeek(year, month);
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+      const calendar = [];
+      let week = [];
+  
+      for (let i = 0; i < startDayOfWeek; i++) {
+        week.push(<EmptyContainer key={`empty-${i}`} />);
+      }
+  
+      for (let day = 1; day <= daysInMonth; day++) {
+        week.push(<DateContainer key={day}>{day}</DateContainer>);
+  
+        if (week.length === 7) {
+          calendar.push(<DateTableContainer key={calendar.length}>{week}</DateTableContainer>);
+          week = [];
+        }
+      }
+  
+      if (week.length > 0) {
+        for (let i = week.length; i < 7; i++) {
+          week.push(<EmptyContainer key={`empty-${i}`} />);
+        }
+        calendar.push(<DateTableContainer key={calendar.length}>{week}</DateTableContainer>);
+      }
+  
+      return calendar;
+    };
+  
+    const calendar = generateCalendar(year, month);
+  
+    return (
+      <Calender>
         <DayTableContainer>
-            <DayContainer>일</DayContainer>
-            <DayContainer>월</DayContainer>
-            <DayContainer>화</DayContainer>
-            <DayContainer>수</DayContainer>
-            <DayContainer>목</DayContainer>
-            <DayContainer>금</DayContainer>
-            <DayContainer>토</DayContainer>
+          <DayContainer>일</DayContainer>
+          <DayContainer>월</DayContainer>
+          <DayContainer>화</DayContainer>
+          <DayContainer>수</DayContainer>
+          <DayContainer>목</DayContainer>
+          <DayContainer>금</DayContainer>
+          <DayContainer>토</DayContainer>
         </DayTableContainer>
-        <DateTableContainer>
-            <DateConatainer>1</DateConatainer>
-            <DateConatainer>2</DateConatainer>
-            <DateConatainer>3</DateConatainer>
-            <DateConatainer>4</DateConatainer>
-            <DateConatainer>5</DateConatainer>
-            <DateConatainer>6</DateConatainer>
-            <DateConatainer>7</DateConatainer>
-        </DateTableContainer>
-        <DateTableContainer>
-            <DateConatainer>8</DateConatainer>
-            <DateConatainer>9</DateConatainer>
-            <DateConatainer>10</DateConatainer>
-            <DateConatainer>11</DateConatainer>
-            <DateConatainer>12</DateConatainer>
-            <DateConatainer>13</DateConatainer>
-            <DateConatainer>14</DateConatainer>
-        </DateTableContainer>
-        <DateTableContainer>
-            <DateConatainer>15</DateConatainer>
-            <DateConatainer>16</DateConatainer>
-            <DateConatainer>17</DateConatainer>
-            <DateConatainer>18</DateConatainer>
-            <DateConatainer>19</DateConatainer>
-            <DateConatainer>20</DateConatainer>
-            <DateConatainer>21</DateConatainer>
-        </DateTableContainer>
-        <DateTableContainer>
-            <DateConatainer>22</DateConatainer>
-            <DateConatainer>23</DateConatainer>
-            <DateConatainer>24</DateConatainer>
-            <DateConatainer>25</DateConatainer>
-            <DateConatainer>26</DateConatainer>
-            <DateConatainer>27</DateConatainer>
-            <DateConatainer>28</DateConatainer>
-        </DateTableContainer>
-        <DateTableContainer>
-            <DateConatainer>29</DateConatainer>
-            <DateConatainer>30</DateConatainer>
-        </DateTableContainer>
-    </Calender>
+        {calendar}
+      </Calender>
     );
-};
+  };
 
 const Calender = styled.div`
     padding: 1rem;
     background-color: white;
     margin: 1rem auto;
+    margin-left: 80px;
     width: 1100px;
-    heigth: 290px; 
+    heigth: 360px; 
 
     box-shadow: 0px 1px 1px black;
     max-width: 99%;
@@ -97,7 +100,7 @@ const DayContainer = styled.div`
     font-size: 35px;
 `;
 
-const DateConatainer = styled.div`
+const DateContainer = styled.div`
     font-size: 20px;
     width: 130px;
     height: 105px;
@@ -107,4 +110,10 @@ const DateConatainer = styled.div`
     border-radius: 10px;
 `;
 
-export default ScheduleCalender;
+const EmptyContainer = styled.div`
+    display:flex;
+    justify-content: center;
+    width: 130px;
+    height: 70px;
+`;
+export default ScheduleCalendar;

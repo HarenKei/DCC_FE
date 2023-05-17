@@ -23,7 +23,7 @@ const ScheduleHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-left: 80px;
 `;
 
@@ -37,6 +37,7 @@ const ScheduleContainer = styled.div`
     display: flex;
     justify-content: row;
     height: 700px;
+
 `;
 
 export default Schedule;
