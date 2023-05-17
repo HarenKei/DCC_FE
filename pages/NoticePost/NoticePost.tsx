@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NoticeMajor from "./NoticeMajor";
+import { Link } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
 const NoticePost = () => {
@@ -13,12 +14,18 @@ const NoticePost = () => {
         <NoticeSearchBar>
           <label></label>
           <input type="text" placeholder="여기에 검색하세요!" />
-          <button type="submit">검색</button>
+          <button type="submit">검색</button>          
         </NoticeSearchBar>
       </NoticeHeadContainer>
       <BrowserRouter>
         <NoticeMajor/>
       </BrowserRouter>
+      <WritePost>
+      <a href="/NoticePost/WriteTest" target="_blank" rel="noopener noreferrer">
+        <button>글쓰기</button> 
+      </a>
+      </WritePost>
+      
     </div>
   );
 };
@@ -69,5 +76,25 @@ const NoticeSearchBar = styled.div`
     color: transparent;
   }
 `;
+
+const WritePost = styled.div`
+  display: flex;
+  margin-right: 12rem;
+  flex-direction: row-reverse;
+  & > button {
+    margin: 0 0 0 20px;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+    color: black;
+    border-radius: 12px;
+    margin-right: 1rem;
+  }
+  & > button:hover {
+    background-color: #adabab;
+  }
+`
 
 export default NoticePost;
