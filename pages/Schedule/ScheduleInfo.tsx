@@ -21,11 +21,24 @@ const scheduleDummyDataArray = [
         startDate: "05월 05일",
         endDate: "06월 30일",
       },
+    {
+      id: "s4",
+      content: "정보처리산업기사",
+      startDate: "05월 28일",
+      endDate: "05월 28일",
+    },
+    {
+      id: "s5",
+      content: "기말고사",
+      startDate: "06월 15일",
+      endDate: "06월 21일",
+    }
 ];
 
 const ScheduleInfo = () => {
     return(  
     <ScheduleInfoContainer>
+      <ScheduleInfoWrapper>
         {scheduleDummyDataArray.map((items) => (
           <ScheduleInfoCard
             key={items.id}
@@ -34,6 +47,7 @@ const ScheduleInfo = () => {
             endDate={items.endDate}
           />
         ))}
+      </ScheduleInfoWrapper>
     </ScheduleInfoContainer>
     );
 };
@@ -41,17 +55,34 @@ const ScheduleInfo = () => {
 const ScheduleInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     padding: 1rem;
     margin: 1rem auto;
+    margin-right: 80px;
     background-color: white;
 
     width: 400px;
-    heigth: 290px;
+    height: 695px;
     border: 8px solid #D9D9D9;
     border-radius: 50px;
     box-shadow: 0px 1px 1px black;
+
+    overflow: auto;
+`;
+
+const ScheduleInfoWrapper = styled.div`
+  height: 100%;
+  overflow-y: auto;
+  -webkit-margin-end: 6px;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #B3B3B3;
+    border-radius: 3px;
+  }
 `;
 
 export default ScheduleInfo;
