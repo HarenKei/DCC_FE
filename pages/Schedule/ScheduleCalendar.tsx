@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import MonthControll from "./MonthControll";
+import MonthControll from "./MonthController";
 
-const ScheduleCalendar = () => {
-    const year = 2023; 
-    const month = 4; 
+const ScheduleCalendar = ({ year, month }) => {
   
     const getStartDayOfWeek = (year, month) => {
-      const date = new Date(year, month, 1);
+      const date = new Date(year, month - 1, 1);
       return date.getDay();
     };
   
     const generateCalendar = (year, month) => {
       const startDayOfWeek = getStartDayOfWeek(year, month);
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysInMonth = new Date(year, month, 0).getDate();
   
       const calendar = [];
       let week = [];
@@ -60,16 +58,14 @@ const ScheduleCalendar = () => {
   };
 
 const Calender = styled.div`
-    padding: 1rem;
+    padding: 2rem;
     background-color: white;
     margin: 1rem auto;
     margin-left: 80px;
     width: 1100px;
-    heigth: 360px; 
+    height: fit-content;
 
     box-shadow: 0px 1px 1px black;
-    max-width: 99%;
-    max-heigth: 99%;
     border: 8px solid #D9D9D9;
     border-radius: 50px;
 `;
@@ -104,6 +100,7 @@ const DateContainer = styled.div`
     font-size: 20px;
     width: 130px;
     height: 105px;
+    margin: 1px;
 
     box-shadow: 0px 1px 1px black;
     border: 3px solid #D9D9D9;

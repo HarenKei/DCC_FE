@@ -62,7 +62,7 @@ const ScheduleInfoContainer = styled.div`
     background-color: white;
 
     width: 400px;
-    heigth: 290px;
+    height: 695px;
     border: 8px solid #D9D9D9;
     border-radius: 50px;
     box-shadow: 0px 1px 1px black;
