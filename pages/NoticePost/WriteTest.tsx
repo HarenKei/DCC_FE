@@ -13,6 +13,20 @@ const WriteTest = () => {
           <textarea placeholder="내용을 입력하세요."></textarea>
         </Content_txt>
       </WriteMain>
+
+      <Buttons>
+      <a
+          href="/NoticePost"
+        >
+          <button>취소</button>
+        </a>
+        <a
+          href="/NoticePost/WriteList"
+          rel="noopener noreferrer"
+        >
+          <button>등록</button>
+        </a>
+      </Buttons>
     </div>
   );
 };
@@ -48,6 +62,25 @@ const Content_txt = styled.div`
   }
   & > textarea:focus {
     outline: none;
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  margin-right: 12rem;
+  flex-direction: row-reverse;
+  & > a > button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+    color: black;
+    border-radius: 12px;
+    margin-right: 1rem;
+  }
+  & > button:hover {
+    background-color: #adabab;
   }
 `;
 

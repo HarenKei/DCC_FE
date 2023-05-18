@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NoticeCard from "@/src/Common/NoticeCard";
 
-const NoticeBodyContainer = () => {
+const WebContainer = () => {
   return (
     <div>
       <MainBodyContainer>
@@ -25,4 +25,4 @@ const MainBodyContainer = styled.div`
   display: flex;
   flex-flow:row wrap;
 `;
-export default NoticeBodyContainer;
+export default WebContainer;

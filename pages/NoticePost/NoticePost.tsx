@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NoticeMajor from "./NoticeMajor";
-import { Link } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+
 
 const NoticePost = () => {
   return (
@@ -17,18 +16,27 @@ const NoticePost = () => {
           <button type="submit">검색</button>          
         </NoticeSearchBar>
       </NoticeHeadContainer>
-      <BrowserRouter>
-        <NoticeMajor/>
-      </BrowserRouter>
+      <NoticeMajor/>
       <WritePost>
       <a href="/NoticePost/WriteTest" target="_blank" rel="noopener noreferrer">
         <button>글쓰기</button> 
       </a>
       </WritePost>
-      
     </div>
   );
 };
+
+const MainMenuElementsContainer = styled.div`
+  justify-content: center;
+  background-color: grey;
+  border: solid 1px black;
+  width: 100%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: row;
+  border: 1px black;
+
+`;
 
 const NoticeHeadContainer = styled.div`
   /* border: solid 1px black; */
@@ -47,7 +55,6 @@ const Noticetitle = styled.div`
 
 const NoticeSearchBar = styled.div`
   width: 500px;
-  /* border: solid 1px black; */
   margin: 0.5rem auto;
   & > button {
     margin: 0 0 0 20px;
@@ -81,7 +88,7 @@ const WritePost = styled.div`
   display: flex;
   margin-right: 12rem;
   flex-direction: row-reverse;
-  & > button {
+  & > a > button {
     margin: 0 0 0 20px;
     font: inherit;
     cursor: pointer;
