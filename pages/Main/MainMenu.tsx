@@ -6,11 +6,13 @@ import MainMenuCard from "@/src/Common/MainMenuCard";
 const dummyDataArray = [
   {
     id: "m1",
+    tag: "app",
     title: "📚 나의 할일",
     link: "/MyTask",
   },
   {
     id: "m2",
+    tag: "web",
     title: "📣 공지사항",
     link: "/NoticePost",
   },
@@ -60,6 +62,7 @@ const MainMenu = () => {
     </MainMenuContainer>
   );
 };
+
 
 const MainMenuContainer = styled.div`
   width: 90vw;
