@@ -30,15 +30,14 @@ const MainMeal = () => {
           corner={meal[1][0]}
           meal={`${meal[1][1]} | ${meal[1][2]} | ${meal[1][3]}`}
         />
-  
         <MainMealCard
           corner={meal[2][0]}
           meal={`${meal[2][1]} | ${meal[2][2]} | ${meal[2][3]}`}
         />
-         
+  
         <MainMealCard
-          corner={"대림쿡"}
-          meal={`${meal[4][1]} | ${meal[4][2]} | ${meal[4][3]}`}
+          corner={meal[3][0]}
+          meal={`${meal[3][1]} | ${meal[3][2]} | ${meal[3][3]}`}
         />
       </MainMealCardContainer>
     </MainMealContainer>

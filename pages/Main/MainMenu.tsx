@@ -6,11 +6,13 @@ import MainMenuCard from "@/src/Common/MainMenuCard";
 const dummyDataArray = [
   {
     id: "m1",
+    tag: "app",
     title: "📚 나의 할일",
     link: "/MyTask",
   },
   {
     id: "m2",
+    tag: "web",
     title: "📣 공지사항",
     link: "/NoticePost",
   },
@@ -41,8 +43,8 @@ const dummyDataArray = [
   },
   {
     id: "m8",
-    title: "사나이 클럽 GitHub",
-    link: "https://github.com/RealManClub"
+    title: "⏰ 내 시간표",
+    link: "/TimeTable"
   }
 ];
 
@@ -60,6 +62,7 @@ const MainMenu = () => {
     </MainMenuContainer>
   );
 };
+
 
 const MainMenuContainer = styled.div`
   width: 90vw;
