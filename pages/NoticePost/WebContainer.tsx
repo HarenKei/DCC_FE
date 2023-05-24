@@ -47,4 +47,4 @@ const MainBodyContainer = styled.div`
   display: flex;
   flex-flow:row wrap;
 `;
-export default NoticeBodyContainer;
+export default WebContainer;
