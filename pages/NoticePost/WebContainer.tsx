@@ -1,17 +1,3 @@
-import React from "react";
-import styled from "styled-components";
-import NoticeCard from "@/src/Common/NoticeCard";
-
-const WebContainer = () => {
-  return (
-    <div>
-      <MainBodyContainer>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NoticeCard from "@/src/Common/NoticeCard";
@@ -47,7 +33,6 @@ const NoticeBodyContainer = () => {
           // eslint-disable-next-line react/jsx-key
           <NoticeCard title={posts.title}/>
         ))}
-
       </MainBodyContainer>
     </div>
   );
