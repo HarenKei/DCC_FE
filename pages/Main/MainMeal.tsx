@@ -14,12 +14,11 @@ const tmpData = [
 const MainMeal = () => {
   const [meal, setMeal] = useState(tmpData);
 
-  useEffect(()=>{
-    API.getMealData().then((apiResult : any) => {
-      setMeal(apiResult.split('*').map(((items : any) => items.split('\n'))));
+  useEffect(() => {
+    API.getMealData().then((apiResult: any) => {
+      setMeal(apiResult.split(">>").map((items: any) => items.split("\n")));
     });
-  },[]);
-
+  }, []);
 
   return (
     <MainMealContainer>
@@ -27,16 +26,16 @@ const MainMeal = () => {
         <MainMealTitle>오늘의 학식 🍽️ </MainMealTitle>
         <TodayDate>{meal[0][0]}</TodayDate>
         <MainMealCard
-          corner={meal[1][0]}
+          corner={meal[1][0].replace("<<", "")}
           meal={`${meal[1][1]} | ${meal[1][2]} | ${meal[1][3]}`}
         />
         <MainMealCard
-          corner={meal[2][0]}
+          corner={meal[2][0].replace("<<", "")}
           meal={`${meal[2][1]} | ${meal[2][2]} | ${meal[2][3]}`}
         />
-  
+
         <MainMealCard
-          corner={meal[3][0]}
+          corner={meal[3][0].replace("<<", "")}
           meal={`${meal[3][1]} | ${meal[3][2]} | ${meal[3][3]}`}
         />
       </MainMealCardContainer>
@@ -64,7 +63,7 @@ const MainMealTitle = styled.h1`
 const TodayDate = styled.p`
   font-size: 12pt;
   font-weight: 100;
-`
+`;
 
 const MainMealCardContainer = styled.div`
   display: flex;
