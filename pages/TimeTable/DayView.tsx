@@ -1,84 +1,65 @@
-import ClassInfoCard from "@/src/Common/ClassInfoCard";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-
-const dummyDataArray = [
-  {
-    id: "d1",
-    className: "테스트 강의1",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d2",
-    className: "테스트 강의2",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d3",
-    className: "테스트 강의3",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 5,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d4",
-    className: "테스트 강의4",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-];
-
-const monData = dummyDataArray.filter((items) => {
-  return items.day === 1;
-});
-
-const friData = dummyDataArray.filter((items) => {
-  return items.day == 5;
-});
+import ClassInfoList from "./ClassInfoList";
 
 const DayView = (props: any) => {
+  // const [props.classData, setClassData] = useState(props.classData);
+
+  useEffect(() => {
+    console.log(`asdf ${props.classData}`);
+  });
+
   return (
     <DayContainer>
       <Day>
         <DayTitle>월</DayTitle>
-        {monData.map((items) => (
-          <ClassInfoCard key={items.id} props={items} />
-        ))}
+        <ClassInfoList
+          data={props.classData.filter((items: any) => {
+            return items.day == 1;
+          })}
+        />
       </Day>
 
       <Day>
         <DayTitle>화</DayTitle>
+        <ClassInfoList
+          data={props.classData.filter((items: any) => {
+            return items.day == 2;
+          })}
+        />
       </Day>
 
       <Day>
         <DayTitle>수</DayTitle>
+        <ClassInfoList
+          data={props.classData.filter((items: any) => {
+            return items.day == 3;
+          })}
+        />
       </Day>
 
       <Day>
         <DayTitle>목</DayTitle>
+        <ClassInfoList
+          data={props.classData.filter((items: any) => {
+            return items.day == 4;
+          })}
+        />
       </Day>
 
       <Day>
         <DayTitle>금</DayTitle>
-        {friData.map((items) => (
-          <ClassInfoCard key={items.id} props={items} />
-        ))}
+        <ClassInfoList
+          data={props.classData.filter((items: any) => {
+            return items.day == 5;
+          })}
+        />
       </Day>
     </DayContainer>
   );
 };
 
-const DayContainer = styled.div`
-`;
+const DayContainer = styled.div``;
 
 const Day = styled.div`
   display: flex;
@@ -87,8 +68,6 @@ const Day = styled.div`
   margin-bottom: 20px;
 `;
 
-const DayTitle = styled.h1`
-  
-`;
+const DayTitle = styled.h1``;
 
 export default DayView;
