@@ -40,6 +40,8 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
       classRoom: "",
       day: 0,
     });
+
+    closeModal();
   };
 
   const { className, profName, classRoom, day } = form;
