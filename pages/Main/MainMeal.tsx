@@ -27,6 +27,10 @@ const MainMeal = () => {
         <MainMealTitle>오늘의 학식 🍽️ </MainMealTitle>
         <TodayDate>{meal[0][0]}</TodayDate>
         <MainMealCard
+          corner={meal[1][0]}
+          meal={`${meal[1][1]} | ${meal[1][2]} | ${meal[1][3]}`}
+        />
+        <MainMealCard
           corner={meal[2][0]}
           meal={`${meal[2][1]} | ${meal[2][2]} | ${meal[2][3]}`}
         />
@@ -34,11 +38,6 @@ const MainMeal = () => {
         <MainMealCard
           corner={meal[3][0]}
           meal={`${meal[3][1]} | ${meal[3][2]} | ${meal[3][3]}`}
-        />
-         
-        <MainMealCard
-          corner={"대림쿡"}
-          meal={`${meal[5][1]} | ${meal[5][2]} | ${meal[5][3]}`}
         />
       </MainMealCardContainer>
     </MainMealContainer>

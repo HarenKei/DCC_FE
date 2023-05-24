@@ -1,41 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link, Routes, Route } from "react-router-dom";
 import AppContainer from "./AppContainer";
 import ApplicationContainer from "./ApplicationContainer";
-import NoticeBodyContainer from "./NoticeBodyContainer";
+import WebContainer from "./WebContainer";
+
 const NoticeMajor = () => {
+  const [showComponent, setShowComponent] = useState(null);
+
+  const handleClick = (divId: any) => {
+    setShowComponent(divId);
+  };
+
   return (
     <div>
       <ContentMajor>
-        <MajorContent>
-          <Link to="/NoticePost">
+        <MajorBar>
+          <MajorContent onClick={() => handleClick(1)}>
             <h3>웹 전공</h3>
-          </Link>
-        </MajorContent>
-        <MajorContent>
-          <Link to="/NoticePost/AppContainer">
+          </MajorContent>
+          <MajorContent onClick={() => handleClick(2)}>
             <h3>앱 전공</h3>
-          </Link>
-        </MajorContent>
-        <MajorContent>
-          <Link to="/NoticePost/ApplicationContainer">
+          </MajorContent>
+          <MajorContent onClick={() => handleClick(3)}>
             <h3>응용 전공</h3>
-          </Link>
-        </MajorContent>
+          </MajorContent>
+        </MajorBar>
+        {showComponent === null && <WebContainer/>}
+        {showComponent === 1 && <WebContainer />}
+        {showComponent === 2 && <AppContainer />}
+        {showComponent === 3 && <ApplicationContainer />}
       </ContentMajor>
-      <Routes>
-        <Route path="/NoticePost" element={<NoticeBodyContainer/>} />
-        <Route path="/NoticePost/AppContainer" element={<AppContainer />} />
-        <Route path="/NoticePost/ApplicationContainer" element={<ApplicationContainer />}/>
-      </Routes>
     </div>
   );
 };
+
+  const MajorBar = styled.div`
+  display: flex;
+  margin: 2rem auto;
+  width: 75rem;
+  justify-content: space-around;
+  & > div:hover {
+    background-color: #adabab;
+  }
+  `;
+
 const MajorContent = styled.div`
   background-color: #d9d9d9;
   padding: 1rem;
-  width: 13rem;
+  width: 17rem;
   max-width: 95%;
   border-radius: 12px;
   text-align: center;
@@ -46,10 +58,8 @@ const ContentMajor = styled.div`
   display: flex;
   padding: 1rem;
   margin: 2rem auto;
-  width: 60vw;
+  width: 90vw;
   max-width: 95%;
-  & > div:hover {
-    background-color: #adabab;
-  }
+  flex-flow: row wrap;
 `;
 export default NoticeMajor;

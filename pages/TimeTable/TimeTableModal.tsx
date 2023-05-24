@@ -1,47 +1,80 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-const TimeTableModal = ({ setModalOpen }: any) => {
+interface TimeTableObject {
+  class : string,
+  prof : string,
+  classroom : string,
+  time : number
+}
+
+const TimeTableModal = (props : any) => {
 
   const closeModal = () => {
-    setModalOpen(false);
+    props.setModalOpen(false);
   };
 
   const testChagneHandler = (e : any) => {
-    console.log(e.target.class);
+    props.setTest({
+      "class" : e.target.class.value,
+      "prof" : e.target.prof.value,
+      "classroom" : e.target.classroom.value,
+      "day" : e.target.day.value,
+      "time" : e.target.endTime.value
+    });
+    closeModal();
   };
 
   return (
     <ModalContainer>
       <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
-      <div>
-        <form onSubmit={testChagneHandler}>
-          강의명 : <input type="text" name="class" />
-          <br />
-          교수명 : <input type="text" />
-          <br />
-          강의실 : <input type="text" />
-          <br />
-          수업시간 : <input type="time" /> ~ <input type="time" /> <br />
+      <FormContainer>
+        <ModalFormStyle onSubmit={testChagneHandler}>
+          <p>강의 정보를 입력해주세요.</p>
+          강의명<br/>
+          <input type="text" name="class"/> <br/>
+          교수명 : <input type="text" name="prof"/> <br/>
+          강의실 : <input type="text" name="classroom"/> <br/>
+          요일 : <input type="number" name="day"/> <br/>
+          강의시간 : <input type="time" name="startTime"/> ~ <input type="time" name="endTime"/><br/>
           <button type="submit"> 저장 </button>
-        </form>
-      </div>
+        </ModalFormStyle>
+      </FormContainer>
     </ModalContainer>
   );
 };
 
 const ModalContainer = styled.div`
-  width: 300px;
-  height: 200px;
+  width: 30vw;
+  height: 50vh;
   z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: gray;
-  border: 1px solid black;
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px black;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 2em;
+`;
+
+const ModalFormStyle = styled.form`
+  width:80%;
+
+  p{
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  
 `;
 
 const ModalCloseButton = styled.button`
