@@ -48,8 +48,7 @@ const TimeTable = () => {
     let tmp = classData.slice();
     tmp.push(form);
     setClassData(tmp);
-    console.log("으아아악" + tmp);
-  };  
+  };
 
   return (
     <TimeTableContainer>

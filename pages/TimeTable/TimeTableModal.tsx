@@ -16,8 +16,6 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
   const changeInput = (e: any) => {
     const { value, name } = e.target;
 
-    console.log(`value : ${value} /// name : ${name}`);
-
     let tmp = {
       ...form,
       [name]: value,
