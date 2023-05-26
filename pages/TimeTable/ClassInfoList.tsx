@@ -7,7 +7,7 @@ const ClassInfoList = ({data} : any) => {
   return (
     <ClassInfoListContainer>
       {data.map((items : any) => (
-        <ClassInfoCard key={items.id} props={items} />
+        <ClassInfoCard key={items.id} props={items}/>
       ))}
     </ClassInfoListContainer>
   );

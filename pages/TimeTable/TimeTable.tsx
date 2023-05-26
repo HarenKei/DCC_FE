@@ -84,20 +84,25 @@ const TimeTable = () => {
     }
 };
 
+useEffect(() => {
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      // User logged in already or has just logged in.
+      console.log(user.uid + "" + user.displayName);
+      setUserId(user.uid);
+      setUserName(user.displayName);
+      const UsersDocRef = doc(db, "Users", userId);
+      // await addUsers(UsersDocRef);
+    } else {
+      // User not logged in or has just logged out.
+    }
+  });
+  console.log(`userID : ${userId} userName : ${userName}`);
+
+},[]);
+
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User logged in already or has just logged in.
-        console.log(user.uid + "" + user.displayName);
-        setUserId(user.uid);
-        setUserName(user.displayName);
-        const UsersDocRef = doc(db, "Users", userId);
-        // await addUsers(UsersDocRef);
-      } else {
-        // User not logged in or has just logged out.
-      }
-    });
-    console.log(`userID : ${userId} userName : ${userName}`);
+    
     getTimeTableList();
   }, [userId]);
 
@@ -123,7 +128,7 @@ const TimeTable = () => {
         <TimeTableModal setModalOpen={setModalOpen} onAdd={onAdd} />
       )}
 
-      <DayView classData={classData} />
+      <DayView classData={classData} onDelete={onDelete} />
 
       <TableContainer></TableContainer>
     </TimeTableContainer>

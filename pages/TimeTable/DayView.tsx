@@ -7,7 +7,7 @@ const DayView = (props: any) => {
 
   useEffect(() => {
     console.log(`asdf ${props.classData}`);
-  });
+  },[]);
 
   return (
     <DayContainer>

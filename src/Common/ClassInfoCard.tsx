@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const ClassInfoCard = ({props} : any) => {
+const ClassInfoCard = (props : any) => {
   const { className, profName, classRoom } = props;
+
 
   return (
     <ClassInfoCardContainer>
+      <button>삭제</button>
       <ClassInfoContainer>
       <ClassTitle>📚 {className}</ClassTitle>
       <ClassInfo>
