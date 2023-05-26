@@ -1,23 +1,7 @@
-import React, { useState, useEffect, useRef, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DayView from "./DayView";
 import TimeTableModal from "./TimeTableModal";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-
-import { db, auth, storage } from "../Google2/fbconfig";
-import {
-  getDocs,
-  collection,
-  addDoc,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
 
 const dummyDataArray = [
   {
@@ -54,6 +38,7 @@ const TimeTable = () => {
   const no = useRef(dummyDataArray.length + 1); // 고유 id가 될 no는 데이터.length +1
   const [classData, setClassData] = useState(dummyDataArray); // 데이터 상태
   const [modalOpen, setModalOpen] = useState(false);
+<<<<<<< HEAD
   const [userId, setUserId] = useState("asdf");
   const [userName, setUserName] = useState("asdf");
   const timeTableCollectionRef = collection(db, `Users/${userId}/TimeTable`);
@@ -105,6 +90,8 @@ useEffect(() => {
     
     getTimeTableList();
   }, [userId]);
+=======
+>>>>>>> parent of 983bacd (Update TimeTable.tsx : Connect FireStore DB & Implement Create Function)
 
   const openModal = () => {
     setModalOpen(true);
@@ -114,7 +101,6 @@ useEffect(() => {
     form.id = no.current++;
     let tmp = classData.slice();
     tmp.push(form);
-    onSubmitMovie(form);
     setClassData(tmp);
   };
 
