@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useRef, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DayView from "./DayView";
 import TimeTableModal from "./TimeTableModal";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-
-import { db, auth, storage } from "../Google2/fbconfig";
+import { onAuthStateChanged, } from "firebase/auth";
+import { db, auth } from "../Google2/fbconfig";
 import {
   getDocs,
   collection,
@@ -120,14 +114,20 @@ const TimeTable = () => {
 
   const deleteClassInfo = async (id: string) => {
     const classInfoDoc = doc(db, `Users/${userId}/TimeTable`, id);
-    await deleteDoc(classInfoDoc);  
+    await deleteDoc(classInfoDoc);
     getTimeTableList();
-};
+  };
 
-  const onDelete = (id : any) => {
-    setClassData(classData.filter(item => item.id !== id));
-    deleteClassInfo(id);
-  }
+  const onDelete = (id: any) => {
+    const chk = confirm(`해당 강의를 삭제하시겠습니까?`);
+
+    if(chk) {
+      setClassData(classData.filter((item) => item.id !== id));
+      deleteClassInfo(id);
+    } else {
+      return;
+    }
+  };
 
   return (
     <TimeTableContainer>
@@ -154,13 +154,29 @@ const TimeTableContainer = styled.div`
   align-items: center;
 `;
 
-const TimeTableTitle = styled.h1``;
+const TimeTableTitle = styled.h1`
+  margin-bottom: 1em;
+  font-size: 3em;
+`;
 
 const ModalOpenButton = styled.button`
-  width: 5vw;
-  height: 3vh;
-  background-color: yellow;
+  width: 10vw;
+  height: 4vh;
+  margin-bottom: 1.5em;
+
+  background-color: #5DC8CD;
   border-radius: 10px;
+  border: none;
+  
+  color: #0e0e0e;
+  font-size: 1.2em;
+  font-weight: 500;
+
+  :hover{
+    color: #fff;
+    background: #01939A;
+  }
+  
 `;
 
 const TableContainer = styled.div`
