@@ -2,11 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ClassInfoList from "./ClassInfoList";
 
-const DayView = (props: any) => {
-  // const [props.classData, setClassData] = useState(props.classData);
+const DayView = ({classData, onDelete}: any) => {
 
   useEffect(() => {
-    console.log(`asdf ${props.classData}`);
+    console.log(`DayView ${classData[0].className}`);
   },[]);
 
   return (
@@ -14,45 +13,50 @@ const DayView = (props: any) => {
       <Day>
         <DayTitle>월</DayTitle>
         <ClassInfoList
-          data={props.classData.filter((items: any) => {
+          data={classData.filter((items: any) => {
             return items.day == 1;
           })}
+          onDelete={onDelete}
         />
       </Day>
 
       <Day>
         <DayTitle>화</DayTitle>
         <ClassInfoList
-          data={props.classData.filter((items: any) => {
+          data={classData.filter((items: any) => {
             return items.day == 2;
           })}
+          onDelete={onDelete}
         />
       </Day>
 
       <Day>
         <DayTitle>수</DayTitle>
         <ClassInfoList
-          data={props.classData.filter((items: any) => {
+          data={classData.filter((items: any) => {
             return items.day == 3;
           })}
+          onDelete={onDelete}
         />
       </Day>
 
       <Day>
         <DayTitle>목</DayTitle>
         <ClassInfoList
-          data={props.classData.filter((items: any) => {
+          data={classData.filter((items: any) => {
             return items.day == 4;
           })}
+          onDelete={onDelete}
         />
       </Day>
 
       <Day>
         <DayTitle>금</DayTitle>
         <ClassInfoList
-          data={props.classData.filter((items: any) => {
+          data={classData.filter((items: any) => {
             return items.day == 5;
           })}
+          onDelete={onDelete}
         />
       </Day>
     </DayContainer>

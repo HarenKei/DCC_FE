@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import ClassInfoCard from "@/src/Common/ClassInfoCard";
 
-const ClassInfoList = ({data} : any) => {
+const ClassInfoList = ({data, onDelete} : any) => {
   return (
     <ClassInfoListContainer>
       {data.map((items : any) => (
-        <ClassInfoCard key={items.id} props={items}/>
+        <ClassInfoCard key={items.id} props={items} onDelete={onDelete} />
       ))}
     </ClassInfoListContainer>
   );

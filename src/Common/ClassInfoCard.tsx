@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const ClassInfoCard = (props : any) => {
-  const { className, profName, classRoom } = props;
+const ClassInfoCard = ({props, onDelete} : any) => {
+  const { id,className, profName, classRoom } = props;
 
+  const delClick = () => {
+    onDelete(id);
+  };
 
   return (
     <ClassInfoCardContainer>
-      <button>삭제</button>
+      <button onClick={delClick}>삭제</button>
       <ClassInfoContainer>
       <ClassTitle>📚 {className}</ClassTitle>
       <ClassInfo>
