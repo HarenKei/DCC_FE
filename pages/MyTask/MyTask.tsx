@@ -1,27 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import TaskBar from "./TaskBar/TaskBar";
-import TaskBoard from "./TaskBoard/TaskBoard";
-import Header from "@/src/Common/Header";
 
 const MyTask = () => {
   return (
-    <HeaderContainer>
-      <Header/>
-      <MainContainer>
-        <TaskBar/>
-        <TaskBoard/>
-      </MainContainer>
-    </HeaderContainer>
+    <MyTaskContainer>
+    </MyTaskContainer>
   );
 };
-const HeaderContainer = styled.div`
-`;
-
-const MainContainer = styled.div`
+const MyTaskContainer = styled.div`
+  width: 90vw;
+  
   display: flex;
-  flex-direction: column;
-  margin-top: 35px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default MyTask;
