@@ -2,6 +2,31 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
+  const selectList = [
+    {
+      day: "월",
+      value: 1,
+    },
+    {
+      day: "화",
+      value: 2,
+    },
+    {
+      day: "수",
+      value: 3,
+    },
+    {
+      day: "목",
+      value: 4,
+    },
+    {
+      day: "금",
+      value: 5,
+    },
+  ];
+
+  const [daySelected, setDaySelected] = useState(selectList[0]);
+
   const [form, setForm] = useState({
     className: "",
     profName: "",
@@ -16,6 +41,10 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
   const changeInput = (e: any) => {
     const { value, name } = e.target;
 
+    if(name === "day") {
+      setDaySelected(value);
+    }
+
     let tmp = {
       ...form,
       [name]: value,
@@ -28,10 +57,12 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    if (!className || !profName || !classRoom || !day){
+    if (!className || !profName || !classRoom || !day) {
       alert("내용을 입력해주세요.");
       return;
-    };
+    }
+
+    console.log(form);
 
     onAdd(form);
 
@@ -51,7 +82,7 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
     <ModalContainer>
       <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
       <h1>강의 추가하기</h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} id="classForm">
         <span>강의명</span>
         <br />
         <input
@@ -79,7 +110,13 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
         />
         <br />
         <span>요일</span> <br />
-        <input type="number" name="day" onChange={changeInput} value={day} />
+        <select onChange={changeInput} value={daySelected.value} form="classForm" name="day">
+          {selectList.map((item) => (
+            <option value={item.value} key={item.value}>
+              {item.day}
+            </option>
+          ))}
+        </select>
         <br />
         <button type="submit">저장</button>
       </form>
@@ -118,7 +155,7 @@ const ModalContainer = styled.div`
     font-weight: 800;
   }
 
-  button[type="submit"]{
+  button[type="submit"] {
     width: 6vw;
     height: 3vh;
     margin-left: 19vw;
@@ -146,7 +183,7 @@ const ModalContainer = styled.div`
     transition: all 0.2s;
   }
 
-  input {
+  input, select {
     width: 25vw;
     height: 3vh;
 
@@ -161,9 +198,10 @@ const ModalContainer = styled.div`
     z-index: 5;
   }
 
-  input:focus {
+  input, select:focus {
     outline: none;
   }
+
 `;
 
 const AddClassForm = styled.div``;
