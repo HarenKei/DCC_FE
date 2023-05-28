@@ -26,7 +26,7 @@ const TaskCard = (props : Props) => {
 const TaskCardContainer = styled.div`
   width: 40vw;
   height: 7vh;
-  border-radius: 10px;
+  border-radius: 50px;
 
   background-color: grey;
   display: flex;
