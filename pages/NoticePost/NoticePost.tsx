@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoticeMajor from "./NoticeMajor";
-
+import Link from "next/link";
 
 const NoticePost = () => {
   return (
@@ -17,26 +17,15 @@ const NoticePost = () => {
         </NoticeSearchBar>
       </NoticeHeadContainer>
       <NoticeMajor/>
-      <WritePost>
-      <a href="/NoticePost/WriteTest" target="_blank" rel="noopener noreferrer">
-        <button>글쓰기</button> 
-      </a>
+      <WritePost>   
+        <button><Link href="/NoticePost/WritePage">
+          글 쓰기
+      </Link></button>
       </WritePost>
     </div>
   );
 };
 
-const MainMenuElementsContainer = styled.div`
-  justify-content: center;
-  background-color: grey;
-  border: solid 1px black;
-  width: 100%;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: row;
-  border: 1px black;
-
-`;
 
 const NoticeHeadContainer = styled.div`
   /* border: solid 1px black; */

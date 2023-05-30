@@ -1,31 +1,50 @@
-import React from "react";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { db } from "../Google2/fbconfig";
 
-const WriteTest = () => {
+const WriteView = () => {
+//   const [postList, setPostList] = useState([]);
+//   const postCollectionRef = collection(db, "Post");
+
+//   const getPostList = async() => {
+//     try{
+//         const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
+//         console.log(data);
+//         const filteredData = data.docs.map((doc) => ({
+//             ...doc.data(), 
+//             id: doc.id,           
+//         }));
+//         setPostList(filteredData);
+//     } catch (err) {
+//         console.error(err);
+//     }   
+// };
+
+// useEffect(() => {
+//   getPostList();
+// },[]);
+
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+
   return (
     <div>
       <WriteMain>
         <Title>
-          <input type="text" placeholder="제목" />
+          <h1>{postList.title}1</h1>
         </Title>
-
+         
         <Content_txt>
-          <textarea placeholder="내용을 입력하세요."></textarea>
+          <h3>{postList.detail}2</h3>
         </Content_txt>
       </WriteMain>
 
       <Buttons>
-      <a
-          href="/NoticePost"
-        >
-          <button>취소</button>
-        </a>
-        <a
-          href="/NoticePost/WriteList"
-          rel="noopener noreferrer"
-        >
-          <button>등록</button>
-        </a>
+      <button><Link href="/NoticePost">
+          취소
+      </Link></button>
       </Buttons>
     </div>
   );
@@ -34,7 +53,7 @@ const WriteTest = () => {
 const Title = styled.div`
   margin-top: 30px;
   margin-left: 50px;
-  & > input {
+  & > h1 {
     width: 91%;
     padding-bottom: 30px;
     border: none;
@@ -54,7 +73,7 @@ const WriteMain = styled.div`
 const Content_txt = styled.div`
   margin-top: 30px;
   margin-left: 50px;
-  & > textarea {
+  & > h2 {
     width: 91%;
     resize: none;
     border: none;
@@ -84,4 +103,5 @@ const Buttons = styled.div`
   }
 `;
 
-export default WriteTest;
+
+export default WriteView;
