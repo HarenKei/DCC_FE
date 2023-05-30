@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const NoticeCard = () => {
+const NoticeCard = (props : any) => {
   return (
     <div>
         <BodyContents>
-          <Title></Title>
+          <Title>{props.title}</Title>
           <Image></Image>
           <Content> <span></span></Content>
         </BodyContents>
