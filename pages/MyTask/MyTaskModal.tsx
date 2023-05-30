@@ -2,36 +2,97 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const MyTaskModal = ({ setModalOpen, onAdd }: any) => {
-
   const [form, setForm] = useState({
-    className: "",
-    profName: "",
-    classRoom: "",
-    day: 0,
+    taskName: "",
+    taskGroup: "",
+    importance: "false",
+    taskStatus: "wip",
   });
+  const [importChk, setImportChk] = useState(false);
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  const changeCheckbox = () => {
+    if (!importChk) {
+      setImportChk(true);
+    } else {
+      setImportChk(false);
+    }
+  };
+
   const changeInput = (e: any) => {
+    const { value, name } = e.target;
+
+    let tmp = {
+      ...form,
+      [name]: value,
+    };
+
+    setForm(tmp);
   };
 
   const onSubmit = (e: any) => {
+    e.preventDefault();
+
+    if (!taskName || !taskGroup) {
+      alert("내용을 입력해주세요.");
+      return;
+    }
+
+    if (importChk) {
+      form["importance"] = "true";
+    } else {
+      form["importance"] = "false";
+    }
+
+    onAdd(form);
+
+    setForm({
+      taskName: "",
+      taskGroup: "",
+      importance: "false",
+      taskStatus: "wip",
+    });
+
+    closeModal();
   };
 
+  const { taskName, taskGroup, importance } = form;
 
   return (
     <ModalContainer>
       <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
-      <h1>강의 추가하기</h1>
-      <form onSubmit={onSubmit} id="classForm">
-        <span>강의명</span>
+      <h1>새 할 일 추가하기</h1>
+      <form onSubmit={onSubmit} id="taskForm">
+        <span>할 일 이름</span>
+        <br />
         <br />
         <input
           type="text"
-          name="className"
+          name="taskName"
           onChange={changeInput}
+          value={taskName}
+        />
+        <br />
+        <span>할 일 그룹</span>
+        <br />
+        <br />
+        <input
+          type="text"
+          name="taskGroup"
+          onChange={changeInput}
+          value={taskGroup}
+        />
+        <br />
+        <span>중요</span>
+        <input
+          id="checkboxInput"
+          type="checkbox"
+          name="importance"
+          checked={importChk}
+          onChange={changeCheckbox}
         />
         <button type="submit">저장</button>
       </form>
@@ -67,6 +128,7 @@ const ModalContainer = styled.div`
 
   span {
     margin-bottom: -15px;
+    font-size: 1.2em;
     font-weight: 800;
   }
 
@@ -98,7 +160,7 @@ const ModalContainer = styled.div`
     transition: all 0.2s;
   }
 
-  input, select {
+  input {
     width: 25vw;
     height: 3vh;
 
@@ -113,13 +175,10 @@ const ModalContainer = styled.div`
     z-index: 5;
   }
 
-  input, select:focus {
+  input:focus {
     outline: none;
   }
-
 `;
-
-const AddClassForm = styled.div``;
 
 const ModalCloseButton = styled.button`
   position: absolute;

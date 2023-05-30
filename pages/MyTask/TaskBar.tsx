@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const TaskBar = ({setModalOpen}: any) => {
-
+const TaskBar = ({ setModalOpen }: any) => {
   const onClickHandler = () => {
     setModalOpen(true);
-  }
+  };
 
   return (
     <TaskHeaderContainer>
@@ -25,6 +24,25 @@ const TaskHeaderContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  button {
+    width: 10vw;
+    height: 7vh;
+    margin-left: 1.5em;
+
+    background-color: #5dc8cd;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 5px black;
+
+    color: #0e0e0e;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  button:hover {
+    color: #fff;
+    background: #01939a;
+  }
 `;
 
 const TaskHeaderMenuContainer = styled.div`

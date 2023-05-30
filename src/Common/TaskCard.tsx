@@ -1,34 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 
-interface Props {
-  title: string;
-  category: string;
-  date: string;
-  status: string;
-}
+const TaskCard = ({ data, onDelete } : any) => {
+  const {id, taskName, taskGroup, importance,taskStatus} = data;
 
-const TaskCard = (props : Props) => {
+  const delClick = () => {
+    onDelete(id);
+  }
   return (
     <TaskCardContainer>
       <TaskCardInfoContainer>
-        <TaskTitleP>{props.title}</TaskTitleP>
-        <TaskCategoryP>{props.category} | {props.date}</TaskCategoryP>
+        <TaskTitleP>{taskName}</TaskTitleP>
+        <TaskCategoryP>{taskGroup} |</TaskCategoryP>
+        {importance == "true" && <TaskCategoryP> 중요 </TaskCategoryP> }
       </TaskCardInfoContainer>
 
       <TaskStatusBanner>
-        <p>{props.status}</p>
+        <p>{taskStatus}</p>
       </TaskStatusBanner>
+
+      <button onClick={delClick}>삭제</button>
     </TaskCardContainer>
   );
 };
 
 const TaskCardContainer = styled.div`
-  width: 40vw;
+  width: 20vw;
   height: 7vh;
-  border-radius: 50px;
+  border-radius: 20px;
 
-  background-color: grey;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -36,7 +37,26 @@ const TaskCardContainer = styled.div`
 
   margin-bottom: 20px;
 
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 0px 10px black;
+
+  button {
+    width: 4vw;
+    height: 3vh;
+    margin-right: 1em;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 1em;
+    font-weight: 900;
+
+    color: #fff;
+    background-color: #df3c3c;
+  }
+
+  button:hover {
+    background: #750c0c;
+    color: #fff;
+  }
 `;
 
 const TaskCardInfoContainer = styled.div`
@@ -54,11 +74,6 @@ const TaskTitleP = styled.p`
 
 const TaskCategoryP = styled.p`
   font-weight: 100;
-`;
-
-const TaskDateP = styled.p`
-  font-weight: 100;
-
 `;
 
 const TaskStatusBanner = styled.div`
