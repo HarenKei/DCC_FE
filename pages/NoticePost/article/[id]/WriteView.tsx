@@ -1,19 +1,53 @@
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "@/pages/Google2/fbconfig";
+import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
+import router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const WriteView = () => {
+  
+  const router = useRouter();
+  const [title,setTitle] = useState("");
+  const [detail,setDetail] = useState("");
+  const postCollectionRef = collection(db, "Post");
+  const [postList, setPostList] = useState([]);
+  
+
+//   const getPostList = async() => {
+//     try{
+//         const data = await getDocs(postCollectionRef,'article', router.query.id);
+//         const filteredData = data.docs.map((doc) => ({
+//             ...doc.data(), 
+//             id: doc.id,           
+//         }));
+//         setPostList(filteredData);
+//     } catch (err) {
+//         console.error(err);
+//     }   
+// };
+
+// useEffect(() => {
+//   getPostList();
+// },[]);
+  useEffect(()=>{
+    getDoc(doc(db,'Post',router.query.id))
+    .then(doc =>{
+      const data = doc.data();
+      setTitle(data.title);
+      setDetail(data.detail);
+    })
+  },[])
 
   return (
     <div>
       <WriteMain>
         <Title>
-          <h1>제목</h1>
+          <h1>{title}</h1>
         </Title>
          
         <Content_txt>
-          <h3>내용</h3>
+          <h3>{detail}</h3>
         </Content_txt>
       </WriteMain>
 

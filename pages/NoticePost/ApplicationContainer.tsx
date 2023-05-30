@@ -6,8 +6,8 @@ const ApplicationContainer  = () =>{
   return (
     <div>
       <MainBodyContainer>
-        <NoticeCard/>
-        <NoticeCard/>
+        <NoticeCard title={""}/>
+        <NoticeCard title={""}/>
       </MainBodyContainer>
     </div>
   );

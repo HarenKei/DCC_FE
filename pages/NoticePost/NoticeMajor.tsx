@@ -37,8 +37,10 @@ const NoticeMajor = () => {
   const MajorBar = styled.div`
   display: flex;
   margin: 2rem auto;
+  height: 3.6rem;
   width: 75rem;
   justify-content: space-around;
+  border: 1px solid black;
   & > div:hover {
     background-color: #adabab;
   }
@@ -52,6 +54,7 @@ const MajorContent = styled.div`
   border-radius: 12px;
   text-align: center;
   box-shadow: 0px 1px 1px black;
+  
 `;
 const ContentMajor = styled.div`
   justify-content: space-around;
@@ -61,5 +64,6 @@ const ContentMajor = styled.div`
   width: 90vw;
   max-width: 95%;
   flex-flow: row wrap;
+  border: 1px solid black;
 `;
 export default NoticeMajor;

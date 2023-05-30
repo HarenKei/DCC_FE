@@ -54,7 +54,7 @@ const WritePage = () => {
       <button><Link href="/NoticePost">
           취소
       </Link></button>
-        <button onClick={onSubmitMovie}><Link href="/NoticePost/WriteList">
+        <button onClick={onSubmitMovie}><Link href="/NoticePost">
           등록
       </Link></button>
       </Buttons>

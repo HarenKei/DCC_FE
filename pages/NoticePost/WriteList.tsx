@@ -29,9 +29,9 @@ useEffect(() => {
   getPostList();
 },[]);
 // 게시판 추가
-const handlePostClick = (post) => {
-  router.push(`/board/${post}`);
-};
+// const handlePostClick = (post) => {
+//   router.push(`/board/${post}`);
+// };
 
 
   return(
@@ -40,7 +40,7 @@ const handlePostClick = (post) => {
                         {postList.map((post) => (
                     // eslint-disable-next-line react/jsx-key
                     <div>
-                        <h1><Link href={`/NoticePost/WriteView/${post.id}`}>{post.title}</Link></h1>                                           
+                        <h1><Link href={`/NoticePost/article/${post.id}/WriteView`}>{post.title}</Link></h1>                                           
                     </div>
                 ))}
     </div>

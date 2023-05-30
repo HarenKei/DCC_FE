@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const NoticeCard = (props : any) => {
+
+interface Props {
+  title : string;
+}
+
+
+const NoticeCard = (props : Props) => {
+
   return (
     <div>
         <BodyContents>
-          <Title>{props.title}</Title>
-          <Image></Image>
+          <Title><p>웹</p></Title>
+          <Image>{props.title}</Image>
           <Content> <span></span></Content>
         </BodyContents>
     </div>
@@ -30,6 +37,7 @@ const Title = styled.div`
   height: 2rem;
   line-height: 2rem;
   text-align: center; 
+  color: white;
 `;
 const Image = styled.div`
   /* border: solid 1px black; */

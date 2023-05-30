@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NoticeCard from "@/src/Common/NoticeCard";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
+import { db } from "../Google2/fbconfig";
+import Link from "next/link";
 
 const WebContainer = () => {
+
+  const [postList, setPostList] = useState([]);
+  const postCollectionRef = collection(db, "Post");
+  
+
+  const getPostList = async() => {
+    try{
+        const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
+        console.log(data);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(), 
+            id: doc.id,           
+        }));
+        setPostList(filteredData);
+    } catch (err) {
+        console.error(err);
+    }   
+};
+
+useEffect(() => {
+  getPostList();
+},[]);
+
   return (
     <div>
+             
       <MainBodyContainer>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
+      {postList.map((post) => (
+        <Link href={`/NoticePost/article/${post.id}/WriteView`}>
+          <NoticeCard title={post.title}/>
+        </Link>
+              ))}
       </MainBodyContainer>
+
     </div>
   );
 };
@@ -24,5 +52,6 @@ const MainBodyContainer = styled.div`
   height: auto;
   display: flex;
   flex-flow:row wrap;
+  border: 1px solid black; 
 `;
 export default WebContainer;
