@@ -2,42 +2,18 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { db } from "../Google2/fbconfig";
 
 const WriteView = () => {
-//   const [postList, setPostList] = useState([]);
-//   const postCollectionRef = collection(db, "Post");
-
-//   const getPostList = async() => {
-//     try{
-//         const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
-//         console.log(data);
-//         const filteredData = data.docs.map((doc) => ({
-//             ...doc.data(), 
-//             id: doc.id,           
-//         }));
-//         setPostList(filteredData);
-//     } catch (err) {
-//         console.error(err);
-//     }   
-// };
-
-// useEffect(() => {
-//   getPostList();
-// },[]);
-
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
 
   return (
     <div>
       <WriteMain>
         <Title>
-          <h1>{postList.title}1</h1>
+          <h1>제목</h1>
         </Title>
          
         <Content_txt>
-          <h3>{postList.detail}2</h3>
+          <h3>내용</h3>
         </Content_txt>
       </WriteMain>
 
