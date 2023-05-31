@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
 
-const MainTaskCard = ({ data }: any) => {
-  const { taskName, taskGroup, importance, taskStatus } = data;
+const MainTaskCard = ({ data, onUpdate }: any) => {
+  const { id, taskName, taskGroup, importance, taskStatus } = data;
+
+  const onUpdateClick = () => {
+    onUpdate(id);
+  }
 
   console.log(`taskStatus ; ${taskStatus} ${typeof taskStatus}`);
 
@@ -10,9 +16,19 @@ const MainTaskCard = ({ data }: any) => {
     <TaskCardContainer>
       {taskStatus === "wip" && (
         <TaskCardInfoContainer>
-          <TaskTitleP>{taskName}</TaskTitleP>
-          <TaskCategoryP>{taskGroup} |</TaskCategoryP>
-          {importance == "true" && <TaskCategoryP> 중요 </TaskCategoryP>}
+          <MainTaskContentsContainer>
+            <TaskTitleP>{taskName}</TaskTitleP>
+            <TaskCategoryP>
+              {taskGroup}{" "}
+              {importance == "true" && (
+                <span>
+                  | <FontAwesomeIcon icon={faFlag} />
+                </span>
+              )}
+            </TaskCategoryP>
+          </MainTaskContentsContainer>
+
+          {taskStatus === "wip" && <button onClick={onUpdateClick}>완료</button>}
         </TaskCardInfoContainer>
       )}
     </TaskCardContainer>
@@ -37,7 +53,7 @@ const TaskCardContainer = styled.div`
   button {
     width: 4vw;
     height: 3vh;
-    margin-right: 1em;
+    margin-right: 2em;
     border: none;
     border-radius: 5px;
 
@@ -45,19 +61,28 @@ const TaskCardContainer = styled.div`
     font-weight: 900;
 
     color: #fff;
-    background-color: #df3c3c;
+    background-color: #00ae68;
   }
 
+  
+
   button:hover {
-    background: #750c0c;
+    background: #21825b;;
     color: #fff;
   }
 `;
 
-const TaskCardInfoContainer = styled.div`
+const MainTaskContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+`;
+
+const TaskCardInfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
   padding-left: 30px;
 `;
 
@@ -68,20 +93,5 @@ const TaskTitleP = styled.p`
 
 const TaskCategoryP = styled.p`
   font-weight: 100;
-`;
-
-const TaskStatusBanner = styled.div`
-  width: 80px;
-  height: 30px;
-  text-align: center;
-  font-size: 12pt;
-  font-weight: 900;
-  background-color: yellow;
-  border-radius: 10px;
-  margin-right: 30px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 export default MainTaskCard;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import MainTaskCard from "@/src/Common/MainTaskCard";
 import styled from "styled-components";
 import Link from "next/link";
-
 import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../Google2/fbconfig";
 import {
@@ -79,6 +78,23 @@ const MainTask = () => {
     }
   };
 
+  const updateTaskStatus = async (id: string) => {
+    const taskDoc = doc(db, `Users/${userId}/Task`, id);
+    await updateDoc(taskDoc, { taskStatus: "end" });
+    getTaskList();
+  };
+
+  const onUpdate = (id: string) => {
+    const chk = confirm(`해당 할 일을 완료하시겠습니까?`);
+
+    if(chk) {
+      updateTaskStatus(id);
+      getTaskList();
+    } else {
+      return;
+    }
+  }
+
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -98,6 +114,7 @@ const MainTask = () => {
     console.log(`userID : ${userId} userName : ${userName}`);
     getTaskList();
   }, [userId]);
+
   return (
     <MainTaskBannerContainer>
       <MainTitleAndLinkZone>
@@ -110,7 +127,7 @@ const MainTask = () => {
         {mainTaskData.length == 0 && <p>진행중인 할 일 없음</p>}
         {mainTaskData.length != 0 &&
           mainTaskData.map((items: object) => (
-            <MainTaskCard key={items.id} data={items} />
+            <MainTaskCard key={items.id} data={items} onUpdate={onUpdate}/>
           ))}
       </TaskCardZone>
 

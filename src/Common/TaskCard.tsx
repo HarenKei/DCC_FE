@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag} from "@fortawesome/free-solid-svg-icons";
+
 
 interface Props {
   taskStatus: string;
@@ -20,8 +23,7 @@ const TaskCard = ({ data, onDelete, onUpdate }: any) => {
     <TaskCardContainer>
       <TaskCardInfoContainer>
         <TaskTitleP taskStatus={taskStatus}>{taskName}</TaskTitleP>
-        <TaskCategoryP taskStatus={taskStatus}>{taskGroup} |</TaskCategoryP>
-        {importance == "true" && <TaskCategoryP> 중요 </TaskCategoryP>}
+        <TaskCategoryP taskStatus={taskStatus}>{taskGroup} {importance == "true" && <span> | <FontAwesomeIcon icon={faFlag} /> </span>}</TaskCategoryP>
       </TaskCardInfoContainer>
 
       <TaskButtonZone>
