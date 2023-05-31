@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TaskList from "./TaskList";
 
-const TaskBoard = ({ data, onDelete }: any) => {
+const TaskBoard = ({ data, onDelete, onUpdate }: any) => {
   return (
     <TaskBoardMainContainer>
-      <TaskList data={data} status={"all"} onDelete={onDelete} />
+      <TaskList data={data.filter((items:object) => {
+        return items.taskStatus === "wip";
+      })} status={"wip"} onDelete={onDelete} onUpdate={onUpdate} />
+
       <TaskList
         data={data.filter((items: any) => {
-          return items.importance === "true";
+          return items.taskStatus === "end";
         })}
-        status={"importance"}
+        status={"end"}
         onDelete={onDelete}
       />
     </TaskBoardMainContainer>
@@ -18,12 +21,12 @@ const TaskBoard = ({ data, onDelete }: any) => {
 };
 
 const TaskBoardMainContainer = styled.div`
-  width: 90%;
+  width: 90vw;
 
-  margin-top: 5em;
+  margin-top: 1em;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 `;

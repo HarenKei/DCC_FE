@@ -8,13 +8,8 @@ const TaskBar = ({ setModalOpen }: any) => {
 
   return (
     <TaskHeaderContainer>
-      <TaskHeaderMenuContainer>
-        <p>내 Task</p>
-        <p>중요한 일</p>
-        <p>완료된 Task</p>
-      </TaskHeaderMenuContainer>
-
-      <button onClick={onClickHandler}>새 Task 추가</button>
+      <div></div>
+      <button onClick={onClickHandler}>+</button>
     </TaskHeaderContainer>
   );
 };
@@ -22,26 +17,27 @@ const TaskBar = ({ setModalOpen }: any) => {
 const TaskHeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 
   button {
-    width: 10vw;
+    width: 4vw;
     height: 7vh;
-    margin-left: 1.5em;
+    flex:1;
+    margin-left: 75vw;
 
-    background-color: #5dc8cd;
+    background-color: #00ae68;;
     border-radius: 20px;
     border: none;
     box-shadow: 0px 0px 5px black;
 
-    color: #0e0e0e;
-    font-size: 1.2em;
+    color: #fff;
+    font-size: 2em;
     font-weight: 500;
   }
   button:hover {
     color: #fff;
-    background: #01939a;
+    background: #21825b;
   }
 `;
 

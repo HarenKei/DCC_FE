@@ -2,20 +2,21 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import TaskCard from "@/src/Common/TaskCard";
 
-const TaskList = ({ status, data, onDelete}: any) => {
+const TaskList = ({ status, data, onDelete, onUpdate}: any) => {
   console.log(data);
   return (
     <TaskListContainer>
 
       <TaskListTitle>
         {status === "all" && <h1>전체 할 일</h1>}
+        {status === "wip" && <h1>진행중</h1>}
         {status === "importance" && <h1>중요한 일</h1>}
         {status === "end" && <h1>완료된 일</h1>}
       </TaskListTitle>
 
       <TaskCardContainer>
         {data.map((items: any) => (
-          <TaskCard key={items.id} data={items} onDelete={onDelete}/>
+          <TaskCard key={items.id} data={items} onDelete={onDelete} onUpdate={onUpdate}/>
         ))}
       </TaskCardContainer>
 
@@ -24,11 +25,12 @@ const TaskList = ({ status, data, onDelete}: any) => {
 };
 
 const TaskListContainer = styled.div`
-  width: 25vw;
-  height: 80vh;
+  width: 80vw;
+  margin-bottom: 2em;
 
   background-color: grey;
   border-radius: 20px;
+  box-shadow: 0px 0px 5px black;
 
   display: flex;
   flex-direction: column;

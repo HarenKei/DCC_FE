@@ -53,6 +53,7 @@ const MyTask = () => {
   const [userName, setUserName] = useState("asdf");
   const taskCollectionRef = collection(db, `Users/${userId}/Task`);
 
+
   //user ID 정보 가져오기 , 마운트와 동시에 실행할것.
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -107,6 +108,12 @@ const MyTask = () => {
     getTaskList();
   };
 
+  const updateTaskStatus = async (id: string) => {
+    const taskDoc = doc(db, `Users/${userId}/Task`, id);
+    await updateDoc(taskDoc, { taskStatus: "end" });
+    getTaskList();
+  };
+
   const onAdd = (form: any) => {
     let tmp = taskData.slice();
     tmp.push(form);
@@ -115,7 +122,7 @@ const MyTask = () => {
     getTaskList();
   };
 
-  const onDelete = (id: any) => {
+  const onDelete = (id: string) => {
     const chk = confirm(`해당 할 일을 삭제하시겠습니까?`);
 
     if(chk) {
@@ -126,17 +133,28 @@ const MyTask = () => {
     }
   };
 
+  const onUpdate = (id: string) => {
+    const chk = confirm(`해당 할 일을 완료하시겠습니까?`);
+
+    if(chk) {
+      updateTaskStatus(id);
+      getTaskList();
+    } else {
+      return;
+    }
+  }
+
   return (
     <MyTaskContainer>
       <TaskBar setModalOpen={setModalOpen} />
-      <TaskBoard data={taskData} onDelete={onDelete}/>
+      <TaskBoard data={taskData} onDelete={onDelete} onUpdate={onUpdate}/>
 
       {modalOpen && <MyTaskModal setModalOpen={setModalOpen} onAdd={onAdd} />}
     </MyTaskContainer>
   );
 };
 const MyTaskContainer = styled.div`
-  width: 90vw;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;

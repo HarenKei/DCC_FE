@@ -1,31 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 
-const TaskCard = ({ data, onDelete } : any) => {
-  const {id, taskName, taskGroup, importance,taskStatus} = data;
+interface Props {
+  taskStatus: string;
+}
+
+const TaskCard = ({ data, onDelete, onUpdate }: any) => {
+  const { id, taskName, taskGroup, importance, taskStatus } = data;
 
   const delClick = () => {
     onDelete(id);
-  }
+  };
+
+  const upClick = () => {
+    onUpdate(id);
+  };
+
   return (
     <TaskCardContainer>
       <TaskCardInfoContainer>
-        <TaskTitleP>{taskName}</TaskTitleP>
-        <TaskCategoryP>{taskGroup} |</TaskCategoryP>
-        {importance == "true" && <TaskCategoryP> 중요 </TaskCategoryP> }
+        <TaskTitleP taskStatus={taskStatus}>{taskName}</TaskTitleP>
+        <TaskCategoryP taskStatus={taskStatus}>{taskGroup} |</TaskCategoryP>
+        {importance == "true" && <TaskCategoryP> 중요 </TaskCategoryP>}
       </TaskCardInfoContainer>
 
-      <TaskStatusBanner>
-        <p>{taskStatus}</p>
-      </TaskStatusBanner>
+      <TaskButtonZone>
+        {taskStatus === "wip" && (
+          <TaskCompleteButton onClick={upClick}>완료</TaskCompleteButton>
+        )}
 
-      <button onClick={delClick}>삭제</button>
+        <TaskDeleteButton onClick={delClick}>삭제</TaskDeleteButton>
+      </TaskButtonZone>
     </TaskCardContainer>
   );
 };
 
 const TaskCardContainer = styled.div`
-  width: 20vw;
+  width: 75vw;
   height: 7vh;
   border-radius: 20px;
 
@@ -38,25 +49,6 @@ const TaskCardContainer = styled.div`
   margin-bottom: 20px;
 
   box-shadow: 0px 0px 10px black;
-
-  button {
-    width: 4vw;
-    height: 3vh;
-    margin-right: 1em;
-    border: none;
-    border-radius: 5px;
-
-    font-size: 1em;
-    font-weight: 900;
-
-    color: #fff;
-    background-color: #df3c3c;
-  }
-
-  button:hover {
-    background: #750c0c;
-    color: #fff;
-  }
 `;
 
 const TaskCardInfoContainer = styled.div`
@@ -70,10 +62,60 @@ const TaskTitleP = styled.p`
   font-size: 15pt;
   font-weight: 900;
 
+  text-decoration: ${(props) =>
+    props.taskStatus === "end" ? "line-through" : "none"};
 `;
 
 const TaskCategoryP = styled.p`
   font-weight: 100;
+
+  text-decoration: ${(props) =>
+    props.taskStatus === "end" ? "line-through" : "none"};
+`;
+
+const TaskButtonZone = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+`;
+
+const TaskCompleteButton = styled.button`
+  width: 4vw;
+  height: 3vh;
+  margin-right: 0.2em;
+  border: none;
+  border-radius: 5px;
+
+  font-size: 1em;
+  font-weight: 900;
+
+  color: #fff;
+  background-color: #00ae68;
+
+  :hover {
+    background-color: #21825b;
+  }
+`;
+
+const TaskDeleteButton = styled.button`
+  width: 4vw;
+  height: 3vh;
+  margin-right: 1em;
+  border: none;
+  border-radius: 5px;
+
+  font-size: 1em;
+  font-weight: 900;
+
+  color: #fff;
+  background-color: #df3c3c;
+
+  :hover {
+    background: #750c0c;
+    color: #fff;
+  }
 `;
 
 const TaskStatusBanner = styled.div`
