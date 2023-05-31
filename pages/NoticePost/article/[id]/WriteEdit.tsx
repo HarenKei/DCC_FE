@@ -23,4 +23,4 @@ const WriteEdit = () =>{
   );
 }
 
-export default WriteEdit
+export default WriteEdit;

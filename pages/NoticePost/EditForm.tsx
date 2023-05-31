@@ -23,20 +23,20 @@ function EditForm(initialValues: any) {
   const [newPostDetail, setnewPostDetail] = useState(initialValues?.detail);
   const moviesCollectionRef = collection(db, "Post");
 
-  const onSubmitMovie = async () => {
-    try {
-      await addDoc(moviesCollectionRef, {
-        title: newMovieTitle,
-        detail: newPostDetail,
-        writeDate: new Date(),
-        //firebase auth에 저장된 userid 이게 개별 토큰 같군요
-        userId: auth?.currentUser?.uid,
-      });
+  // const onSubmitMovie = async () => {
+  //   try {
+  //     await addDoc(moviesCollectionRef, {
+  //       title: newMovieTitle,
+  //       detail: newPostDetail,
+  //       writeDate: new Date(),
+  //       //firebase auth에 저장된 userid 이게 개별 토큰 같군요
+  //       userId: auth?.currentUser?.uid,
+  //     });
 
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const update = async () => {
     const update = doc(db, 'Post', router.query.id);

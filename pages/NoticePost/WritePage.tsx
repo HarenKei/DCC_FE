@@ -1,7 +1,7 @@
-import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc, serverTimestamp } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import {collection, addDoc} from "@firebase/firestore";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { db, auth, storage } from "../Google2/fbconfig";
+import { db, auth } from "../Google2/fbconfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 
@@ -20,9 +20,12 @@ const WritePage = () => {
      //파이어스토어에서 무비리스트를 가지고 옵니다
      const [newMovieTitle, setNewMovieTitle] = useState("");
      const [newPostDetail, setnewPostDetail] = useState(""); 
+     //각각의 DB들
      const moviesCollectionRef = collection(db, "Post");
+     const AppCollectionRef = collection(db, "AppPost");
+     const ApplicationCollectionRef = collection(db,"ApplicationPost");
 
-  const onSubmitMovie =async () => {
+  const onSubmitMovie = async () => {
     try {
         await addDoc(moviesCollectionRef,{
             title: newMovieTitle, 
@@ -37,14 +40,65 @@ const WritePage = () => {
     }
 };
 
+const appDb = async () => {
+  try {
+      await addDoc(AppCollectionRef,{
+          title: newMovieTitle, 
+          detail : newPostDetail,
+          writeDate: new Date(),
+          //firebase auth에 저장된 userid 이게 개별 토큰 같군요
+          userId: auth?.currentUser?.uid,
+      });
+
+  } catch (err) {
+      console.error(err);
+  }
+};
+
+const applicationDb =async () => {
+  try {
+      await addDoc(ApplicationCollectionRef,{
+          title: newMovieTitle, 
+          detail : newPostDetail,
+          writeDate: new Date(),
+          //firebase auth에 저장된 userid 이게 개별 토큰 같군요
+          userId: auth?.currentUser?.uid,
+      });
+
+  } catch (err) {
+      console.error(err);
+  }
+};
+
+// select를 이용하여 옵션 값에 따라 각각 다른 db에 저장
+const [selectedOption, setSelectedOption] = useState("");
+
+const handleOptionChange = (event : any) => {
+  setSelectedOption(event.target.value);
+};
+
+const handleClick = () => {
+  if (selectedOption === 'App') {
+    appDb();
+  } else if (selectedOption === 'Application') {
+    applicationDb();
+  } else {
+    onSubmitMovie();
+  }
+};
+
 
   return (
     <div>
+      <select value={selectedOption} onChange={handleOptionChange}>
+        <option value="">웹</option>
+        <option value="App">앱</option>
+        <option value="Application">응용</option>
+      </select>
       <WriteMain>
         <Title>
           <input onChange={(e) => setNewMovieTitle(e.target.value)} type="text" placeholder="제목" />
         </Title>
-
         <Content_txt>
           <textarea onChange={(e) => setnewPostDetail(e.target.value)} placeholder="내용을 입력하세요."></textarea>
         </Content_txt>
@@ -54,7 +108,7 @@ const WritePage = () => {
       <button><Link href="/NoticePost">
           취소
       </Link></button>
-        <button onClick={onSubmitMovie}><Link href="/NoticePost">
+        <button onClick={handleClick}><Link href="/NoticePost">
           등록
       </Link></button>
       </Buttons>
