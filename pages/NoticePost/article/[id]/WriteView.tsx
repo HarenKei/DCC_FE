@@ -1,5 +1,5 @@
 import { db } from "@/pages/Google2/fbconfig";
-import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -10,26 +10,7 @@ const WriteView = () => {
   const router = useRouter();
   const [title,setTitle] = useState("");
   const [detail,setDetail] = useState("");
-  const postCollectionRef = collection(db, "Post");
-  const [postList, setPostList] = useState([]);
-  
 
-//   const getPostList = async() => {
-//     try{
-//         const data = await getDocs(postCollectionRef,'article', router.query.id);
-//         const filteredData = data.docs.map((doc) => ({
-//             ...doc.data(), 
-//             id: doc.id,           
-//         }));
-//         setPostList(filteredData);
-//     } catch (err) {
-//         console.error(err);
-//     }   
-// };
-
-// useEffect(() => {
-//   getPostList();
-// },[]);
   useEffect(()=>{
     getDoc(doc(db,'Post',router.query.id))
     .then(doc =>{
@@ -38,6 +19,15 @@ const WriteView = () => {
       setDetail(data.detail);
     })
   },[])
+
+  const deletePost = async (id: string) => {
+    const remove = window.confirm("삭제하시겠습니까?");
+    if(remove == true){
+    const movieDoc = doc(db, 'Post',router.query.id)
+  await deleteDoc(movieDoc);  
+  alert("게시물이 삭제되었습니다.")
+  };
+};
 
   return (
     <div>
@@ -52,8 +42,14 @@ const WriteView = () => {
       </WriteMain>
 
       <Buttons>
+      <button><Link href="/NoticePost" onClick={deletePost}>
+          삭제
+      </Link></button>
       <button><Link href="/NoticePost">
-          취소
+          메인으로
+      </Link></button>
+      <button><Link href={`/NoticePost/article/${router.query.id}/WriteEdit`}>
+          수정하기
       </Link></button>
       </Buttons>
     </div>
