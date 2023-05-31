@@ -1,84 +1,69 @@
-import ClassInfoCard from "@/src/Common/ClassInfoCard";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import ClassInfoList from "./ClassInfoList";
 
-const dummyDataArray = [
-  {
-    id: "d1",
-    className: "테스트 강의1",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d2",
-    className: "테스트 강의2",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d3",
-    className: "테스트 강의3",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 5,
-    date: "10:00 ~ 12:50",
-  },
-  {
-    id: "d4",
-    className: "테스트 강의4",
-    profName: "정호일",
-    classRoom: "j0407",
-    day: 1,
-    date: "10:00 ~ 12:50",
-  },
-];
+const DayView = ({classData, onDelete}: any) => {
 
-const monData = dummyDataArray.filter((items) => {
-  return items.day === 1;
-});
+  useEffect(() => {
+    console.log(`DayView ${classData[0].className}`);
+  },[]);
 
-const friData = dummyDataArray.filter((items) => {
-  return items.day == 5;
-});
-
-const DayView = (props: any) => {
   return (
     <DayContainer>
       <Day>
         <DayTitle>월</DayTitle>
-        {monData.map((items) => (
-          <ClassInfoCard key={items.id} props={items} />
-        ))}
+        <ClassInfoList
+          data={classData.filter((items: any) => {
+            return items.day == 1;
+          })}
+          onDelete={onDelete}
+        />
       </Day>
 
       <Day>
         <DayTitle>화</DayTitle>
+        <ClassInfoList
+          data={classData.filter((items: any) => {
+            return items.day == 2;
+          })}
+          onDelete={onDelete}
+        />
       </Day>
 
       <Day>
         <DayTitle>수</DayTitle>
+        <ClassInfoList
+          data={classData.filter((items: any) => {
+            return items.day == 3;
+          })}
+          onDelete={onDelete}
+        />
       </Day>
 
       <Day>
         <DayTitle>목</DayTitle>
+        <ClassInfoList
+          data={classData.filter((items: any) => {
+            return items.day == 4;
+          })}
+          onDelete={onDelete}
+        />
       </Day>
 
       <Day>
         <DayTitle>금</DayTitle>
-        {friData.map((items) => (
-          <ClassInfoCard key={items.id} props={items} />
-        ))}
+        <ClassInfoList
+          data={classData.filter((items: any) => {
+            return items.day == 5;
+          })}
+          onDelete={onDelete}
+        />
       </Day>
     </DayContainer>
   );
 };
 
-const DayContainer = styled.div`
-`;
+const DayContainer = styled.div``;
 
 const Day = styled.div`
   display: flex;
@@ -87,8 +72,6 @@ const Day = styled.div`
   margin-bottom: 20px;
 `;
 
-const DayTitle = styled.h1`
-  
-`;
+const DayTitle = styled.h1``;
 
 export default DayView;
