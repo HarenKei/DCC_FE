@@ -33,11 +33,18 @@ useEffect(() => {
     <div>
              
       <MainBodyContainer>
+<<<<<<< HEAD
       {postList.map((post) => (
         <Link href={`/NoticePost/article/${post.id}/WriteView`}>
           <NoticeCard title={post.title}/>
         </Link>
               ))}
+=======
+        {postsList.map((posts) => (
+          // eslint-disable-next-line react/jsx-key
+          <NoticeCard title={posts.title}/>
+        ))}
+>>>>>>> f114823c6ab7b13885dec8b7df8e352d9cd6ba20
       </MainBodyContainer>
 
     </div>

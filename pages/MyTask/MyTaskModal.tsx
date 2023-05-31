@@ -1,123 +1,99 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
-  const selectList = [
-    {
-      day: "월",
-      value: 1,
-    },
-    {
-      day: "화",
-      value: 2,
-    },
-    {
-      day: "수",
-      value: 3,
-    },
-    {
-      day: "목",
-      value: 4,
-    },
-    {
-      day: "금",
-      value: 5,
-    },
-  ];
-
-  const [daySelected, setDaySelected] = useState(selectList[0]);
-
+const MyTaskModal = ({ setModalOpen, onAdd }: any) => {
   const [form, setForm] = useState({
-    className: "",
-    profName: "",
-    classRoom: "",
-    day: 0,
+    taskName: "",
+    taskGroup: "",
+    importance: "false",
+    taskStatus: "wip",
   });
+  const [importChk, setImportChk] = useState(false);
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  const changeCheckbox = () => {
+    if (!importChk) {
+      setImportChk(true);
+    } else {
+      setImportChk(false);
+    }
+  };
+
   const changeInput = (e: any) => {
     const { value, name } = e.target;
-
-    if(name === "day") {
-      setDaySelected(value);
-    }
 
     let tmp = {
       ...form,
       [name]: value,
     };
 
-    tmp["day"] = parseInt(tmp["day"].toString());
-
     setForm(tmp);
   };
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    if (!className || !profName || !classRoom || !day) {
+
+    if (!taskName || !taskGroup) {
       alert("내용을 입력해주세요.");
       return;
     }
 
-    console.log(form);
+    if (importChk) {
+      form["importance"] = "true";
+    } else {
+      form["importance"] = "false";
+    }
 
     onAdd(form);
 
     setForm({
-      className: "",
-      profName: "",
-      classRoom: "",
-      day: 0,
+      taskName: "",
+      taskGroup: "",
+      importance: "false",
+      taskStatus: "wip",
     });
 
     closeModal();
   };
 
-  const { className, profName, classRoom, day } = form;
+  const { taskName, taskGroup, importance } = form;
 
   return (
     <ModalContainer>
       <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
-      <h1>강의 추가하기</h1>
-      <form onSubmit={onSubmit} id="classForm">
-        <span>강의명</span>
+      <h1>새 할 일 추가하기</h1>
+      <form onSubmit={onSubmit} id="taskForm">
+        <span>할 일 이름</span>
+        <br />
         <br />
         <input
           type="text"
-          name="className"
+          name="taskName"
           onChange={changeInput}
-          value={className}
+          value={taskName}
         />
         <br />
-        <span>담당교수</span>
+        <span>할 일 그룹</span>
+        <br />
         <br />
         <input
           type="text"
-          name="profName"
+          name="taskGroup"
           onChange={changeInput}
-          value={profName}
+          value={taskGroup}
         />
         <br />
-        <span>강의실</span> <br />
+        <span>중요</span>
         <input
-          type="text"
-          name="classRoom"
-          onChange={changeInput}
-          value={classRoom}
+          id="checkboxInput"
+          type="checkbox"
+          name="importance"
+          checked={importChk}
+          onChange={changeCheckbox}
         />
-        <br />
-        <span>요일</span> <br />
-        <select onChange={changeInput} value={daySelected.value} form="classForm" name="day">
-          {selectList.map((item) => (
-            <option value={item.value} key={item.value}>
-              {item.day}
-            </option>
-          ))}
-        </select>
-        <br />
         <button type="submit">저장</button>
       </form>
     </ModalContainer>
@@ -152,6 +128,7 @@ const ModalContainer = styled.div`
 
   span {
     margin-bottom: -15px;
+    font-size: 1.2em;
     font-weight: 800;
   }
 
@@ -183,7 +160,7 @@ const ModalContainer = styled.div`
     transition: all 0.2s;
   }
 
-  input, select {
+  input {
     width: 25vw;
     height: 3vh;
 
@@ -198,13 +175,10 @@ const ModalContainer = styled.div`
     z-index: 5;
   }
 
-  input, select:focus {
+  input:focus {
     outline: none;
   }
-
 `;
-
-const AddClassForm = styled.div``;
 
 const ModalCloseButton = styled.button`
   position: absolute;
@@ -225,4 +199,4 @@ const ModalCloseButton = styled.button`
   }
 `;
 
-export default TimeTableModal;
+export default MyTaskModal;
