@@ -4,9 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-import { auth, googleProvider, signInWithGoogleInConfig, db } from '../../pages/Google2/fbconfig';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { collection, setDoc, doc } from 'firebase/firestore';
+import {
+  auth,
+  googleProvider,
+  signInWithGoogleInConfig,
+  db,
+} from "../../pages/Google2/fbconfig";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { collection, setDoc, doc } from "firebase/firestore";
 
 import MainMenuCard from "./MainMenuCard";
 
@@ -64,48 +74,47 @@ const GlobalSlideMenu = (props: any) => {
       await signInWithGoogleInConfig();
       setIsLogin(true);
     } catch (error) {
-     console.error(error); 
+      console.error(error);
     }
   };
 
   const logout = async () => {
     try {
       await signOut(auth);
-      location.reload();  
+      location.reload();
       setIsLogin(false);
     } catch (error) {
-     console.error(error); 
+      console.error(error);
     }
   };
 
-  const addUsers = async (ref : any) => {
+  const addUsers = async (ref: any) => {
     try {
-      await setDoc(ref,{
-        name : userName
+      await setDoc(ref, {
+        name: userName,
       });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  useEffect(()=> {
-      onAuthStateChanged(auth, async(user) => {
-        if (user) {
-          // User logged in already or has just logged in.
-          setUserId(user.uid);
-          setUserName(user.displayName);
-          const UsersDocRef = doc(db, "Users", userId);
-          await addUsers(UsersDocRef);
-        } else {
-          // User not logged in or has just logged out.
-        }
-      });
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        setUserId(user.uid);
+        setUserName(user.displayName);
+        const UsersDocRef = doc(db, "Users", userId);
+        await addUsers(UsersDocRef);
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+  }, []);
 
-  },[])
-
-  useEffect(()=> {
+  useEffect(() => {
     console.log(userId + " " + userName);
-  },[userId, userName]);
+  }, [userId, userName]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handlerOutside);
@@ -143,8 +152,11 @@ const GlobalSlideMenu = (props: any) => {
 
           {!isLogin && (
             <SlideMenuUserIntro>
-            <GoogleLoginButton onClick={signInWithGoogle}><FontAwesomeIcon icon={faGoogle} size="2x"/><p>구글 계정으로 로그인</p></GoogleLoginButton>
-          </SlideMenuUserIntro>
+              <GoogleLoginButton onClick={signInWithGoogle}>
+                <FontAwesomeIcon icon={faGoogle} size="2x" />
+                <p>구글 계정으로 로그인</p>
+              </GoogleLoginButton>
+            </SlideMenuUserIntro>
           )}
 
           {/*로그인 되면 로그인 한 사람의 이름 출력 */}
@@ -212,7 +224,9 @@ const SlideMenuUserIntro = styled.div`
   }
 `;
 
-const UserName = styled.h2``;
+const UserName = styled.h2`
+  font-size: 2em;
+`;
 
 const GoogleLoginButton = styled.button`
   width: 20vw;
@@ -227,11 +241,10 @@ const GoogleLoginButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  p{
+  p {
     margin-left: 0.5em;
     font-size: 1.5em;
   }
-  
-`
+`;
 
 export default GlobalSlideMenu;
