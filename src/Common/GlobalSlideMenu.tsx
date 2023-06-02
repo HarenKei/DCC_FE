@@ -146,7 +146,7 @@ const GlobalSlideMenu = (props: any) => {
           {isLogin && (
             <SlideMenuUserIntro>
               <UserName>{userName}님 안녕하세요.</UserName>
-              <button onClick={logout}>로그아웃</button>
+              <GoogleLogoutButton onClick={logout}>로그아웃</GoogleLogoutButton>
             </SlideMenuUserIntro>
           )}
 
@@ -228,6 +228,26 @@ const UserName = styled.h2`
   font-size: 2em;
 `;
 
+const GoogleLogoutButton = styled.button`
+  width: 5vw;
+  height: 3vh;
+
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 5px black;
+
+  background-color: #e7e4e1;
+  color: #000;
+  
+  font-size: 1em;
+  font-weight: 500;
+  
+  :hover {
+    background: #df3c3c;
+    color: #fff;
+  }
+`;
+
 const GoogleLoginButton = styled.button`
   width: 20vw;
   height: 5vh;
@@ -240,6 +260,15 @@ const GoogleLoginButton = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  color: white;
+  font-weight: 500;
+  background: #00ae68;
+  transition: all 0.2s;
+
+  :hover {
+    background: #21825b;
+  }
 
   p {
     margin-left: 0.5em;

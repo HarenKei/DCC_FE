@@ -83,7 +83,9 @@ const MyTask = () => {
         ...doc.data(),
         id: doc.id,
       }));
+      
       setTaskData(filteredData);
+      console.log(taskData);
     } catch (err) {
       console.error(err);
     }
