@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-interface Props {
-    title: string
-   };
 
-const TsChannelBox = (props: Props) => {
-    return(
-        <div>
-            <ChannelStyle>
-                {props.title}
-            </ChannelStyle>
-        </div>
+const TsChannelBox = ({ data, onClick }: any) => {
+
+    const { teamName, id } = data;
+
+    const handleClick = () => {
+        onClick(id);
+    };
+    return (
+        <ChannelStyle onClick={handleClick}>
+            {teamName}
+        </ChannelStyle>
     );
 };
 
@@ -30,6 +31,8 @@ const ChannelStyle = styled.div`
     border-radius: 18px;
 
     background-color: #ADABAB;
+
+    cursor: pointer;
 `;
 
 export default TsChannelBox;
