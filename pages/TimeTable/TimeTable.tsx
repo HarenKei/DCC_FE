@@ -66,7 +66,7 @@ const TimeTable = () => {
     }
   };
 
-  const onSubmitMovie = async (tmp: any) => {
+  const onSubmitTimeTable = async (tmp: any) => {
     try {
       await addDoc(timeTableCollectionRef, {
         ...tmp,
@@ -85,20 +85,15 @@ const TimeTable = () => {
         console.log(user.uid + "" + user.displayName);
         setUserId(user.uid);
         setUserName(user.displayName);
-        const UsersDocRef = doc(db, "Users", userId);
         // await addUsers(UsersDocRef);
       } else {
         // User not logged in or has just logged out.
       }
-      console.log(`mount ${userId}`);
     });
-    console.log("유저 ID 가져오기");
   }, []);
 
   useEffect(() => {
-    console.log(`userID : ${userId} userName : ${userName}`);
     getTimeTableList();
-    console.log(`useEffect ${classData[0].className}`);
   }, [userId]);
 
   const openModal = () => {
@@ -108,7 +103,7 @@ const TimeTable = () => {
   const onAdd = (form: any) => {
     let tmp = classData.slice();
     tmp.push(form);
-    onSubmitMovie(form);
+    onSubmitTimeTable(form);
     setClassData(tmp);
   };
 

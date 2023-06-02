@@ -147,7 +147,7 @@ const MainTaskBannerContainer = styled.div`
   background-color: #d0d1d1;
   border-radius: 20px;
 
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 0px 3px black;
 `;
 
 const TaskCardZone = styled.div`
@@ -174,7 +174,7 @@ const MainTitleAndLinkZone = styled.div`
 `;
 
 const MainTaskBannerTitle = styled.h1`
-  font-size: 25pt;
+  font-size: 2.2em;
   letter-spacing: -1px;
   margin-bottom: 20px;
 `;

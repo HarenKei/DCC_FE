@@ -1,59 +1,73 @@
-import TeamSpaceCard from "@/src/Common/TeamSpaceCard";
-import React from "react";
+import React, { useState, useEffect, use } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 
+import { onAuthStateChanged } from "firebase/auth";
+import { db, auth } from "../Google2/fbconfig";
+import {
+  getDocs,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+
+import MainTeamSpaceCard from "@/src/Common/MainTeamSpaceCard";
+
 const dummyDataArray = [
   {
     id: "ws1",
     emoji: "🚙",
-    title: "융합 전공",
-    name: "김미점",
+    teamName: "융합 전공",
+    masterName: "김미점",
   },
   {
     id: "ws2",
     emoji: "👥",
-    title: "리액트 스터디",
-    name: "육영현",
+    teamName: "리액트 스터디",
+    masterName: "육영현",
   },
   {
     id: "ws3",
     emoji: "👨‍💻",
-    title: "웹 앱 전공 1반",
-    name: "정호일",
+    teamName: "웹 앱 전공 1반",
+    masterName: "정호일",
   },
   {
     id: "ws4",
     emoji: "👨‍💻",
-    title: "웹 앱 전공 2반",
-    name: "정호일",
+    teamName: "웹 앱 전공 2반",
+    masterName: "정호일",
   },
   {
     id: "ws5",
     emoji: "📖",
-    title: "앱 전공",
-    name: "김지예",
+    teamName: "앱 전공",
+    masterName: "김지예",
   },
   {
     id: "ws6",
     emoji: "🏀",
-    title: "슬램덩크",
-    name: "김경석",
+    teamName: "슬램덩크",
+    masterName: "김경석",
   },
   {
     id: "ws7",
     emoji: "🤡",
-    title: "지하철 공익",
-    name: "이승명",
+    teamName: "지하철 공익",
+    masterName: "이승명",
   },
 ];
 
 const settings = {
   arrows: false,
-  dots: true,
+  dots: false,
+  draggable: true,
+  adaptiveHeight: true,
   infinite: true,
   slidesToShow: 5,
   slidesToScroll: 1,
@@ -90,6 +104,26 @@ const settings = {
 };
 
 const MainTeamSpace = () => {
+  const [tsData, setTsData] = useState(dummyDataArray);
+  const tsCollectionRef = collection(db, `TeamSpace`);
+
+  const getTsList = async () => {
+    try {
+      const data = await getDocs(tsCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setTsData(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(()=> {
+    getTsList();
+  },[])
+
   return (
     <MainTeamSpaceContainer>
       <MainTeamSpaceTitleH1>팀 스페이스</MainTeamSpaceTitleH1>
@@ -102,12 +136,10 @@ const MainTeamSpace = () => {
 
       <SliderContainer>
         <Slider {...settings}>
-          {dummyDataArray.map((items) => (
-            <TeamSpaceCard
+          {tsData.map((items) => (
+            <MainTeamSpaceCard
               key={items.id}
-              emoji={items.emoji}
-              title={items.title}
-              name={items.name}
+              data={items}
             />
           ))}
         </Slider>

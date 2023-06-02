@@ -1,8 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+import {
+  auth,
+  googleProvider,
+  signInWithGoogleInConfig,
+  db,
+} from "../../pages/Google2/fbconfig";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { collection, setDoc, doc } from "firebase/firestore";
 
 import MainMenuCard from "./MainMenuCard";
 
@@ -50,7 +64,57 @@ const dummyDataArray = [
 ];
 
 const GlobalSlideMenu = (props: any) => {
+  const [isLogin, setIsLogin] = useState(false);
   const outside = useRef<any>();
+  const [userId, setUserId] = useState("asdf");
+  const [userName, setUserName] = useState("asdf");
+
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithGoogleInConfig();
+      setIsLogin(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      location.reload();
+      setIsLogin(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addUsers = async (ref: any) => {
+    try {
+      await setDoc(ref, {
+        name: userName,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        setUserId(user.uid);
+        setUserName(user.displayName);
+        const UsersDocRef = doc(db, "Users", userId);
+        await addUsers(UsersDocRef);
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(userId + " " + userName);
+  }, [userId, userName]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handlerOutside);
@@ -79,14 +143,24 @@ const GlobalSlideMenu = (props: any) => {
       <FontAwesomeIcon icon={faXmark} size={"2x"} onClick={toggleSide} />
       <SlideMenuWrapper>
         <SlideMenuContents>
-          <SlideMenuUserIntro>
-            <UserName>정승민님 안녕하세요.</UserName>
-            <Link href="/">
-              <p>내 프로필 보기 &gt;&gt;</p>
-            </Link>
-            {/*로그인 되면 로그인 한 사람의 이름 출력 */}
-            {/*로그인이 되어있지 않으면 로그인 버튼 출력 */}
-          </SlideMenuUserIntro>
+          {isLogin && (
+            <SlideMenuUserIntro>
+              <UserName>{userName}님 안녕하세요.</UserName>
+              <button onClick={logout}>로그아웃</button>
+            </SlideMenuUserIntro>
+          )}
+
+          {!isLogin && (
+            <SlideMenuUserIntro>
+              <GoogleLoginButton onClick={signInWithGoogle}>
+                <FontAwesomeIcon icon={faGoogle} size="2x" />
+                <p>구글 계정으로 로그인</p>
+              </GoogleLoginButton>
+            </SlideMenuUserIntro>
+          )}
+
+          {/*로그인 되면 로그인 한 사람의 이름 출력 */}
+          {/*로그인이 되어있지 않으면 로그인 버튼 출력 */}
 
           <MenuContainer>
             <h2>전체 메뉴 보기</h2>
@@ -150,6 +224,27 @@ const SlideMenuUserIntro = styled.div`
   }
 `;
 
-const UserName = styled.h2``;
+const UserName = styled.h2`
+  font-size: 2em;
+`;
+
+const GoogleLoginButton = styled.button`
+  width: 20vw;
+  height: 5vh;
+
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 5px black;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin-left: 0.5em;
+    font-size: 1.5em;
+  }
+`;
 
 export default GlobalSlideMenu;
