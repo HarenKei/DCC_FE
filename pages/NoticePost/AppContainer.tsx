@@ -34,7 +34,7 @@ useEffect(() => {
       <MainBodyContainer>
       {postList.map((post : any) => (
         <Link href={`/NoticePost/article/${post.id}/WriteView`}>
-          <NoticeCard major="앱" title={post.title}/>
+          <NoticeCard major="앱" pre_title="제목 : " title={post.title}/>
         </Link>
               ))}
       </MainBodyContainer>

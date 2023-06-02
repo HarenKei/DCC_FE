@@ -1,12 +1,12 @@
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { addDoc, doc, updateDoc} from "firebase/firestore";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import { db, auth } from "../Google2/fbconfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-function EditForm(initialValues: any) {
+function EditForm(initialValues: any, mode:any) {
   const router: any = useRouter();
   let userid = "";
   onAuthStateChanged(auth, (user) => {
@@ -21,6 +21,7 @@ function EditForm(initialValues: any) {
 
   const [newMovieTitle, setNewMovieTitle] = useState(initialValues?.title);
   const [newPostDetail, setnewPostDetail] = useState(initialValues?.detail);
+
 
   const update = async () => {
     const update = doc(db, "Post", router.query.id);
