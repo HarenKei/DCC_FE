@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const WebContainer = () => {
 
-  const [postList, setPostList] = useState([]);
+  const [postList, setPostList] : any = useState([]);
   const postCollectionRef = collection(db, "Post");
   
 
@@ -33,18 +33,11 @@ useEffect(() => {
     <div>
              
       <MainBodyContainer>
-<<<<<<< HEAD
-      {postList.map((post) => (
+      {postList.map((post : any) => (
         <Link href={`/NoticePost/article/${post.id}/WriteView`}>
-          <NoticeCard title={post.title}/>
+          <NoticeCard major="웹" title={post.title}/>
         </Link>
               ))}
-=======
-        {postsList.map((posts) => (
-          // eslint-disable-next-line react/jsx-key
-          <NoticeCard title={posts.title}/>
-        ))}
->>>>>>> f114823c6ab7b13885dec8b7df8e352d9cd6ba20
       </MainBodyContainer>
 
     </div>
@@ -59,6 +52,6 @@ const MainBodyContainer = styled.div`
   height: auto;
   display: flex;
   flex-flow:row wrap;
-  border: 1px solid black; 
+  /* border: 1px solid black;  */
 `;
 export default WebContainer;

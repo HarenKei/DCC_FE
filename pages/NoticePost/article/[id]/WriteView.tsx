@@ -1,60 +1,68 @@
 import { db } from "@/pages/Google2/fbconfig";
-import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const WriteView = () => {
-  
-  const router = useRouter();
-  const [title,setTitle] = useState("");
-  const [detail,setDetail] = useState("");
+  const router: any = useRouter();
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
 
-  useEffect(()=>{
-    getDoc(doc(db,'Post',router.query.id))
-    .then(doc =>{
-      const data = doc.data();
+  useEffect(() => {
+    getDoc(doc(db, "Post", router.query.id)).then((doc) => {
+      const data: any = doc.data();
       setTitle(data.title);
       setDetail(data.detail);
-    })
-  },[])
+    });
+  }, []);
 
-  const deletePost = async (id: string) => {
+  const deletePost: any = async (id: string) => {
     const remove = window.confirm("삭제하시겠습니까?");
-    if(remove == true){
-    const movieDoc = doc(db, 'Post',router.query.id)
-  await deleteDoc(movieDoc);  
-  alert("게시물이 삭제되었습니다.")
+    if (remove == true) {
+      const movieDoc = doc(db, "Post", router.query.id);
+      await deleteDoc(movieDoc);
+      alert("게시물이 삭제되었습니다.");
+    }
   };
-};
 
   return (
-    <div>
+    <WritePageContainer>
       <WriteMain>
         <Title>
           <h1>{title}</h1>
         </Title>
-         
+
         <Content_txt>
-          <h3>{detail}</h3>
+          <div>{detail}</div>
         </Content_txt>
       </WriteMain>
 
       <Buttons>
-      <button><Link href="/NoticePost" onClick={deletePost}>
-          삭제
-      </Link></button>
-      <button><Link href="/NoticePost">
-          메인으로
-      </Link></button>
-      <button><Link href={`/NoticePost/article/${router.query.id}/WriteEdit`}>
-          수정하기
-      </Link></button>
+        <button>
+          <Link href="/NoticePost" onClick={deletePost}>
+            삭제
+          </Link>
+        </button>
+        <button>
+          <Link href="/NoticePost">메인으로</Link>
+        </button>
+        <button>
+          <Link href={`/NoticePost/article/${router.query.id}/WriteEdit`}>
+            수정하기
+          </Link>
+        </button>
       </Buttons>
-    </div>
+    </WritePageContainer>
   );
 };
+
+const WritePageContainer = styled.div`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Title = styled.div`
   margin-top: 30px;
@@ -72,14 +80,15 @@ const Title = styled.div`
   }
 `;
 const WriteMain = styled.div`
-  padding: 20px;
   padding-left: 30px;
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 const Content_txt = styled.div`
   margin-top: 30px;
   margin-left: 50px;
-  & > h2 {
+  & > div {
     width: 91%;
     resize: none;
     border: none;
@@ -92,9 +101,10 @@ const Content_txt = styled.div`
 
 const Buttons = styled.div`
   display: flex;
-  margin-right: 12rem;
   flex-direction: row-reverse;
-  & > a > button {
+  align-items: center;
+
+  button {
     font: inherit;
     cursor: pointer;
     padding: 0.5rem;
@@ -104,10 +114,14 @@ const Buttons = styled.div`
     border-radius: 12px;
     margin-right: 1rem;
   }
-  & > button:hover {
+
+  button:first-child {
+    margin-right: 15rem;
+  }
+
+  button:hover {
     background-color: #adabab;
   }
 `;
-
 
 export default WriteView;

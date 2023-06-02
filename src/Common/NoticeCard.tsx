@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 interface Props {
   title : string;
+  major: string;
 }
 
 
@@ -12,9 +13,9 @@ const NoticeCard = (props : Props) => {
   return (
     <div>
         <BodyContents>
-          <Title><p>웹</p></Title>
+          <Title><p>{props.major}</p></Title>
           <Image>{props.title}</Image>
-          <Content> <span></span></Content>
+          <Content><span></span></Content>
         </BodyContents>
     </div>
   );

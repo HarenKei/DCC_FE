@@ -1,13 +1,12 @@
-import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { collection,getDocs, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../Google2/fbconfig";
-import { FirebaseError } from "firebase/app";
 import Link from "next/link";
-import router from "next/router";
+
 
 const WriteLsit = () => {
 
-  const [postList, setPostList] = useState([]);
+  const [postList, setPostList] : any = useState([]);
   const postCollectionRef = collection(db, "Post");
   
 
@@ -28,17 +27,11 @@ const WriteLsit = () => {
 useEffect(() => {
   getPostList();
 },[]);
-// 게시판 추가
-// const handlePostClick = (post) => {
-//   router.push(`/board/${post}`);
-// };
-
 
   return(
     <div>
       <h1>테스트</h1>
-                        {postList.map((post) => (
-                    // eslint-disable-next-line react/jsx-key
+                        {postList.map((post : any) => (
                     <div>
                         <h1><Link href={`/NoticePost/article/${post.id}/WriteView`}>{post.title}</Link></h1>                                           
                     </div>

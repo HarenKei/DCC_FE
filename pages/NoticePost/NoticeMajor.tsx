@@ -40,7 +40,6 @@ const NoticeMajor = () => {
   height: 3.6rem;
   width: 75rem;
   justify-content: space-around;
-  border: 1px solid black;
   & > div:hover {
     background-color: #adabab;
   }
@@ -64,6 +63,5 @@ const ContentMajor = styled.div`
   width: 90vw;
   max-width: 95%;
   flex-flow: row wrap;
-  border: 1px solid black;
 `;
 export default NoticeMajor;
