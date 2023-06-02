@@ -74,7 +74,7 @@ const deleteMovie = async (id: string) => {
         getMovieList();
       } else {}
     })
-  },[])
+  })
   useEffect(() => {
     getMovieList();
   }, [userid]);
