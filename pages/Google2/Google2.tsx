@@ -44,7 +44,7 @@ export default function Google2() {
 
   //구글 로그인 버튼입니다 로그인 창이 팝업으로 뜸니당.
   //누르고 콘솔 가보시면 로그인 한 사용자 정보 뜸
-  const signInWithGoogle = async () => {
+const signInWithGoogle = async () => {
     try {
       await signInWithGoogleInConfig();
     } catch (error) {

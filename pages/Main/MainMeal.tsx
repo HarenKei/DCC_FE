@@ -48,7 +48,7 @@ const MainMealContainer = styled.div`
   height: 30vh;
   border-radius: 15px;
   background-color: #d0d1d1;
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 0px 3px black;
 
   display: flex;
   flex-direction: column;
@@ -56,12 +56,12 @@ const MainMealContainer = styled.div`
 `;
 
 const MainMealTitle = styled.h1`
-  font-size: 20pt;
+  font-size: 1.5em;
   font-weight: 900;
 `;
 
 const TodayDate = styled.p`
-  font-size: 12pt;
+  font-size: 1em;
   font-weight: 100;
 `;
 
@@ -70,7 +70,7 @@ const MainMealCardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 20px;
+  margin-top: 2vh;
 `;
 
 export default MainMeal;
