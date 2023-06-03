@@ -3,7 +3,7 @@ import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, setPostPk, onDelete, onUpdate, onToggleLike, liked }: any) => {
+const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, setPostPk, onDelete, onUpdate, onToggleLike, liked, userid }: any) => {
   const { content, user, writeDate, id } = data;
 
   const [commentList, setCommentList] = useState([]);
@@ -45,7 +45,9 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
   };
 
   const handleDelete = async () => {
-    onDelete();
+    if (userid === data.userid) {
+      onDelete();
+    }
   };
   const handleUpdate = async () => {
     onUpdate();
@@ -55,7 +57,7 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
     onToggleLike();
     setLikeCount(liked ? likeCount : likeCount + 1);
   };
-  
+
 
   return (
     <div>
@@ -66,8 +68,12 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
             <NameText>{user}</NameText>
 
             <HandleContainer>
-              <button onClick={handleUpdate}>수정</button>
-              <button onClick={handleDelete}>삭제</button>
+              {userid === data.userid && (
+                <>
+                  <button onClick={handleUpdate}>수정</button>
+                  <button onClick={handleDelete}>삭제</button>
+                </>
+              )}
             </HandleContainer>
           </AlignRowContainer>
 
@@ -109,9 +115,9 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
 
 
         <ButtonContainer>
-        <LikeButton onClick={handleToggleLike}>
-          {liked ? <p>좋아요 취소</p> : <p>좋아요</p>}
-        </LikeButton>
+          <LikeButton onClick={handleToggleLike}>
+            {liked ? <p>좋아요 취소</p> : <p>좋아요</p>}
+          </LikeButton>
           <CommentButton onClick={toggleCommentVisible}>{commentVisible ? <p>댓글닫기</p> : <p>댓글보기</p>}</CommentButton>
         </ButtonContainer>
 
