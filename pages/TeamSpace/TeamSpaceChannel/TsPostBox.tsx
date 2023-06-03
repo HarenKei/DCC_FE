@@ -28,6 +28,11 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
     }
   }
 
+  const handleKeyDown = (e: { key: string; }) => {
+    if (e.key === "Enter") {
+      handleCommentSubmit();
+    }
+  };
   const handleCommentSubmit = () => {
     if (newComment.trim() !== "") { // newComment 값이 공백이 아닐 때만 실행
       onSubmit();
@@ -105,6 +110,7 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
                   placeholder="댓글을 입력하세요"
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
+                  onKeyDown={handleKeyDown}
                 />
 
                 <button onClick={handleCommentSubmit}>완료</button>
