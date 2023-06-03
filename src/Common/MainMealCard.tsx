@@ -25,29 +25,31 @@ const MainMealCardContainer = styled.div`
   flex-direction: row;
   align-items: center;
 
-  margin-top: 10px;
+  margin-top: 1vh;
 
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 0px 3px black;
 `;
 
 const MainMealCardBanner = styled.div`
   width: 7vw;
   height: 3vh;
+
   border-radius: 8px;
   background-color: #46B6EB;
   color:#0e0e0e;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: 12pt;
+  font-size: 1em;
   font-weight: 900;
 
-  margin-left: 20px;
+  margin-left: 1.8vw;
 `;
 
 const MainMealCardContentsP = styled.div`
-  font-size: 15pt;
+  font-size: 1.3em;
   font-weight: 100;
   
   margin-left: 20px;

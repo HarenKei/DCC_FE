@@ -19,10 +19,11 @@ export default function MovieList() {
   const [newMovieTitle, setNewMovieTitle] = useState("");
   const [newReleaseDate, setNewReleaseDate] = useState(0);
   const [isNewMovieOscar, setIsNewMovieOscar] = useState(false);
-
+  
+  const [userid, setUserId] = useState("uid");
   //이 부분은 노션 참고 + 검색 꼭 해볼것 doc 관련 함수가 매우 많음
   //`users/{userid}/todo/{todo.id}` 이런식으로 깊은 레벨까지 도달 가능
-  const moviesCollectionRef = collection(db, "movies");
+  const moviesCollectionRef = collection(db, `Users/${userid}/depth`);
 
   //update title state
   const [updatedTitle, setUpdatedTitle] = useState("");
@@ -43,12 +44,12 @@ export default function MovieList() {
   };
 
 const deleteMovie = async (id: string) => {
-    const movieDoc = doc(db, "movies", id);
+    const movieDoc = doc(db, `Users/${userid}/depth`, id);
     await deleteDoc(movieDoc);
     getMovieList();
   };
   const updateMovieTitle = async (id: string) => {
-    const movieDoc = doc(db, "movies", id);
+    const movieDoc = doc(db, `Users/${userid}/depth`, id);
     await updateDoc(movieDoc, { title: updatedTitle });
     getMovieList();
   };
@@ -67,9 +68,16 @@ const deleteMovie = async (id: string) => {
   };
 
   useEffect(() => {
+    onAuthStateChanged(auth,async (user) => {
+      if(user){
+        setUserId(user.uid);
+        getMovieList();
+      } else {}
+    })
+  },[])
+  useEffect(() => {
     getMovieList();
-    console.log("getMovieList");
-  }, []);
+  }, [userid]);
 
   const onSubmitMovie = async () => {
     try {
