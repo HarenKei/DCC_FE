@@ -1,34 +1,50 @@
 import React from "react";
 import styled from "styled-components";
 
-interface Props {
-  user: string,
-  content: string,
-  date: string
- };
 
-const TsPostBox = (props:Props) => {
-    return(
-        <div>
-          <ContentContainer>
+// const TsPostBox = (props: Props & { onDelete: () => void } & { onUpdate: () => void }) => {
+  const TsPostBox = ({data, onDelete, onUpdate} : any) => {
+    const {user, content, date} = data;
+  
+  const handleDelete = async () => {
+    onDelete();
+  };
+  const handleUpdate = async () => {
+    onUpdate();
+  };
 
-            <MainContainer>
-              <NameText>{props.user}</NameText>
+  return (
+    <div>
+      <ContentContainer>
 
-              <RowContainer>
-                <ContentText>{props.content}</ContentText>
-                <DateArea>{props.date}</DateArea>
-              </RowContainer>
-            </MainContainer>
+        <MainContainer>
+          <AlignRowContainer>
+            <NameText>{user}</NameText>
 
-            <ButtonContainer>
-              <LikeButton><p>좋아요</p></LikeButton>
-              <CommentButton><p>댓글달기</p></CommentButton>
-            </ButtonContainer>
+            <HandleContainer>
+              <button onClick={handleUpdate}>수정</button>
+              <button onClick={handleDelete}>삭제</button>
+            </HandleContainer>
+          </AlignRowContainer>
 
-          </ContentContainer>
-        </div>
-    );
+          <RowContainer>
+            <ContentText>{content}</ContentText>
+            <DateArea>{date}</DateArea>
+          </RowContainer>
+        </MainContainer>
+
+        <CommentContainer>
+          <ContentText>{content}</ContentText>
+        </CommentContainer>z
+        
+        <ButtonContainer>
+          <LikeButton><p>좋아요</p></LikeButton>
+          <CommentButton><p>댓글달기</p></CommentButton>
+        </ButtonContainer>
+
+      </ContentContainer>
+    </div>
+  );
 };
 
 const ContentContainer = styled.div`
@@ -49,6 +65,31 @@ const MainContainer = styled.div`
   background-color: #C3C3C3;
 
 `;
+const AlignRowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+const HandleContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  
+  margin: 1vh 1.6vh 0 0;
+  button{
+        width: 3vw;
+        height: 3vh;
+        margin-left: 0.8vw;
+        border-radius: 1px;
+        border: none;
+        color: white;
+        font-size: 1em;
+        font-weight: 500;
+        background: #46B6EB;
+        border-radius: 5px;
+        transition: all 0.2s;
+        box-shadow: 0 0 1px grey;
+  }
+`;
 const NameText = styled.div`
   margin: 8px 15px 8px 15px;
 
@@ -58,6 +99,17 @@ const NameText = styled.div`
   background-color: #C3C3C3;
 `;
 const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 0px 15px 0px 15px;
+
+  min-height: 5vh;
+
+  background-color: #C3C3C3;
+`;
+const CommentContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
