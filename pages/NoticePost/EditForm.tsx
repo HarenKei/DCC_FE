@@ -1,13 +1,15 @@
-import { addDoc, doc, updateDoc} from "firebase/firestore";
-import React, {  useState } from "react";
+import { addDoc, doc, getDoc, updateDoc} from "firebase/firestore";
+import React, {  useEffect, useState } from "react";
 import styled from "styled-components";
 import { db, auth } from "../Google2/fbconfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-function EditForm(initialValues: any, mode:any) {
+function EditForm(initialValues : any) {
+
   const router: any = useRouter();
+
   let userid = "";
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -19,28 +21,30 @@ function EditForm(initialValues: any, mode:any) {
     }
   });
 
-  const [newMovieTitle, setNewMovieTitle] = useState(initialValues?.title);
+  const [newPostTitle, setPostTitle] = useState(initialValues?.title);
   const [newPostDetail, setnewPostDetail] = useState(initialValues?.detail);
 
 
   const update = async () => {
     const update = doc(db, "Post", router.query.id);
     await updateDoc(update, {
-      title: newMovieTitle,
+      title: newPostTitle,
       detail: newPostDetail,
     });
     alert("수정 되었습니다.");
   };
+  
+
 
   return (
     <div>
       <WriteMain>
         <Title>
           <input
-            onChange={(e) => setNewMovieTitle(e.target.value)}
+            onChange={(e) => setPostTitle(e.target.value)}
             type="text"
-            value={newMovieTitle}
-          />
+            value={newPostTitle}
+          ></input>
         </Title>
 
         <Content_txt>
@@ -65,13 +69,15 @@ function EditForm(initialValues: any, mode:any) {
 
 const Title = styled.div`
   margin-left: 50px;
+  align-items: center;
+  
   & > input {
     width: 91%;
-    padding-bottom: 30px;
     border: none;
     font-size: 22px;
     border-bottom: solid 1px #ababab;
     font-weight: bold;
+    height: 60px;
   }
   & > input:focus {
     outline: none;

@@ -7,12 +7,12 @@ import styled from "styled-components";
 
 const WriteEdit = () =>{
   const [initialValues,setInitialValues] = useState();
-  const router : any = useRouter();
+  const router:any = useRouter();
   
   useEffect(()=>{
     getDoc(doc(db,'Post',router.query.id))
     .then(doc =>{
-      const data : any = doc.data();
+      const data:any = doc.data();
       setInitialValues(data);
     })
   },[]);
