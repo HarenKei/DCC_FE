@@ -224,6 +224,7 @@ const TeamSpace = () => {
 
                             onToggleLike={() => toggleLike(chat.id)}
                             liked={likedPosts.includes(chat.id)}
+                            userid={userid}
                         />
                     ))}
                 </TsPostBoxContainer>
