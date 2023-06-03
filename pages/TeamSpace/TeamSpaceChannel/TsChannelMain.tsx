@@ -9,67 +9,79 @@ import { auth, db } from "@/pages/Google2/fbconfig";
 import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from "@firebase/firestore";
 import { useRouter } from "next/router";
 
-const dummyChat = [
-    {
-        user: "육영현현",
-        content: "육",
-        writeDate:1685703230689,
-        userid: "ddddd",
-    },
-    {
-        user: "육영현현",
-        content: "육",
-        writeDate:1685703230689,
-        userid: "ddddd",
-    }
-]
+// 수정시작합니다
 
 const TeamSpace = () => {
-    const [chatList, setChatList] = useState([]); //
-    const [userid, setUserId] = useState("uid");
-    const [userName, setUserName] = useState("정호일");
-    const [newContent, setNewContent] = useState(""); // 내용
-    const [chatPk, setChatPk] = useState("xniPRq64c5UYMXl2zspV");
-    const [newComment, setNewComment] = useState(""); // 작성하는 댓글 내용
-    const [teamPK, setTeamPK] = useState(goPk);
-    const [myTsList, setMyTsList] = useState([]);
-    const [tsMemberList, setTsMemberList] = useState([]);
-
-    const ChatCollectionRef = collection(db, `TeamSpace/${teamPK}/Post`);
-    const q = query(ChatCollectionRef, orderBy("writeDate", "desc"));
-    const CommentCollectionRef = collection(db, `TeamSpace/${teamPK}/Post/${chatPk}/Comment`);
-    const userTsCollectionRef = collection(db, `Users/${userid}/TeamSpace`);
-    const tsMemberCollectionRef = collection(db, `TeamSpace/${teamPK}/Users`);
-    // let q = query(ChatCollectionRef, orderBy("writeDate"));
-
-    // const [NewUser, setIsNewUser] = useState(userName); //작성자
+    const router = useRouter();
+    const getPkFromUrl = router.query.goPk;
 
     let newWriteDate = Date.now();
 
-    const router = useRouter();
-    const goPk = router.query.goPk;
-    {/* 팀스페이스 id 가져오기 */ }
+    /* 팀스페이스 id 가져오기 */
+    const [teamPK, setTeamPK] = useState(getPkFromUrl);
 
+    const [postList, setPostList] = useState([]);
 
-    {/*채팅 입력, 수정, 삭제*/ }
+    const [userid, setUserId] = useState("uid");
+    const [userName, setUserName] = useState("정호일");
+
+    const [newContent, setNewContent] = useState(""); // 내용
+
+    //댓글 입력
+    const [postPk, setPostPk] = useState("xniPRq64c5UYMXl2zspV");
+    const [newComment, setNewComment] = useState(""); // 작성하는 댓글 내용
+
+    const [myTsList, setMyTsList] = useState([]);
+
+    const [tsMemberList, setTsMemberList] = useState([]);
+
+    const [likedPosts, setLikedPosts] = useState<string[]>([]); // 좋아요를 누른 게시물 목록
+
+    const ChatCollectionRef = collection(db, `TeamSpace/${teamPK}/Post`);
+    const q = query(ChatCollectionRef, orderBy("writeDate", "desc"));
+
+    const CommentCollectionRef = collection(db, `TeamSpace/${teamPK}/Post/${postPk}/Comment`);
+
+    const userTsCollectionRef = collection(db, `Users/${userid}/TeamSpace`);
+
+    const tsMemberCollectionRef = collection(db, `TeamSpace/${teamPK}/Users`);
+
+    const updateLikeCount = async (postId: string, increment: number) => {
+        const chatDoc = doc(db, `TeamSpace/${teamPK}/Post`, postId);
+        await updateDoc(chatDoc, { like: increment });
+        getPostList();
+    };
+
+    // 좋아요 토글 함수
+    const toggleLike = async (postId: string) => {
+        const liked = likedPosts.includes(postId);
+
+        if (liked) {
+            setLikedPosts(likedPosts.filter((id) => id !== postId));
+            updateLikeCount(postId, 0);
+        } else {
+            setLikedPosts([...likedPosts, postId]);
+            updateLikeCount(postId, 1);
+        }
+    };
+
+    /*채팅 입력, 수정, 삭제*/
     const handleKeyPress = (e: { key: string; }) => {
         if (e.key === "Enter") {
             onSubmit();
         }
     };
 
-
-
-    // const ChatCollectionRef = collection(db, `users/${userid}/TaskList`);
-
-    const getChatList = async () => {
+    const getPostList = async () => {
         try {
             const data = await getDocs(q);
             const filteredData = data.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
+                writeDate: new Date(doc.data().writeDate).toLocaleString(),
             }));
-            setChatList(filteredData);
+            setPostList(filteredData);
+            console.log(postList);
         } catch (err) {
             console.error(err);
         }
@@ -78,16 +90,15 @@ const TeamSpace = () => {
     const deleteChat = async (id: string) => {
         const chatDoc = doc(db, `TeamSpace/${teamPK}/Post`, id);
         await deleteDoc(chatDoc);
-        getChatList();
+        getPostList();
     };
 
     const updateChatContent = async (id: string) => {
         const chatDoc = doc(db, `TeamSpace/${teamPK}/Post`, id);
         await updateDoc(chatDoc, { content: newContent });
-        getChatList();
+        getPostList();
         setNewContent("");
     };
-
 
     const onSubmit = async () => {
         try {
@@ -98,20 +109,19 @@ const TeamSpace = () => {
                 userid: auth?.currentUser?.uid,
             }
             );
-            getChatList();
+            getPostList();
             setNewContent("");
         } catch (err) {
             console.error(err);
         }
     };
-    //댓글 입력
 
     const submitComment = async () => {
         try {
             await addDoc(CommentCollectionRef, {
                 user: userName,
-                cotent: newComment,
-                writeDate: newWriteDate.toLocaleString(),
+                content: newComment,
+                writeDate: newWriteDate,
                 userid: auth?.currentUser?.uid,
             })
             setNewComment("");
@@ -119,8 +129,6 @@ const TeamSpace = () => {
             console.error(err);
         }
     }
-
-
     //내(유저)가 속한 팀스페이스를 가져오는 함수
     const getMyTsList = async () => {
         try {
@@ -134,9 +142,6 @@ const TeamSpace = () => {
             console.error(err);
         }
     };
-
-
-
 
     //내(유저)가 속한 팀스페이스를 가져오는 함수
     const getMemberList = async () => {
@@ -153,8 +158,7 @@ const TeamSpace = () => {
     };
 
     useEffect(() => {
-        getChatList();
-        console.log("getChatList");
+        getPostList();
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 // 사용자가 이미 로그인했거나 방금 로그인 한 경우
@@ -166,19 +170,16 @@ const TeamSpace = () => {
                 // 사용자가 로그인하지 않았거나 방금 로그아웃 한 경우
             }
         });
-        console.log(goPk);
-        console.log(teamPK);
-
         getMyTsList();
         getMemberList();
     }, [userid]);
 
     useEffect(() => {
+        console.log(teamPK);
         getMemberList();
-        getChatList();
+        getPostList();
         getMyTsList();
     }, [teamPK]);
-
 
     return (
         <div>
@@ -202,31 +203,28 @@ const TeamSpace = () => {
                                 key={mts.id}
                                 data={mts}
                                 onClick={() => { setTeamPK(mts.id) }} />
-
-                            // <>
-                            //     <TsChannelBox
-                            // key={mts.id}
-                            // data={mts}
-                            // />
-                            // <button onClick={()=>{console.log(mts.id);setTeamPK(mts.id)}}>ddd</button>
-                            // </>
                         ))}
                     </TsChannelContainer>
                 </TsHeaderContainer>
 
                 <TsPostBoxContainer>
-                    {chatList.map((chat: any) => (
+                    {postList.map((chat: any) => (
                         // eslint-disable-next-line react/jsx-key
                         <TsPostBox
                             data={chat}
-                            chatPk={chat.id}
+                            postPk={chat.id}
                             teamPk={teamPK}
-                            onSubmit={submitComment}
                             newComment={newComment}
                             setNewComment={setNewComment}
 
+                            onSubmit={submitComment}
+                            setPostPk={setPostPk}
                             onDelete={() => deleteChat(chat.id)}
-                            onUpdate={() => updateChatContent(chat.id)} />
+                            onUpdate={() => updateChatContent(chat.id)}
+
+                            onToggleLike={() => toggleLike(chat.id)}
+                            liked={likedPosts.includes(chat.id)}
+                        />
                     ))}
                 </TsPostBoxContainer>
 
@@ -237,8 +235,6 @@ const TeamSpace = () => {
                         placeholder="입력해주세요."
                         value={newContent}
                     />
-
-
                     <button onClick={onSubmit}>전송</button>
                 </InputContainer>
 

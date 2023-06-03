@@ -140,7 +140,7 @@ const GlobalSlideMenu = (props: any) => {
       ref={outside}
       className={props.isOpen ? "open" : ""}
     >
-      <FontAwesomeIcon icon={faXmark} size={"2x"} onClick={toggleSide} />
+      <FontAwesomeIcon icon={faXmark} size={"2x"} onClick={toggleSide} style={{cursor: "pointer"}} />
       <SlideMenuWrapper>
         <SlideMenuContents>
           {isLogin && (

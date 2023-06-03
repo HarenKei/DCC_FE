@@ -120,7 +120,7 @@ const MyTask = () => {
     let tmp = taskData.slice();
     tmp.push(form);
     onSubmitTask(form);
-    // setTaskData(tmp);
+    setTaskData(tmp);
     getTaskList();
   };
 

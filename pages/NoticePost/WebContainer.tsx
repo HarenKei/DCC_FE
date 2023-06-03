@@ -1,39 +1,45 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NoticeCard from "@/src/Common/NoticeCard";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 import { db } from "../Google2/fbconfig";
-import { collection, getDocs } from "firebase/firestore";
+import Link from "next/link";
 
-const NoticeBodyContainer = () => {
-  const [postsList, setPostsList] =useState([]);
-  const postsCollectionRef = collection(db, "Post");
+const WebContainer = () => {
 
-  const getPostsList =async () => {
-    try {
-      const data = await getDocs(postsCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      console.log("야 변왕추 이시발련아");
-      setPostsList(filteredData);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  useEffect(() => {
-    getPostsList();
-    console.log('계급장 떼고 붙자');       
-  },[]);
+  const [postList, setPostList] : any = useState([]);
+  const postCollectionRef = collection(db, "Post");
+  
+
+  const getPostList = async() => {
+    try{
+        const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
+        console.log(data);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(), 
+            id: doc.id,           
+        }));
+        setPostList(filteredData);
+    } catch (err) {
+        console.error(err);
+    }   
+};
+
+useEffect(() => {
+  getPostList();
+},[]);
 
   return (
     <div>
+             
       <MainBodyContainer>
-        {postsList.map((posts) => (
-          // eslint-disable-next-line react/jsx-key
-          <NoticeCard title={posts.title}/>
-        ))}
+      {postList.map((post : any) => (
+        <Link href={`/NoticePost/article/${post.id}/WriteView`}>
+          <NoticeCard major="웹" pre_title="제목 : " title={post.title}/>
+        </Link>
+              ))}
       </MainBodyContainer>
+
     </div>
   );
 };
@@ -46,5 +52,6 @@ const MainBodyContainer = styled.div`
   height: auto;
   display: flex;
   flex-flow:row wrap;
+  /* border: 1px solid black;  */
 `;
 export default WebContainer;
