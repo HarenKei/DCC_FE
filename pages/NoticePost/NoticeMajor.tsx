@@ -37,6 +37,7 @@ const NoticeMajor = () => {
   const MajorBar = styled.div`
   display: flex;
   margin: 2rem auto;
+  height: 3.6rem;
   width: 75rem;
   justify-content: space-around;
   & > div:hover {
@@ -52,6 +53,7 @@ const MajorContent = styled.div`
   border-radius: 12px;
   text-align: center;
   box-shadow: 0px 1px 1px black;
+  
 `;
 const ContentMajor = styled.div`
   justify-content: space-around;

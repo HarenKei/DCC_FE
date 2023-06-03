@@ -1,42 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoticeMajor from "./NoticeMajor";
-
+import Link from "next/link";
 
 const NoticePost = () => {
-  return (
+
+   return (
     <div>
       <NoticeHeadContainer>
         <Noticetitle>
-          <h2>학부공지</h2>
+          <h1>학부공지</h1>
         </Noticetitle>
-        <NoticeSearchBar>
-          <label></label>
-          <input type="text" placeholder="여기에 검색하세요!" />
-          <button type="submit">검색</button>          
-        </NoticeSearchBar>
       </NoticeHeadContainer>
       <NoticeMajor/>
-      <WritePost>
-      <a href="/NoticePost/WriteTest" target="_blank" rel="noopener noreferrer">
-        <button>글쓰기</button> 
-      </a>
+      <WritePost>   
+        <button><Link href="/NoticePost/WritePage">
+          글 쓰기
+      </Link></button>
       </WritePost>
     </div>
   );
 };
 
-const MainMenuElementsContainer = styled.div`
-  justify-content: center;
-  background-color: grey;
-  border: solid 1px black;
-  width: 100%;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: row;
-  border: 1px black;
-
-`;
 
 const NoticeHeadContainer = styled.div`
   /* border: solid 1px black; */
@@ -48,14 +33,14 @@ const NoticeHeadContainer = styled.div`
 `;
 
 const Noticetitle = styled.div`
-  width: 100px;
+  width: 200px;
   /* border: solid 1px black; */
   margin: auto;
 `;
-
-const NoticeSearchBar = styled.div`
-  width: 500px;
-  margin: 0.5rem auto;
+const WritePost = styled.div`
+  display: flex;
+  margin-right: 12rem;
+  flex-direction: row-reverse;
   & > button {
     margin: 0 0 0 20px;
     font: inherit;
@@ -66,38 +51,7 @@ const NoticeSearchBar = styled.div`
     color: black;
     border-radius: 12px;
     margin-right: 1rem;
-  }
-  & > button:hover {
-    background-color: #adabab;
-  }
-  & > input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    width: 25rem;
-    max-width: 100%;
-    background-color: #ccc;
-  }
-  & > input:focus::placeholder {
-    color: transparent;
-  }
-`;
-
-const WritePost = styled.div`
-  display: flex;
-  margin-right: 12rem;
-  flex-direction: row-reverse;
-  & > a > button {
-    margin: 0 0 0 20px;
-    font: inherit;
-    cursor: pointer;
-    padding: 0.5rem;
-    border: 1px solid #d9d9d9;
-    background-color: #d9d9d9;
-    color: black;
-    border-radius: 12px;
-    margin-right: 1rem;
+    font-weight: bold;
   }
   & > button:hover {
     background-color: #adabab;

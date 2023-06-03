@@ -49,6 +49,7 @@ const HambugerMenuContainer = styled.button`
   margin-right: 80px;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 `;
 
 export default Header;
