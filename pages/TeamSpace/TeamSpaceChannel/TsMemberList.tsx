@@ -5,11 +5,12 @@ interface Props {
     title: string
    };
 
-const TsMemberList = (props: Props) => {
+const TsMemberList = ({data} : any) => {
+    const {name} = data;
     return(
         <div>
             <MemberStyle>
-                {props.title}
+                {name}
             </MemberStyle>
         </div>
     );
