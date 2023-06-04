@@ -13,11 +13,14 @@ const tmpData = [
 
 const MainMeal = () => {
   const [meal, setMeal] = useState(tmpData);
+  const today = new Date().getDay();
 
   useEffect(() => {
-    API.getMealData().then((apiResult: any) => {
-      setMeal(apiResult.split(">>").map((items: any) => items.split("\n")));
-    });
+    if (today >= 1 && today <= 5) {
+      API.getMealData().then((apiResult: any) => {
+        setMeal(apiResult.split(">>").map((items: any) => items.split("\n")));
+      });
+    }
   }, []);
 
   return (

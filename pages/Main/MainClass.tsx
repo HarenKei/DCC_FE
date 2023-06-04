@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MainTimeTableCard from "@/src/Common/MainTimeTableCard";
 
-import { onAuthStateChanged, } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../Google2/fbconfig";
 import {
   getDocs,
@@ -12,13 +12,13 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-
+import { Link } from "react-router-dom";
 
 interface Props {
-  className: string,
-  profName: string,
-  classRoom: string,
-  day:number
+  className: string;
+  profName: string;
+  classRoom: string;
+  day: number;
 }
 
 const dummyDataArray = [
@@ -72,7 +72,6 @@ const MainClass = (props: Props) => {
     }
   };
 
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -88,11 +87,9 @@ const MainClass = (props: Props) => {
     });
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     getTimeTableList();
-  },[userId])
-
-  console.log(classData);
+  }, [userId]);
 
 
   return (
@@ -101,7 +98,7 @@ const MainClass = (props: Props) => {
 
       <MainClassContents>
         {classData.map((items) => (
-          <MainTimeTableCard key={items.id} props={items}/>
+          <MainTimeTableCard key={items.id} props={items} />
         ))}
       </MainClassContents>
     </MainClassContainer>

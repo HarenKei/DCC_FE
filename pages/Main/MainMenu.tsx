@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import MainMenuCard from "@/src/Common/MainMenuCard";
 
-const dummyDataArray = [
+const mainMenuDataArray = [
   {
     id: "m1",
     tag: "app",
@@ -34,7 +34,7 @@ const dummyDataArray = [
   {
     id: "m6",
     title: "👥 팀 스페이스",
-    link: "/",
+    link: "/TeamSpace",
   },
   {
     id: "m7",
@@ -55,7 +55,7 @@ const MainMenu = () => {
       <MainMenuTitleP>DCC의 모든 메뉴를 한 눈에 확인하세요 📣</MainMenuTitleP>
 
       <MainMenuElementsContainer>
-        {dummyDataArray.map((items) => (
+        {mainMenuDataArray.map((items) => (
           <MainMenuCard key={items.id} title={items.title} link={items.link} width={"20"} height={"8"} />
         ))}
       </MainMenuElementsContainer>

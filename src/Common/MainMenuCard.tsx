@@ -35,6 +35,8 @@ const MainMenuCardContainer = styled.div<StyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 const MainMenuCardTitleH1 = styled.h1`
