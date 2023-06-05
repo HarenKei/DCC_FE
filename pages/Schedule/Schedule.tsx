@@ -44,7 +44,9 @@ const Schedule = () => {
                 year={year}
                 month={month}
             />
-            <ScheduleInfo/>
+            <ScheduleInfo
+                month={month}
+            />
         </ScheduleContainer>
         </div>
     );

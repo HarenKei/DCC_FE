@@ -3,24 +3,24 @@ import styled from "styled-components";
 
 interface Props {
   content: string;
-  startDate: string;
-  endDate: string;
+  scheduleDate: string;
+  scheduleMonth: number;
+  currentMonth: number;
 }
 
 const ScheduleInfoCard = (props : Props) => {
-    return(
-        <ScheduleInfoCardContainer>
-        <ScheduleInfoCardDateTitle>
-            시작 {props.startDate}
-        </ScheduleInfoCardDateTitle>
-        <ScheduleInfoCardDateTitle>
-            종료 {props.endDate}
-        </ScheduleInfoCardDateTitle>
-        <ScheduleInfoCardContentTitle>
-            {props.content}
-        </ScheduleInfoCardContentTitle>
-        </ScheduleInfoCardContainer>
-    )
+    if(props.currentMonth === props.scheduleMonth){
+        return(
+            <ScheduleInfoCardContainer>
+            <ScheduleInfoCardDateTitle>
+                {props.scheduleDate}
+            </ScheduleInfoCardDateTitle>
+            <ScheduleInfoCardContentTitle>
+                {props.content}
+            </ScheduleInfoCardContentTitle>
+            </ScheduleInfoCardContainer>
+        )
+    } 
 };
 
 const ScheduleInfoCardContainer = styled.div`

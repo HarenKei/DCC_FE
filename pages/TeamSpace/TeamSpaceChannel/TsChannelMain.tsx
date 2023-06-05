@@ -9,15 +9,17 @@ import { auth, db } from "@/pages/Google2/fbconfig";
 import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from "@firebase/firestore";
 import { useRouter } from "next/router";
 
+// 수정시작합니다
+
 const TeamSpace = () => {
     const router = useRouter();
     const getPkFromUrl = router.query.goPk;
 
     let newWriteDate = Date.now();
-    
+
     /* 팀스페이스 id 가져오기 */
     const [teamPK, setTeamPK] = useState(getPkFromUrl);
-    
+
     const [postList, setPostList] = useState([]);
 
     const [userid, setUserId] = useState("uid");
@@ -28,10 +30,11 @@ const TeamSpace = () => {
     //댓글 입력
     const [postPk, setPostPk] = useState("xniPRq64c5UYMXl2zspV");
     const [newComment, setNewComment] = useState(""); // 작성하는 댓글 내용
-    
     const [myTsList, setMyTsList] = useState([]);
 
     const [tsMemberList, setTsMemberList] = useState([]);
+
+    const [likedPosts, setLikedPosts] = useState<string[]>([]); // 좋아요를 누른 게시물 목록
 
     const ChatCollectionRef = collection(db, `TeamSpace/${teamPK}/Post`);
     const q = query(ChatCollectionRef, orderBy("writeDate", "desc"));
@@ -41,6 +44,25 @@ const TeamSpace = () => {
     const userTsCollectionRef = collection(db, `Users/${userid}/TeamSpace`);
 
     const tsMemberCollectionRef = collection(db, `TeamSpace/${teamPK}/Users`);
+
+    const updateLikeCount = async (postId: string, increment: number) => {
+        const chatDoc = doc(db, `TeamSpace/${teamPK}/Post`, postId);
+        await updateDoc(chatDoc, { like: increment });
+        getPostList();
+    };
+
+    // 좋아요 토글 함수
+    const toggleLike = async (postId: string) => {
+        const liked = likedPosts.includes(postId);
+
+        if (liked) {
+            setLikedPosts(likedPosts.filter((id) => id !== postId));
+            updateLikeCount(postId, 0);
+        } else {
+            setLikedPosts([...likedPosts, postId]);
+            updateLikeCount(postId, 1);
+        }
+    };
 
     /*채팅 입력, 수정, 삭제*/
     const handleKeyPress = (e: { key: string; }) => {
@@ -55,6 +77,7 @@ const TeamSpace = () => {
             const filteredData = data.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
+                writeDate: new Date(doc.data().writeDate).toLocaleString(),
             }));
             setPostList(filteredData);
             console.log(postList);
@@ -91,13 +114,12 @@ const TeamSpace = () => {
             console.error(err);
         }
     };
-    
     const submitComment = async () => {
         try {
             await addDoc(CommentCollectionRef, {
                 user: userName,
                 content: newComment,
-                writeDate: newWriteDate.toLocaleString(),
+                writeDate: newWriteDate,
                 userid: auth?.currentUser?.uid,
             })
             setNewComment("");
@@ -155,7 +177,7 @@ const TeamSpace = () => {
         getMemberList();
         getPostList();
         getMyTsList();
-    },[teamPK]);
+    }, [teamPK]);
 
     return (
         <div>
@@ -176,17 +198,9 @@ const TeamSpace = () => {
                     <TsChannelContainer>
                         {myTsList.map((mts: any) => (
                             <TsChannelBox
-                            key={mts.id}
-                            data={mts}
-                            onClick={() => {setTeamPK(mts.id)}}/>
-
-                            // <>
-                            //     <TsChannelBox
-                            // key={mts.id}
-                            // data={mts}
-                            // />
-                            // <button onClick={()=>{console.log(mts.id);setTeamPK(mts.id)}}>ddd</button>
-                            // </>
+                                key={mts.id}
+                                data={mts}
+                                onClick={() => { setTeamPK(mts.id) }} />
                         ))}
                     </TsChannelContainer>
                 </TsHeaderContainer>
@@ -198,12 +212,18 @@ const TeamSpace = () => {
                             data={chat}
                             postPk={chat.id}
                             teamPk={teamPK}
+                            newComment={newComment}
                             setNewComment={setNewComment}
 
                             onSubmit={submitComment}
                             setPostPk={setPostPk}
                             onDelete={() => deleteChat(chat.id)}
-                            onUpdate={() => updateChatContent(chat.id)} />
+                            onUpdate={() => updateChatContent(chat.id)}
+
+                            onToggleLike={() => toggleLike(chat.id)}
+                            liked={likedPosts.includes(chat.id)}
+                            userid={userid}
+                        />
                     ))}
                 </TsPostBoxContainer>
 
@@ -214,8 +234,6 @@ const TeamSpace = () => {
                         placeholder="입력해주세요."
                         value={newContent}
                     />
-
-
                     <button onClick={onSubmit}>전송</button>
                 </InputContainer>
 

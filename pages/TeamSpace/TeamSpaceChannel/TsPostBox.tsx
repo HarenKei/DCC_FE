@@ -3,18 +3,19 @@ import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, setPostPk }: any) => {
-  const { content, user, writeDate,id } = data;
+const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, setPostPk, onDelete, onUpdate, onToggleLike, liked, userid }: any) => {
+  const { content, user, writeDate, id } = data;
 
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
   // const [changeTeamPk, setChangeTeamPk] = useState(teamPK);
+  const [likeCount, setLikeCount] = useState(0); // 좋아요 수
 
   const ref = collection(db, `TeamSpace/${teamPk}/Post/${postPk}/Comment`);
   const q = query(ref, orderBy("writeDate", "desc"));
   const getCommentList = async () => {
     try {
-      const data = await getDocs(ref);
+      const data = await getDocs(q);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -27,57 +28,103 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
     }
   }
 
+  const handleKeyDown = (e: { key: string; }) => {
+    if (e.key === "Enter") {
+      handleCommentSubmit();
+    }
+  };
   const handleCommentSubmit = () => {
-    onSubmit();
-    setNewComment("");
-    setCommentVisible(false);
+    if (newComment.trim() !== "") { // newComment 값이 공백이 아닐 때만 실행
+      onSubmit();
+      setNewComment("");
+      setCommentVisible(true);
+      getCommentList();
+    }
   };
   const toggleCommentVisible = () => {
-    setCommentVisible(!commentVisible); // 댓글 입력란의 가시성을 토글합니다.
+    setCommentVisible(!commentVisible);
     setPostPk(id);
     console.log(teamPk);
     console.log(postPk);
     getCommentList();
   };
 
+  const handleDelete = async () => {
+    if (userid === data.userid) {
+      onDelete();
+    }
+  };
+  const handleUpdate = async () => {
+    onUpdate();
+  };
+
+  const handleToggleLike = () => {
+    onToggleLike();
+    setLikeCount(liked ? likeCount : likeCount + 1);
+  };
+
+
   return (
     <div>
       <ContentContainer>
 
         <MainContainer>
-          <NameText>{user}</NameText>
+          <AlignRowContainer>
+            <NameText>{user}</NameText>
+
+            <HandleContainer>
+              {userid === data.userid && (
+                <>
+                  <button onClick={handleUpdate}>수정</button>
+                  <button onClick={handleDelete}>삭제</button>
+                </>
+              )}
+            </HandleContainer>
+          </AlignRowContainer>
 
           <RowContainer>
             <ContentText>{content}</ContentText>
             <DateArea>{writeDate}</DateArea>
           </RowContainer>
-          <CommentBox>
-            {commentList.map((cmt: any) => (
-              // eslint-disable-next-line react/jsx-key
-              <h1>{cmt.content}</h1>
-            ))}
 
-          </CommentBox>
+
 
         </MainContainer>
         {commentVisible && (
-          <CommentBackground>
-            <CommentContainer>
-              <input
-                placeholder="댓글을 입력하세요"
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
+          <CommentPackage>
+            <CommentBox>
+              {commentList.map((cmt: any) => (
+                // eslint-disable-next-line react/jsx-key
+                <div>
+                  {cmt.user}
+                  <CommentRowContainer>
+                    <CommendContent>{cmt.content}</CommendContent>
+                    <CommendwriteDate>{cmt.writeDate}</CommendwriteDate>
+                  </CommentRowContainer>
+                </div>
+              ))}
+            </CommentBox>
+            <CommentBackground>
+              <CommentContainer>
+                <input
+                  placeholder="댓글을 입력하세요"
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
 
-              <button onClick={handleCommentSubmit}>완료</button>
-            </CommentContainer>
-          </CommentBackground>
+                <button onClick={handleCommentSubmit}>완료</button>
+              </CommentContainer>
+            </CommentBackground>
+          </CommentPackage>
         )}
 
 
         <ButtonContainer>
-          <LikeButton><p>좋아요</p></LikeButton>
-          <CommentButton onClick={toggleCommentVisible}>{commentVisible ? <p>댓글달기</p> : <p>댓글보기</p>}</CommentButton>
+          <LikeButton onClick={handleToggleLike}>
+            {liked ? <p>좋아요 취소</p> : <p>좋아요</p>}
+          </LikeButton>
+          <CommentButton onClick={toggleCommentVisible}>{commentVisible ? <p>댓글닫기</p> : <p>댓글보기</p>}</CommentButton>
         </ButtonContainer>
 
 
@@ -104,11 +151,14 @@ const MainContainer = styled.div`
   background-color: #C3C3C3;
 
 `;
+const CommentPackage = styled.div`
+  background-color: #C3C3C3;
+`;
 const AlignRowContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`
+`;
 const HandleContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -148,34 +198,50 @@ const RowContainer = styled.div`
 
   background-color: #C3C3C3;
 `;
-
+const CommendContent = styled.div`
+  display:inline-block;
+`;
+const CommendwriteDate = styled.div`
+  display:inline-block;
+`;
 const CommentBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 
-  margin: 0px 15px 0px 15px;
+  width: 79vw;
+  margin: 0.5vw 0vw 0.5vw 3vw;
 
   min-height: 5vh;
 
   background-color: #C3C3C3;
 `;
-const CommentText = styled.div`
-  white-space: pre-wrap;
+const CommentRowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 77.8vw;
+  margin: 0vw 0vw 0vw 3vw;
+
+  min-height: 5vh;
+
+  background-color: #C3C3C3;
 `;
 const CommentBackground = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 85vw;
     height: 8vh;
 
-    background-color: #D9D9D9;
+    background-color: #C3C3C3;
 `;
 const CommentContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 85vw;
+    width: 83vw;
     height: 8vh;
     border-radius: 15px;
 
@@ -198,7 +264,6 @@ const CommentContainer = styled.div`
     button{
         width: 4vw;
         height: 5vh;
-        margin-left: 2vw;
         border-radius: 1px;
         border: none;
         color: white;

@@ -1,13 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const NoticeCard = (props : any) => {
+
+interface Props {
+  pre_title : string;
+  title : string;
+  major: string;
+}
+
+
+const NoticeCard = (props : Props) => {
+
   return (
     <div>
         <BodyContents>
-          <Title>{props.title}</Title>
-          <Image></Image>
-          <Content> <span></span></Content>
+          <Major><p>{props.major}</p></Major>
+          <Title>{props.pre_title}{props.title}</Title>
+          <Content><span></span></Content>
         </BodyContents>
     </div>
   );
@@ -22,7 +31,7 @@ const BodyContents = styled.div`
   border-radius: 12px;
   box-shadow: 0px 1px 1px black;
 `;
-const Title = styled.div`
+const Major = styled.div`
   background-color: #611F1F;
   border: solid 1px black;
   border-radius: 4px;
@@ -30,9 +39,11 @@ const Title = styled.div`
   height: 2rem;
   line-height: 2rem;
   text-align: center; 
+  color: white;
 `;
-const Image = styled.div`
-  /* border: solid 1px black; */
+const Title = styled.div`
+  margin-top: 7px;
+  margin-left: 4px;
   height: 8rem;
 `;
 const Content = styled.div`
