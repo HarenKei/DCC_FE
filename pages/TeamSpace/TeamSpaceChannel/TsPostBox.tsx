@@ -1,15 +1,17 @@
 import { db } from "@/pages/Google2/fbconfig";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const TsPostBox = ({ data, onSubmit, chatPk, teamPK, newComment, setNewComment, setChatPk }: any) => {
+const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, setPostPk }: any) => {
   const { content, user, writeDate,id } = data;
 
   const [commentList, setCommentList] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
+  // const [changeTeamPk, setChangeTeamPk] = useState(teamPK);
 
-  const ref = collection(db, `TeamSpace/${teamPK}/Post/${chatPk}/Comment`);
+  const ref = collection(db, `TeamSpace/${teamPk}/Post/${postPk}/Comment`);
+  const q = query(ref, orderBy("writeDate", "desc"));
   const getCommentList = async () => {
     try {
       const data = await getDocs(ref);
@@ -19,6 +21,7 @@ const TsPostBox = ({ data, onSubmit, chatPk, teamPK, newComment, setNewComment, 
         writeDate: new Date(doc.data().writeDate).toLocaleString()
       }));
       setCommentList(filteredData);
+      console.log(filteredData);
     } catch (error) {
       console.error(error);
     }
@@ -27,9 +30,13 @@ const TsPostBox = ({ data, onSubmit, chatPk, teamPK, newComment, setNewComment, 
   const handleCommentSubmit = () => {
     onSubmit();
     setNewComment("");
+    setCommentVisible(false);
   };
   const toggleCommentVisible = () => {
     setCommentVisible(!commentVisible); // 댓글 입력란의 가시성을 토글합니다.
+    setPostPk(id);
+    console.log(teamPk);
+    console.log(postPk);
     getCommentList();
   };
 
@@ -47,9 +54,7 @@ const TsPostBox = ({ data, onSubmit, chatPk, teamPK, newComment, setNewComment, 
           <CommentBox>
             {commentList.map((cmt: any) => (
               // eslint-disable-next-line react/jsx-key
-              <CommentText>
-                {cmt.comment}
-              </CommentText>
+              <h1>{cmt.content}</h1>
             ))}
 
           </CommentBox>
