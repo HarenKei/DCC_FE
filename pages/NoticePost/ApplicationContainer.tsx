@@ -33,7 +33,7 @@ useEffect(() => {
              
       <MainBodyContainer>
       {postList.map((post : any) => (
-        <Link href={`/NoticePost/article/${post.id}/WriteView`}>
+        <Link href={`/NoticePost/article/${post.id}/WriteApplicationView`}>
           <NoticeCard major="응용" pre_title="제목 : " title={post.title}/>
         </Link>
               ))}
@@ -43,14 +43,11 @@ useEffect(() => {
   );
 };
 const MainBodyContainer = styled.div`
-  /* border: solid 1px black; */
   padding: 1rem;
-  /* background-color: grey; */
   margin: 2rem auto;
   width: 90vw;
   height: auto;
   display: flex;
   flex-flow:row wrap;
-  /* border: 1px solid black;  */
 `;
 export default ApplicationContainer;

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const WriteView = () => {
+const WriteWebView = () => {
   const router: any = useRouter();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
@@ -21,7 +21,7 @@ const WriteView = () => {
   const deletePost: any = async (id: string) => {
     const remove = window.confirm("삭제하시겠습니까?");
     if (remove == true) {
-      const movieDoc = doc(db, "Post", router.query.id);
+      const movieDoc : any = doc(db, "Post", router.query.id);
       await deleteDoc(movieDoc);
       alert("게시물이 삭제되었습니다.");
     }
@@ -49,7 +49,7 @@ const WriteView = () => {
           <Link href="/NoticePost">메인으로</Link>
         </button>
         <button>
-          <Link href={`/NoticePost/article/${router.query.id}/WriteEdit`}>
+          <Link href={`/NoticePost/article/${router.query.id}/WriteWebEdit`}>
             수정하기
           </Link>
         </button>
@@ -124,4 +124,4 @@ const Buttons = styled.div`
   }
 `;
 
-export default WriteView;
+export default WriteWebView;
