@@ -7,8 +7,8 @@ const TsPost = () => {
     <div>
       <ContentContainer>
         <TeamSpaceContent><h3>프로젝트</h3></TeamSpaceContent>
+        <TeamSpaceContent><h3>반</h3></TeamSpaceContent>
         <TeamSpaceContent><h3>스터디</h3></TeamSpaceContent>
-        <TeamSpaceContent><h3>동아리</h3></TeamSpaceContent>
         <TS_AddButton/>
       </ContentContainer>
     </div>
