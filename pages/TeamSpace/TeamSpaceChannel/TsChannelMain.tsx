@@ -30,7 +30,6 @@ const TeamSpace = () => {
     //댓글 입력
     const [postPk, setPostPk] = useState("xniPRq64c5UYMXl2zspV");
     const [newComment, setNewComment] = useState(""); // 작성하는 댓글 내용
-
     const [myTsList, setMyTsList] = useState([]);
 
     const [tsMemberList, setTsMemberList] = useState([]);
@@ -115,7 +114,6 @@ const TeamSpace = () => {
             console.error(err);
         }
     };
-
     const submitComment = async () => {
         try {
             await addDoc(CommentCollectionRef, {
@@ -187,10 +185,10 @@ const TeamSpace = () => {
                 <TsMember>
                     <MemberLogo><p>멤버</p></MemberLogo>
                     {tsMemberList.map((tml: any) => (
-                        <TsMemberList
+                            <TsMemberList
                             key={tml.id}
-                            data={tml} />
-                    ))}
+                            data={tml} />   
+                        ))}
                 </TsMember>
 
                 <TsHeaderContainer>
@@ -210,7 +208,7 @@ const TeamSpace = () => {
                 <TsPostBoxContainer>
                     {postList.map((chat: any) => (
                         // eslint-disable-next-line react/jsx-key
-                        <TsPostBox
+                        <TsPostBox 
                             data={chat}
                             postPk={chat.id}
                             teamPk={teamPK}

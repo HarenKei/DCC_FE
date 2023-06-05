@@ -1,41 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import TS_AddModal from "./AddTaskModal";
-import { useState } from "react";
 
 
-const TsAddButton = (props:any) => {
+const TsAddButton = ({setModalOpen} : any) => {
     // 모달창 노출 여부 state
-    const [modalOpen, setModalOpen] = useState(false);
     // 모달창 노출
-    const showModal = () => {
+    const modalHandler = () => {
         setModalOpen(true);
     };
     return(
-        <AddButtonContainer onClick={showModal}>
-            {modalOpen && <TS_AddModal setModalOpen={setModalOpen} />}
-            <P>팀 추가</P>
-        </AddButtonContainer>
+        <AddBtnContainer>
+            <button onClick={modalHandler}>팀 추가</button>
+        </AddBtnContainer>
     );
     
 };
 
-const AddButtonContainer = styled.button`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    width: 8vw;
-    height: 8vh;
+const AddBtnContainer = styled.div`
+    margin-left: 1vw;
+    button{
+        padding: 1rem;
+        width: 8rem;
 
-    background-color: red;
-    border-radius: 20px;
+        background-color: red;
+        border: none;
+        border-radius: 10px;
 
-    box-shadow: 0px 1px 1px black;
-`;
-const  P= styled.p`
-    font-size: 1.3vw;
+        box-shadow: 0px 0px 3px black;
+    }
 `;
 
 
