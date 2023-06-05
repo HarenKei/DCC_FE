@@ -7,18 +7,12 @@ import { db, auth } from "../../Google2/fbconfig";
 import { doc, setDoc, getDocs, collection, query, where, addDoc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import TsMainModal from "./TsMainModal";
-import TaskBar from "@/pages/MyTask/TaskBar";
 import TsAddButton from "./TsAddButton";
 
-const deepCopy = require("lodash.clonedeep");
-
 const TS_main = () => {
-  const [arr, setArr] = useState([]);
-  const [myArr, setMyArr] = useState([]);
 
   const [tsList, setTsList] = useState([]);
   const [myTsList, setMyTsList] = useState([]);
-  // const [lastList, setLastList] = useState([]);
 
   const [userid, setUserId] = useState("uid");
 
@@ -26,20 +20,6 @@ const TS_main = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [taskData, setTaskData] = useState([]);
-
-
-  Array.prototype.division = function (n) {
-    var arr = this;
-    var len = arr.length;
-    var cnt = Math.floor(len / n);
-    var tmp = [];
-
-    for (var i = 0; i <= cnt; i++) {
-      tmp.push(arr.splice(0, n));
-    }
-
-    return tmp;
-  }
 
   // Users 컬렉션 내부의 TeamSpace 컬렉션 정보를 가져옴
   const userTsCollectionRef = collection(db, `Users/${userid}/TeamSpace`);
@@ -68,35 +48,11 @@ const TS_main = () => {
         id: doc.id,
       }));
       setMyTsList(filteredData);
-      console.log(filteredData);
-      setMyArr(filteredData);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // const lastarr: any = [];
-  // let rrlastarr: any = [];
-  // const getLastArr = () => {
-  //   if (myArr.length != 0) {
-  //     for (let i = 0; i < myArr.length; i++) {
-  //       for (let j = 0; j < arr.length; j++) {
-  //         if (!arr[j].id.includes(myArr[i].id) && !arr[j].id.includes(lastarr[j])) {
-  //           console.log(arr[j]);
-  //           lastarr.push(arr[j]);
-  //         }
-  //       }
-  //     }
-  //     rrlastarr = lastarr.division(myArr.length);
-  //   } else {
-  //     console.log("느금");
-  //     return;
-  //   }
-  // }
-
-  const changeCategory = (arr, category) => {
-    arr.filter((item) => { return item.category == category })
-  }
   const onSubmitTask = async (tmp: any) => {
     try {
       await addDoc(teamSpaceCollectionRef, {
