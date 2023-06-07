@@ -35,7 +35,7 @@ useEffect(() => {
              
       <MainBodyContainer>
       {postList.map((post : any) => (
-        <Link href={`/FreePost/FreePostView`}>
+        <Link href={`/FreePost/FreeAticle/${post.id}/FreePostView`}>
           <FreePostCard major="자유" pre_title="제목 : " title={post.title}/>
         </Link>
               ))}
