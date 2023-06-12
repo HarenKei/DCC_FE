@@ -9,7 +9,7 @@ const NoticePost = () => {
     <div>
       <NoticeHeadContainer>
         <Noticetitle>
-          <h1>학부공지</h1>
+          <h1>자유 게시판</h1>
         </Noticetitle>
       </NoticeHeadContainer>
       <NoticeMajor/>
@@ -24,9 +24,7 @@ const NoticePost = () => {
 
 
 const NoticeHeadContainer = styled.div`
-  /* border: solid 1px black; */
   padding: 1rem;
-  /* background-color: grey; */
   margin: 2rem auto;
   width: 90vw;
   max-width: 95%;
@@ -34,7 +32,6 @@ const NoticeHeadContainer = styled.div`
 
 const Noticetitle = styled.div`
   width: 200px;
-  /* border: solid 1px black; */
   margin: auto;
 `;
 const WritePost = styled.div`
