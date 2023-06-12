@@ -15,6 +15,7 @@ interface StyleProps {
 }
 
 const MainMenuCard = (props: Props) => {
+  
   return (
     <Link href={props.link}>
       <MainMenuCardContainer width={props.width} height={props.height}>
