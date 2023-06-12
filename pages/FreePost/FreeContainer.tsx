@@ -1,13 +1,15 @@
-import NoticeCard from "@/src/Common/NoticeCard";
-import { collection, getDocs, orderBy, query } from "@firebase/firestore";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import NoticeCard from "@/src/Common/NoticeCard";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 import { db } from "../Google2/fbconfig";
+import Link from "next/link";
+import FreePostCard from "@/src/Common/FreePostCard";
 
-const ApplicationContainer  = () =>{
+const FreeContainer = () => {
+
   const [postList, setPostList] : any = useState([]);
-  const postCollectionRef = collection(db, "ApplicationPost");
+  const postCollectionRef = collection(db, "FreePost");
   
 
   const getPostList = async() => {
@@ -33,8 +35,8 @@ useEffect(() => {
              
       <MainBodyContainer>
       {postList.map((post : any) => (
-        <Link href={`/NoticePost/article/${post.id}/WriteApplicationView`}>
-          <NoticeCard major="응용" pre_title="제목 : " title={post.title}/>
+        <Link href={`/FreePost/FreeAticle/${post.id}/FreePostView`}>
+          <FreePostCard major="자유" pre_title="제목 : " title={post.title}/>
         </Link>
               ))}
       </MainBodyContainer>
@@ -50,4 +52,4 @@ const MainBodyContainer = styled.div`
   display: flex;
   flex-flow:row wrap;
 `;
-export default ApplicationContainer;
+export default FreeContainer;

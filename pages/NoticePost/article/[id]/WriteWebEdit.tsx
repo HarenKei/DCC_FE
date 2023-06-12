@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import EditForm from "../../EditForm";
 import { useRouter } from "next/router";
 import { doc, getDoc } from "@firebase/firestore";
 import { db } from "@/pages/Google2/fbconfig";
 import styled from "styled-components";
+import WebEditForm from "../../WebEditForm";
 
 const WriteEdit = () =>{
   const [initialValues,setInitialValues] = useState();
@@ -19,7 +19,7 @@ const WriteEdit = () =>{
   return(
     <div>
       <EditHead><h1>게시물 수정</h1></EditHead>
-      {initialValues && <EditForm initialValues={initialValues}/>}
+      {initialValues && <WebEditForm initialValues={initialValues}/>}
     </div>
   );
 }
