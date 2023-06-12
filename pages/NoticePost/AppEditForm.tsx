@@ -13,11 +13,9 @@ function EditForm(initialValues : any) {
   let userid = "";
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User logged in already or has just logged in.
       console.log(user.uid);
       userid = user.uid;
     } else {
-      // User not logged in or has just logged out.
     }
   });
 
@@ -26,7 +24,7 @@ function EditForm(initialValues : any) {
 
 
   const update = async () => {
-    const update = doc(db, "Post", router.query.id);
+    const update = doc(db, "AppPost", router.query.id);
     await updateDoc(update, {
       title: newPostTitle,
       detail: newPostDetail,
