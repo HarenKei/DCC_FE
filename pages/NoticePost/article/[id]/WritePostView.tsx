@@ -5,23 +5,27 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const WriteWebView = () => {
+const WritePostView = () => {
   const router: any = useRouter();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [writer, setWriter] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     getDoc(doc(db, "Post", router.query.id)).then((doc) => {
       const data: any = doc.data();
       setTitle(data.title);
       setDetail(data.detail);
+      setWriter(data.userName);
+      setDate(new Date(data.writeDate.seconds).toString());
     });
   }, []);
 
   const deletePost: any = async (id: string) => {
     const remove = window.confirm("삭제하시겠습니까?");
     if (remove == true) {
-      const movieDoc : any = doc(db, "Post", router.query.id);
+      const movieDoc: any = doc(db, "Post", router.query.id);
       await deleteDoc(movieDoc);
       alert("게시물이 삭제되었습니다.");
     }
@@ -30,9 +34,16 @@ const WriteWebView = () => {
   return (
     <WritePageContainer>
       <WriteMain>
-        <Title>
-          <h1>{title}</h1>
-        </Title>
+        <WriteInfo>
+          <Title>
+            <h1>{title}</h1>
+          </Title>
+
+          <Writer>
+            <p>{writer}</p>
+            <p>{date}</p>
+          </Writer>
+        </WriteInfo>
 
         <Content_txt>
           <div>{detail}</div>
@@ -64,15 +75,28 @@ const WritePageContainer = styled.div`
   align-items: center;
 `;
 
+const WriteInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #ababab;
+`;
+const Writer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
 const Title = styled.div`
+  flex:0.5;
   margin-top: 30px;
-  margin-left: 50px;
   & > h1 {
     width: 91%;
     padding-bottom: 30px;
     border: none;
     font-size: 22px;
-    border-bottom: solid 1px #ababab;
     font-weight: bold;
   }
   & > input:focus {
@@ -124,4 +148,4 @@ const Buttons = styled.div`
   }
 `;
 
-export default WriteWebView;
+export default WritePostView;

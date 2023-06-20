@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import MainAllNotice from "./MainAllNotice";
 import MainFreeBoard from "./MainFreeBoard";
+import Link from "next/link";
 
 const MainNotice = () => {
-    return(
-        <MainNoticeContainer>
-          <MainAllNotice/>
-          <MainFreeBoard/>
-        </MainNoticeContainer>
-    );
+  return (
+      <MainNoticeContainer>
+        <MainAllNotice />
+        <MainFreeBoard />
+      </MainNoticeContainer>
+  );
 };
 
 const MainNoticeContainer = styled.div`

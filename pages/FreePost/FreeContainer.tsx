@@ -7,40 +7,44 @@ import Link from "next/link";
 import FreePostCard from "@/src/Common/FreePostCard";
 
 const FreeContainer = () => {
-
-  const [postList, setPostList] : any = useState([]);
+  const [postList, setPostList]: any = useState([]);
   const postCollectionRef = collection(db, "FreePost");
-  
 
-  const getPostList = async() => {
-    try{
-        const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
-        console.log(data);
-        const filteredData = data.docs.map((doc) => ({
-            ...doc.data(), 
-            id: doc.id,           
-        }));
-        setPostList(filteredData);
+  const getPostList = async () => {
+    try {
+      const data = await getDocs(
+        query(postCollectionRef, orderBy("writeDate", "desc"))
+      );
+      console.log(data);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPostList(filteredData);
     } catch (err) {
-        console.error(err);
-    }   
-};
+      console.error(err);
+    }
+  };
 
-useEffect(() => {
-  getPostList();
-},[]);
+  useEffect(() => {
+    getPostList();
+  }, []);
 
   return (
     <div>
-             
       <MainBodyContainer>
-      {postList.map((post : any) => (
-        <Link href={`/FreePost/FreeAticle/${post.id}/FreePostView`}>
-          <FreePostCard major="자유" pre_title="제목 : " title={post.title}/>
-        </Link>
-              ))}
+        {postList.map((post: any) => (
+          <Link href={`/FreePost/FreeAticle/${post.id}/FreePostView`}>
+            <FreePostCard
+              key={post.id}
+              major="자유"
+              title={post.title}
+              writer={post.userName}
+              date={post.writeDate}
+            />
+          </Link>
+        ))}
       </MainBodyContainer>
-
     </div>
   );
 };
@@ -50,6 +54,6 @@ const MainBodyContainer = styled.div`
   width: 90vw;
   height: auto;
   display: flex;
-  flex-flow:row wrap;
+  flex-flow: row wrap;
 `;
 export default FreeContainer;

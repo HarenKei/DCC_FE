@@ -131,7 +131,7 @@ const MainTeamSpace = () => {
         <MainTeamSpaceIntroP>
           스터디, 프로젝트, 카풀... 컴정에 팀이 필요한 순간, 팀 스페이스 🤝
         </MainTeamSpaceIntroP>
-        <Link href="/TeamSpace">전체 팀 스페이스 보기 &gt;&gt;</Link>
+        <Link href="/TeamSpace/TeamSpaceLoby/Tsmain">전체 팀 스페이스 보기 &gt;&gt;</Link>
       </MainTeamSpaceIntroLink>
 
       <SliderContainer>

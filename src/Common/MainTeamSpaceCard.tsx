@@ -11,7 +11,7 @@ interface Props {
 const MainTeamSpaceCard = ({ data }: any) => {
   const { teamName, masterName, emoji } = data;
   return (
-    <Link href="">
+    <Link href="/TeamSpace/TeamSpaceLoby/Tsmain">
       <TeamSpaceCardContainer>
         <TeamSpaceEmoji>{emoji}</TeamSpaceEmoji>
         <TeamSpaceTitle>{teamName}</TeamSpaceTitle>

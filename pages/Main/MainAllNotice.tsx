@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { db } from "../Google2/fbconfig";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
+
 import MainNoticeCard from "@/src/Common/MainNoticeCard";
+import { Link } from "react-router-dom";
 
 const dummyDataArray = [
   {
@@ -24,6 +28,30 @@ const dummyDataArray = [
 ];
 
 const MainAllNotice = () => {
+  const [postList, setPostList]: any = useState([]);
+  const postCollectionRef = collection(db, "Post");
+
+  const getPostList = async () => {
+    try {
+      const data = await getDocs(
+        query(postCollectionRef, orderBy("writeDate", "desc"))
+      );
+
+      console.log(data);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPostList(filteredData.slice(0, 3));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getPostList();
+  }, []);
+
   return (
     <MainAllNoticeContainer>
       <MainAllNoticeTitleH1>공지사항</MainAllNoticeTitleH1>
@@ -32,14 +60,15 @@ const MainAllNotice = () => {
       </MainAllNoticeTitleP>
 
       <MainAllNoticeCardContainer>
-        {dummyDataArray.map((items) => (
-          <MainNoticeCard
-            key={items.id}
-            category={items.category}
-            title={items.title}
-            dept={items.dept}
-            dir={"left"}
-          />
+        {postList.map((items: any) => (
+            <MainNoticeCard
+              key={items.id}
+              id={items.id}
+              category={items.category}
+              title={items.title}
+              dept={items.userName}
+              dir={"left"}
+            />
         ))}
       </MainAllNoticeCardContainer>
     </MainAllNoticeContainer>

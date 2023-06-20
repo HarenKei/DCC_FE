@@ -1,77 +1,37 @@
 import { collection, addDoc } from "@firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { db, auth } from "../Google2/fbconfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 
 const WritePage = () => {
-  let userid = "";
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User logged in already or has just logged in.
-      console.log(user.uid);
-      userid = user.uid;
-    } else {
-      // User not logged in or has just logged out.
-    }
-  });
-  //파이어스토어에서 무비리스트를 가지고 옵니다
+  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [newMovieTitle, setNewMovieTitle] = useState("");
   const [newPostDetail, setnewPostDetail] = useState("");
-  //각각의 DB들
-  const moviesCollectionRef = collection(db, "Post");
-  const AppCollectionRef = collection(db, "AppPost");
-  const ApplicationCollectionRef = collection(db, "ApplicationPost");
+  const noticePostCollectionRef = collection(db, "Post");
+  const [selectedOption, setSelectedOption] = useState("");
 
   const onSubmitMovie = async () => {
     try {
-      await addDoc(moviesCollectionRef, {
+      await addDoc(noticePostCollectionRef, {
         title: newMovieTitle,
         detail: newPostDetail,
         writeDate: new Date(),
         //firebase auth에 저장된 userid 이게 개별 토큰 같군요
-        userId: auth?.currentUser?.uid,
+        userId: userId,
+        userName: userName,
+        category: selectedOption
       });
       alert("글을 작성하였습니다.");
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const appDb = async () => {
-    try {
-      await addDoc(AppCollectionRef, {
-        title: newMovieTitle,
-        detail: newPostDetail,
-        writeDate: new Date(),
-        //firebase auth에 저장된 userid 이게 개별 토큰 같군요
-        userId: auth?.currentUser?.uid,
-      });
-      alert("글을 작성하였습니다.");
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const applicationDb = async () => {
-    try {
-      await addDoc(ApplicationCollectionRef, {
-        title: newMovieTitle,
-        detail: newPostDetail,
-        writeDate: new Date(),
-        //firebase auth에 저장된 userid 이게 개별 토큰 같군요
-        userId: auth?.currentUser?.uid,
-      });
-      alert("글을 작성하였습니다.");
-      console.log("test");
     } catch (err) {
       console.error(err);
     }
   };
 
   // select를 이용하여 옵션 값에 따라 각각 다른 db에 저장
-  const [selectedOption, setSelectedOption] = useState("");
+ 
 
   const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value);
@@ -79,13 +39,21 @@ const WritePage = () => {
 
   const handleClick = () => {
     if (selectedOption === "App") {
-      appDb();
-    } else if (selectedOption === "Application") {
-      applicationDb();
-    } else {
       onSubmitMovie();
-    }
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.uid);
+        setUserId(user.uid);
+        setUserName(user.displayName);
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+  }, []);
 
   return (
     <WritePageContainer>
@@ -93,7 +61,7 @@ const WritePage = () => {
         <TitleBar>
           <SelectBar>
             <select value={selectedOption} onChange={handleOptionChange}>
-              <option value="">웹</option>
+              <option value="Web">웹</option>
               <option value="App">앱</option>
               <option value="Application">응용</option>
             </select>
@@ -186,10 +154,10 @@ const Buttons = styled.div`
     background-color: #d9d9d9;
     color: black;
     border-radius: 12px;
-    margin-right:1rem;
+    margin-right: 1rem;
   }
 
-  button:first-child{
+  button:first-child {
     margin-right: 6rem;
   }
 
@@ -199,7 +167,6 @@ const Buttons = styled.div`
 `;
 
 const SelectBar = styled.div`
-  
   display: flex;
 
   & > select {

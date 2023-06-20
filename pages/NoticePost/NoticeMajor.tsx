@@ -1,51 +1,95 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import AppContainer from "./AppContainer";
-import ApplicationContainer from "./ApplicationContainer";
-import WebContainer from "./WebContainer";
+import { db } from "../Google2/fbconfig";
+import { getDocs, collection, doc, query, orderBy } from "@firebase/firestore";
+import PostContainer from "./PostContainer";
 
 const NoticeMajor = () => {
-  const [showComponent, setShowComponent] = useState(null);
+  const [postList, setPostList] = useState([]);
+  const [dataList, setDataList] = useState([]);
+  const [category, setCategory] = useState("");
+  const postCollectionRef = collection(db, "Post");
 
-  const handleClick = (divId: any) => {
-    setShowComponent(divId);
+  const getPostList = async () => {
+    try {
+      const data = await getDocs(
+        query(postCollectionRef, orderBy("writeDate", "desc"))
+      );
+
+      console.log(data);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPostList(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  const handleClick = (e) => {
+    console.log("onClick!");
+    console.log(e);
+    setCategory(e);
+  };
+
+  useEffect(() => {
+    getPostList();
+  }, []);
+
+  useEffect(()=> {
+    setDataList(postList);
+  },[postList]);
+
+  useEffect(() => {
+    if (category === "") {
+      setDataList(postList);
+    } else {
+      setDataList(
+        postList.filter((item: any) => {
+          return item.category === category;
+        })
+      );
+    }
+  }, [category]);
 
   return (
     <div>
       <ContentMajor>
         <MajorBar>
-          <MajorContent onClick={() => handleClick(1)}>
+          <MajorSelect onClick={() => handleClick("")}>
+            <h3>전체 공지</h3>
+          </MajorSelect>
+          <MajorSelect onClick={() => handleClick("Web")}>
             <h3>웹 전공</h3>
-          </MajorContent>
-          <MajorContent onClick={() => handleClick(2)}>
+          </MajorSelect>
+          <MajorSelect onClick={() => handleClick("App")}>
             <h3>앱 전공</h3>
-          </MajorContent>
-          <MajorContent onClick={() => handleClick(3)}>
+          </MajorSelect>
+          <MajorSelect onClick={() => handleClick("Application")}>
             <h3>응용 전공</h3>
-          </MajorContent>
+          </MajorSelect>
         </MajorBar>
-        {showComponent === null && <WebContainer/>}
-        {showComponent === 1 && <WebContainer />}
-        {showComponent === 2 && <AppContainer />}
-        {showComponent === 3 && <ApplicationContainer />}
+        <PostContainer data={dataList} />
       </ContentMajor>
     </div>
   );
 };
 
-  const MajorBar = styled.div`
+const MajorBar = styled.div`
   display: flex;
-  margin: 2rem auto;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
   height: 3.6rem;
   width: 75rem;
-  justify-content: space-around;
   & > div:hover {
     background-color: #adabab;
   }
-  `;
+`;
 
-const MajorContent = styled.div`
+const MajorSelect = styled.button`
   background-color: #d9d9d9;
   padding: 1rem;
   width: 17rem;
@@ -53,15 +97,15 @@ const MajorContent = styled.div`
   border-radius: 12px;
   text-align: center;
   box-shadow: 0px 1px 1px black;
-  
+  border: none;
+  cursor: pointer;
 `;
 const ContentMajor = styled.div`
-  justify-content: space-around;
   display: flex;
-  padding: 1rem;
-  margin: 2rem auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 90vw;
   max-width: 95%;
-  flex-flow: row wrap;
 `;
 export default NoticeMajor;

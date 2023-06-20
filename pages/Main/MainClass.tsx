@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import MainTimeTableCard from "@/src/Common/MainTimeTableCard";
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -12,8 +13,6 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { Link } from "react-router-dom";
-
 interface Props {
   className: string;
   profName: string;
@@ -91,17 +90,18 @@ const MainClass = (props: Props) => {
     getTimeTableList();
   }, [userId]);
 
-
   return (
-    <MainClassContainer>
-      <MainClassTitle>오늘의 강의 📖</MainClassTitle>
+    <Link href="/TimeTable">
+      <MainClassContainer>
+        <MainClassTitle>오늘의 강의 📖</MainClassTitle>
 
-      <MainClassContents>
-        {classData.map((items) => (
-          <MainTimeTableCard key={items.id} props={items} />
-        ))}
-      </MainClassContents>
-    </MainClassContainer>
+        <MainClassContents>
+          {classData.map((items) => (
+            <MainTimeTableCard key={items.id} props={items} />
+          ))}
+        </MainClassContents>
+      </MainClassContainer>
+    </Link>
   );
 };
 

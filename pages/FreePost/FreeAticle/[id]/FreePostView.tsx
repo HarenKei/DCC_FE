@@ -9,12 +9,16 @@ const FreePostView = () => {
   const router: any = useRouter();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [writer, setWriter] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     getDoc(doc(db, "FreePost", router.query.id)).then((doc) => {
       const data: any = doc.data();
       setTitle(data.title);
       setDetail(data.detail);
+      setWriter(data.userName);
+      setDate(new Date(data.writeDate.seconds).toString());
     });
   }, []);
 
@@ -30,9 +34,16 @@ const FreePostView = () => {
   return (
     <WritePageContainer>
       <WriteMain>
-        <Title>
-          <h1>{title}</h1>
-        </Title>
+        <WriteInfo>
+          <Title>
+            <h1>{title}</h1>
+          </Title>
+
+          <Writer>
+            <p>{writer}</p>
+            <p>{date}</p>
+          </Writer>
+        </WriteInfo>
 
         <Content_txt>
           <div>{detail}</div>
@@ -49,7 +60,7 @@ const FreePostView = () => {
           <Link href="/FreePost">메인으로</Link>
         </button>
         <button>
-          <Link href={`/FreePost/FreeAticle/${router.query.id}/FreePost`}>
+          <Link href={`/FreePost/FreeAticle/${router.query.id}/FreeEdit`}>
             수정하기
           </Link>
         </button>
@@ -64,7 +75,22 @@ const WritePageContainer = styled.div`
   align-items: center;
 `;
 
+const WriteInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #ababab;
+`;
+const Writer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
 const Title = styled.div`
+  flex:0.5;
   margin-top: 30px;
   margin-left: 50px;
   & > h1 {

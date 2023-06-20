@@ -1,26 +1,31 @@
 import { collection, addDoc } from "@firebase/firestore";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { db, auth } from "../Google2/fbconfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 
 const FreePostWrite = () => {
-  let userid = "";
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User logged in already or has just logged in.
-      console.log(user.uid);
-      userid = user.uid;
-    } else {
-      // User not logged in or has just logged out.
-    }
-  });
-  //파이어스토어에서 무비리스트를 가지고 옵니다
+  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [newFreeTitle, setNewFreeTitle] = useState("");
   const [newFreeDetail, setnewFreeDetail] = useState("");
-  //각각의 DB들
+  const [selectedOption, setSelectedOption] = useState("");
   const freePostDb = collection(db, "FreePost");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.uid);
+        setUserId(user.uid);
+        setUserName(user.displayName);
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+  }, []);
+  
 
   const FreeDb = async () => {
     try {
@@ -29,7 +34,9 @@ const FreePostWrite = () => {
         detail: newFreeDetail,
         writeDate: new Date(),
         //firebase auth에 저장된 userid 이게 개별 토큰 같군요
-        userId: auth?.currentUser?.uid,
+        userId: userId,
+        userName: userName,
+        category: selectedOption
       });
       alert("글을 작성하였습니다.");
     } catch (err) {

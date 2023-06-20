@@ -75,6 +75,7 @@ const MyTaskModal = ({ setModalOpen, onAdd }: any) => {
           onChange={changeInput}
           value={taskName}
         />
+        
         <br />
         <span>할 일 그룹</span>
         <br />

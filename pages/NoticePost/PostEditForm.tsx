@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-function EditForm(initialValues : any) {
+const PostEditForm = (initialValues : any) => {
 
   const router: any = useRouter();
 
@@ -24,7 +24,7 @@ function EditForm(initialValues : any) {
 
 
   const update = async () => {
-    const update = doc(db, "AppPost", router.query.id);
+    const update = doc(db, "Post", router.query.id);
     await updateDoc(update, {
       title: newPostTitle,
       detail: newPostDetail,
@@ -126,4 +126,4 @@ const Buttons = styled.div`
   }
 `;
 
-export default EditForm;
+export default PostEditForm;

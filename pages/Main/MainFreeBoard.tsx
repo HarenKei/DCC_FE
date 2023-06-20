@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
+import { db } from "../Google2/fbconfig";
+import Link from "next/link";
+import FreePostCard from "@/src/Common/FreePostCard";
 import MainNoticeCard from "@/src/Common/MainNoticeCard";
 
 const dummyDataArray = [
@@ -24,6 +28,29 @@ const dummyDataArray = [
 ];
 
 const MainFreeBoard = () => {
+  const [postList, setPostList]: any = useState([]);
+  const postCollectionRef = collection(db, "FreePost");
+
+  const getPostList = async () => {
+    try {
+      const data = await getDocs(
+        query(postCollectionRef, orderBy("writeDate", "desc"))
+      );
+      console.log(data);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPostList(filteredData.slice(0,3));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getPostList();
+  },[]);
+
   return (
     <MainFreeBoardContainer>
       <MainFreeBoardTitleH1>자유게시판</MainFreeBoardTitleH1>
@@ -32,12 +59,13 @@ const MainFreeBoard = () => {
       </MainFreeBoardTitleP>
 
       <MainFreeBoardCardContainer>
-        {dummyDataArray.map((items) => (
+        {postList.map((items: any) => (
           <MainNoticeCard
             key={items.id}
-            category={items.category}
+            id={items.id}
+            category={"자유"}
             title={items.title}
-            dept={items.dept}
+            dept={items.userName}
             dir={`right`}
           />
         ))}

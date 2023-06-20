@@ -6,10 +6,10 @@ import Link from "next/link";
 const NoticePost = () => {
 
    return (
-    <div>
+    <NoticePostContainer>
       <NoticeHeadContainer>
         <Noticetitle>
-          <h1>자유 게시판</h1>
+          <h1>공지사항</h1>
         </Noticetitle>
       </NoticeHeadContainer>
       <NoticeMajor/>
@@ -18,14 +18,16 @@ const NoticePost = () => {
           글 쓰기
       </Link></button>
       </WritePost>
-    </div>
+    </NoticePostContainer>
   );
 };
 
+const NoticePostContainer = styled.div`
+  margin-left: 8vw;
+`;
 
 const NoticeHeadContainer = styled.div`
   padding: 1rem;
-  margin: 2rem auto;
   width: 90vw;
   max-width: 95%;
 `;
