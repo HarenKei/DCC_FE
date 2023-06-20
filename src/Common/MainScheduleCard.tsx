@@ -31,7 +31,7 @@ const MainScheduleCardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 1px 1px black;
-  background-color: #fff;
+  background-color: grey;
 `;
 
 const MainScheduleCardTitleH1 = styled.h1`
@@ -41,16 +41,15 @@ const MainScheduleCardTitleH1 = styled.h1`
 `;
 
 const MainScheduleCardDateBanner = styled.div`
-  width: 15vw;
-  background-color: #46B6EB;
+  width: 14vw;
+  background-color: white;
   border-radius: 7px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 20px;
-
-  font-size: 1.2rem;
+  
 `;
 
 export default MainScheduleCard;

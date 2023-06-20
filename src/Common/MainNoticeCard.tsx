@@ -51,7 +51,7 @@ const MainNoticeCardContainer = styled.div<StyleProps>`
   height: 10vh;
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
-  background-color: #fff;
+  background-color: #d9d9d9;
 
   display: flex;
   justify-content: ${(props) =>
