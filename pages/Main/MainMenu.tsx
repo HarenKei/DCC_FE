@@ -38,11 +38,6 @@ const mainMenuDataArray = [
   },
   {
     id: "m7",
-    title: "🔐 개인정보처리방침",
-    link: "/Privacy",
-  },
-  {
-    id: "m8",
     title: "⏰ 내 시간표",
     link: "/TimeTable"
   }

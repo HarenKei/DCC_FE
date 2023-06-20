@@ -95,7 +95,7 @@ const MainAllNoticeTitleP = styled.p`
 const MainAllNoticeCardContainer = styled.div`
   width: 100%;
   height: 42vh;
-  background-color: #fff;
+  background-color: #d0d1d1;
   border-radius: 10px;
   box-shadow: 0px 1px 1px black;
   margin-top: 5px;

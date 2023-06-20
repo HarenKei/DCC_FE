@@ -28,7 +28,7 @@ const TaskListContainer = styled.div`
   width: 80vw;
   margin-bottom: 2em;
 
-  background-color: grey;
+  background-color: #d0d1d1;
   border-radius: 20px;
   box-shadow: 0px 0px 5px black;
 
