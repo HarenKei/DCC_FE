@@ -24,7 +24,7 @@ const mainMenuDataArray = [
   {
     id: "m4",
     title: "🗣️ 자유게시판",
-    link: "/",
+    link: "/FreePost",
   },
   {
     id: "m5",

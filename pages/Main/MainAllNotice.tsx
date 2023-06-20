@@ -4,7 +4,7 @@ import { db } from "../Google2/fbconfig";
 import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 
 import MainNoticeCard from "@/src/Common/MainNoticeCard";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const dummyDataArray = [
   {
@@ -60,6 +60,7 @@ const MainAllNotice = () => {
 
       <MainAllNoticeCardContainer>
         {postList.map((items: any) => (
+          <Link href={`/NoticePost/article/${items.id}/WritePostView`}>
             <MainNoticeCard
               key={items.id}
               id={items.id}
@@ -68,6 +69,7 @@ const MainAllNotice = () => {
               dept={items.userName}
               dir={"left"}
             />
+          </Link>
         ))}
       </MainAllNoticeCardContainer>
     </MainAllNoticeContainer>

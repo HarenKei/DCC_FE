@@ -40,7 +40,7 @@ const MainFreeBoard = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setPostList(filteredData.slice(0,3));
+      setPostList(filteredData.slice(0, 3));
     } catch (err) {
       console.error(err);
     }
@@ -48,7 +48,7 @@ const MainFreeBoard = () => {
 
   useEffect(() => {
     getPostList();
-  },[]);
+  }, []);
 
   return (
     <MainFreeBoardContainer>
@@ -59,14 +59,17 @@ const MainFreeBoard = () => {
 
       <MainFreeBoardCardContainer>
         {postList.map((items: any) => (
-          <MainNoticeCard
-            key={items.id}
-            id={items.id}
-            category={"자유"}
-            title={items.title}
-            dept={items.userName}
-            dir={`right`}
-          />
+      
+          <Link href={`/FreePost/FreeAticle/${items.id}/FreePostView`}>
+            <MainNoticeCard
+              key={items.id}
+              id={items.id}
+              category={"자유"}
+              title={items.title}
+              dept={items.userName}
+              dir={`right`}
+            />
+          </Link>
         ))}
       </MainFreeBoardCardContainer>
     </MainFreeBoardContainer>

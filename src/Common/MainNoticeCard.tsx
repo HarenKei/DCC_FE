@@ -30,7 +30,6 @@ const MainNoticeCard = (props: Props) => {
   },[]);
 
   return (
-    <Link href={`/NoticePost/article/${props.id}/WritePostView`}>
       <MainNoticeCardContainer dir={props.dir}>
         <MainNoticeCardContents dir={props.dir}>
           <MainNoticeCardCategory>
@@ -42,7 +41,6 @@ const MainNoticeCard = (props: Props) => {
           <MainNoticeCardDeptP>{props.dept}</MainNoticeCardDeptP>
         </MainNoticeCardContents>
       </MainNoticeCardContainer>
-    </Link>
   );
 };
 
