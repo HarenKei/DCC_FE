@@ -60,9 +60,6 @@ const TimeTableModal = ({ setModalOpen, onAdd }: any) => {
     if (!className || !profName || !classRoom || !day) {
       alert("내용을 입력해주세요.");
       return;
-    }
-
-    console.log(form);
 
     onAdd(form);
 

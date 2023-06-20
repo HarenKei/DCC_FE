@@ -4,10 +4,6 @@ import ClassInfoList from "./ClassInfoList";
 
 const DayView = ({classData, onDelete}: any) => {
 
-  useEffect(() => {
-    console.log(`DayView ${classData[0].className}`);
-  },[]);
-
   return (
     <DayContainer>
       <Day>

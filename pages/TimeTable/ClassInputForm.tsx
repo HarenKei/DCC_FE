@@ -15,7 +15,6 @@ const ClassInputForm = ({onAdd, closeModal} : any) => {
 	//여러개의 input값을 받을때는 아래와같이 value와 name을 받아 넘긴다
     const changeInput=(e : any)=>{
         const{ value, name} = e.target
-        console.log(value);
         setForm({
             ...form,
             [name] : value
@@ -26,7 +25,6 @@ const ClassInputForm = ({onAdd, closeModal} : any) => {
     const onSubmit=(e : any)=>{
         e.preventDefault() //섭밋후 자동 새로고침 방지
         onAdd(form);
-        console.log(form);
         setForm({
             className : '',
             profName : '',

@@ -20,7 +20,6 @@ const ApiTest = () => {
 
   useEffect(()=>{
     API.getTestData().then((apiResult : any) => {
-      console.log(apiResult.data);
       setTest(apiResult.data);
     });
   },[]);

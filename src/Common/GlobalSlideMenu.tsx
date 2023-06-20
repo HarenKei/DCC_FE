@@ -113,7 +113,6 @@ const GlobalSlideMenu = (props: any) => {
   }, []);
 
   useEffect(() => {
-    console.log(userId + " " + userName);
   }, [userId, userName]);
 
   useEffect(() => {

@@ -13,7 +13,6 @@ const PostEditForm = (initialValues : any) => {
   let userid = "";
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user.uid);
       userid = user.uid;
     } else {
     }

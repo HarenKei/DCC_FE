@@ -16,7 +16,6 @@ const NoticeMajor = () => {
         query(postCollectionRef, orderBy("writeDate", "desc"))
       );
 
-      console.log(data);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -27,9 +26,7 @@ const NoticeMajor = () => {
     }
   };
 
-  const handleClick = (e) => {
-    console.log("onClick!");
-    console.log(e);
+  const handleClick = (e : any) => {
     setCategory(e);
   };
 

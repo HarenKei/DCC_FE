@@ -22,7 +22,6 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
         writeDate: new Date(doc.data().writeDate).toLocaleString()
       }));
       setCommentList(filteredData);
-      console.log(filteredData);
     } catch (error) {
       console.error(error);
     }
@@ -44,8 +43,6 @@ const TsPostBox = ({ data, onSubmit, postPk, teamPk, newComment, setNewComment, 
   const toggleCommentVisible = () => {
     setCommentVisible(!commentVisible);
     setPostPk(id);
-    console.log(teamPk);
-    console.log(postPk);
     getCommentList();
   };
 

@@ -65,7 +65,6 @@ const MainClass = (props: Props) => {
         id: doc.id,
       }));
       setClassData(filteredData.filter((items) => items.day == todayDay));
-      console.log(`getTimeTableList ${classData[0].className}`);
     } catch (err) {
       console.error(err);
     }
@@ -75,12 +74,10 @@ const MainClass = (props: Props) => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User logged in already or has just logged in.
-        console.log(user.uid + "" + user.displayName);
         setUserId(user.uid);
         // setUserName(user.displayName);
         // await addUsers(UsersDocRef);
       } else {
-        alert("로그인 되어있지 않음.");
         // User not logged in or has just logged out.
       }
     });

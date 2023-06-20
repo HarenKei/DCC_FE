@@ -14,7 +14,6 @@ const WebContainer = () => {
   const getPostList = async() => {
     try{
         const data = await getDocs(query(postCollectionRef, orderBy("writeDate", "desc")));
-        console.log(data);
         const filteredData = data.docs.map((doc) => ({
             ...doc.data(), 
             id: doc.id,            

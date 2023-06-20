@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const MainTimeTableCard = ({props} : any) => {
   const {className, classRoom} = props;
-
-  console.log(`MainTimeTableCard ${className}`);
   return(
     <MainTaimeTableCardContainer>
       <MainTimeTableContents>

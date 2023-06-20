@@ -23,7 +23,6 @@ export const googleProvider = new GoogleAuthProvider();
 //구글 로그인 시 가지고 올 데이터
 export const signInWithGoogleInConfig = () => {
     signInWithPopup(auth, googleProvider).then((result) => {
-        console.log(result);
         const name = result?.user?.displayName;
         const email = result?.user?.email;
         const profilePic = result?.user?.photoURL;

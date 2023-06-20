@@ -99,7 +99,6 @@ const MainTask = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User logged in already or has just logged in.
-        console.log(user.uid + "" + user.displayName);
         setUserId(user.uid);
         setUserName(user.displayName);
         const UsersDocRef = doc(db, "Users", userId);
@@ -111,7 +110,6 @@ const MainTask = () => {
   }, []);
 
   useEffect(() => {
-    console.log(`userID : ${userId} userName : ${userName}`);
     getTaskList();
   }, [userId]);
 

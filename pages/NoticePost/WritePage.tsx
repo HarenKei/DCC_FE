@@ -46,7 +46,6 @@ const WritePage = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User logged in already or has just logged in.
-        console.log(user.uid);
         setUserId(user.uid);
         setUserName(user.displayName);
       } else {

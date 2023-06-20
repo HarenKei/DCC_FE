@@ -6,7 +6,6 @@ import GoogleAuth from 'google-auth-library';
 export default function Login() {
     // get session from nextAuth
     const { data, status } = useSession();
-    console.log(data?.user);
     // useSession uses React Context
 
     // if the user exists -> show a Sign Out button and their information

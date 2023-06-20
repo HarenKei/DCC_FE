@@ -3,7 +3,6 @@ import styled from "styled-components";
 import TaskCard from "@/src/Common/TaskCard";
 
 const TaskList = ({ status, data, onDelete, onUpdate}: any) => {
-  console.log(data);
   return (
     <TaskListContainer>
 

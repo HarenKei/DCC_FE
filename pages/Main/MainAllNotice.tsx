@@ -37,7 +37,6 @@ const MainAllNotice = () => {
         query(postCollectionRef, orderBy("writeDate", "desc"))
       );
 
-      console.log(data);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,

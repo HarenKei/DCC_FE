@@ -56,7 +56,6 @@ const signInWithGoogle = async () => {
   onAuthStateChanged(auth, async(user) => {
     if (user) {
       // User logged in already or has just logged in.
-      console.log(user.uid+''+user.displayName);
       userid = user.uid;
       userName = user.displayName;
       const UsersDocRef = doc(db, "Users", userid);

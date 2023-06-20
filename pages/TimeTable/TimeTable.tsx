@@ -60,7 +60,6 @@ const TimeTable = () => {
         id: doc.id,
       }));
       setClassData(filteredData);
-      console.log(`getTimeTableList ${classData}`);
     } catch (err) {
       console.error(err);
     }
@@ -72,7 +71,6 @@ const TimeTable = () => {
         ...tmp,
       });
       getTimeTableList();
-      console.log(`onSubmit ${classData}`);
     } catch (err) {
       console.error(err);
     }
@@ -82,7 +80,6 @@ const TimeTable = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User logged in already or has just logged in.
-        console.log(user.uid + "" + user.displayName);
         setUserId(user.uid);
         setUserName(user.displayName);
         // await addUsers(UsersDocRef);

@@ -80,7 +80,6 @@ const TeamSpace = () => {
                 writeDate: new Date(doc.data().writeDate).toLocaleString(),
             }));
             setPostList(filteredData);
-            console.log(postList);
         } catch (err) {
             console.error(err);
         }
@@ -160,7 +159,6 @@ const TeamSpace = () => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 // 사용자가 이미 로그인했거나 방금 로그인 한 경우
-                console.log(user.uid + '' + user.displayName);
                 setUserId(user.uid);
                 setUserName(user.displayName);
                 //   TaskCollectionRef = collection(db,  `Users/${userid}/TeamSpaceChannel`);
@@ -173,7 +171,6 @@ const TeamSpace = () => {
     }, [userid]);
 
     useEffect(() => {
-        console.log(teamPK);
         getMemberList();
         getPostList();
         getMyTsList();

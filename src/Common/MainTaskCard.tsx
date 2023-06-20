@@ -10,8 +10,6 @@ const MainTaskCard = ({ data, onUpdate }: any) => {
     onUpdate(id);
   }
 
-  console.log(`taskStatus ; ${taskStatus} ${typeof taskStatus}`);
-
   return (
     <TaskCardContainer>
       {taskStatus === "wip" && (

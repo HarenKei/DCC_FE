@@ -59,7 +59,6 @@ const TS_main = () => {
         ...tmp,
       });
       getTsList();
-      console.log(`onSubmit ${taskData}`);
     } catch (err) {
       console.error(err);
     }
@@ -98,7 +97,6 @@ const TS_main = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserId(user.uid);
-        console.log(user.uid);
       }
     })
     getTsList();
